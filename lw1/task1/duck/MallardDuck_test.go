@@ -1,18 +1,17 @@
-package test
+package duck
 
 import (
-	"../../duck"
-	"../dance"
-	"../fly"
-	"../quack"
+	"./dance"
+	"./fly"
+	"./quack"
 )
 
 func ExampleNewMallardDuck() {
-	mallardDuck := duck.NewMallardDuck()
+	mallardDuck := NewMallardDuck()
 
 	mallardDuck.Display()
 	mallardDuck.Swim()
-	
+
 	mallardDuck.PerformQuack()
 	mallardDuck.PerformFly()
 	mallardDuck.PerformDance()
@@ -24,8 +23,8 @@ func ExampleNewMallardDuck() {
 	// Let's dance waltz!
 }
 
-func ExampleModifyMallardDuckBehaviours()  {
-	mallardDuck := duck.NewMallardDuck()
+func ExampleModifyMallardDuckBehaviours() {
+	mallardDuck := NewMallardDuck()
 
 	mallardDuck.SetQuackBehaviour(quack.Squeak{})
 	mallardDuck.SetFlyBehaviour(fly.FlyNoWay{})

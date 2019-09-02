@@ -1,14 +1,13 @@
-package test
+package duck
 
 import (
-	"../../duck"
-	"../dance"
-	"../fly"
-	"../quack"
+	"./dance"
+	"./fly"
+	"./quack"
 )
 
 func ExampleNewDecoyDuck() {
-	decoyDuck := duck.NewDecoyDuck()
+	decoyDuck := NewDecoyDuck()
 
 	decoyDuck.Display()
 	decoyDuck.Swim()
@@ -25,7 +24,7 @@ func ExampleNewDecoyDuck() {
 }
 
 func ExampleModifyDecoyDuckBehaviours() {
-	decoyDuck := duck.NewDecoyDuck()
+	decoyDuck := NewDecoyDuck()
 
 	decoyDuck.SetQuackBehaviour(quack.Squeak{})
 	decoyDuck.SetFlyBehaviour(fly.FlyWithWings{})

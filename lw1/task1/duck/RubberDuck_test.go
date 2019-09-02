@@ -1,14 +1,13 @@
-package test
+package duck
 
 import (
-	"../../duck"
-	"../dance"
-	"../fly"
-	"../quack"
+	"./dance"
+	"./fly"
+	"./quack"
 )
 
 func ExampleNewRubberDuck() {
-	rubberDuck := duck.NewRubberDuck()
+	rubberDuck := NewRubberDuck()
 
 	rubberDuck.Display()
 	rubberDuck.Swim()
@@ -25,7 +24,7 @@ func ExampleNewRubberDuck() {
 }
 
 func ExampleModifyRubberDuckBehaviours() {
-	rubberDuck := duck.NewRubberDuck()
+	rubberDuck := NewRubberDuck()
 
 	rubberDuck.SetQuackBehaviour(quack.Squeak{})
 	rubberDuck.SetFlyBehaviour(fly.FlyWithWings{})
