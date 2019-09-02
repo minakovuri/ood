@@ -2,8 +2,8 @@ package dance
 
 import "fmt"
 
-type DanceMinuet struct {}
+type DanceMinuet struct{}
 
 func (d DanceMinuet) Dance() {
-	fmt.Println("Let's dance minuet")
+	fmt.Println("Let's dance minuet!")
 }
