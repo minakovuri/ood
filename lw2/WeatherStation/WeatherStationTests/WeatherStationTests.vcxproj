@@ -161,13 +161,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\WeatherStation\WeatherData.cpp" />
-    <ClCompile Include="GetFullInfoTest.cpp" />
+    <ClCompile Include="..\WeatherStation\CWeatherData.cpp" />
+    <ClCompile Include="..\WeatherStation\CWeatherPrioritiesData.cpp" />
+    <ClCompile Include="..\WeatherStation\StatsDisplay.cpp" />
+    <ClCompile Include="tests.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\WeatherStation\StatsDisplay.h" />
     <ClInclude Include="..\WeatherStation\WeatherData.h" />
     <ClInclude Include="catch.hpp" />
+    <ClInclude Include="headers\MockSubjects.h" />
+    <ClInclude Include="MockDisplays.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -150,11 +150,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ConditionDisplay.cpp" />
-    <ClCompile Include="WeatherData.cpp" />
+    <ClCompile Include="CWeatherPrioritiesData.cpp" />
+    <ClCompile Include="StatsDisplay.cpp" />
+    <ClCompile Include="CWeatherData.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConditionDisplay.h" />
+    <ClInclude Include="StatsDisplay.h" />
     <ClInclude Include="IDisplayElement.h" />
     <ClInclude Include="IObserver.h" />
     <ClInclude Include="ISubject.h" />

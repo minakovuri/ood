@@ -1,19 +1,22 @@
 #include "WeatherData.h"
 
-void CWeatherData::RegisterObserver(CWeatherData::WeatherObserver& observerRef)
+void CWeatherData::RegisterObserver(WeatherObserver& observerRef)
 {
-	m_observers.push_back(&observerRef);
+	m_observers.insert(&observerRef);
 }
 
-void CWeatherData::RemoveObserver(CWeatherData::WeatherObserver& observerRef)
+void CWeatherData::RemoveObserver(WeatherObserver& observerRef)
 {
-	m_observers.remove(&observerRef);
+	m_observers.erase(&observerRef);
 }
 
 void CWeatherData::NotifyObservers()
 {
 	SWeatherInfo data = GetChangedData();
-	for (auto& observer : m_observers)
+
+	auto observers(m_observers);
+
+	for (auto& observer : observers)
 	{
 		observer->Update(data);
 	}

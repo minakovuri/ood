@@ -1,15 +1,14 @@
 ﻿#include "WeatherData.h"
+#include "StatsDisplay.h"
 #include "ConditionDisplay.h"
 
 int main()
 {
 	CWeatherData weatherData;
 
-	ConditionDisplay conditionDisplay(weatherData);
+	CStatsDisplay statsDisplay(weatherData);
 
-	weatherData.NotifyObservers();
-
-	weatherData.SetMeasurements(10, 20, 30);
+	weatherData.SetMeasurements(10.2, 60, 700);
 
 	return 0;
 }

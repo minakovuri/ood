@@ -21,15 +21,30 @@
     <ClInclude Include="..\WeatherStation\WeatherData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MockDisplays.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\WeatherStation\StatsDisplay.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\MockSubjects.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GetFullInfoTest.cpp">
+    <ClCompile Include="tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\WeatherStation\WeatherData.cpp">
+    <ClCompile Include="..\WeatherStation\StatsDisplay.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\WeatherStation\CWeatherData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\WeatherStation\CWeatherPrioritiesData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

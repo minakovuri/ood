@@ -9,8 +9,6 @@ class ConditionDisplay
 	, virtual public IDisplayElement
 {
 public:
-	ConditionDisplay(ISubject<SWeatherInfo>& weatherDataRef);
-
 	void Update(SWeatherInfo const& data) override;
 	void Display() override;
 
