@@ -32,12 +32,10 @@ bool IsVectorsEqual(std::vector<T>& const vec1, std::vector<T>& const vec2)
 
 TEST_CASE("Test IsStatsEqual function")
 {
-	Stats stats1 = Stats{ 0, 10, 5 };
-	Stats stats2 = Stats{ 0, 10, 5 };
-	Stats stats3 = Stats{ 0, 5, 2.5 };
-
-	CHECK(IsStatsEqual(stats1, stats2));
-	CHECK_FALSE(IsStatsEqual(stats1, stats3));
+	CHECK(IsStatsEqual(Stats{ 0, 10, 5 }, Stats{ 0, 10, 5 }));
+	CHECK_FALSE(IsStatsEqual(Stats{ -1, 2, 5 }, Stats{ 2, 2, 5 }));
+	CHECK_FALSE(IsStatsEqual(Stats{ 0, 10, 5 }, Stats{ 0, 5, 2.5 }));
+	CHECK_FALSE(IsStatsEqual(Stats{ 0, 10, 5 }, Stats{ 0, 10, 7 }));
 }
 
 TEST_CASE("Test IsVectorsEqual function")
@@ -118,7 +116,7 @@ TEST_CASE("Test subject notify priority")
 	weatherData.RegisterObserver(mockObserver3, 1);
 	weatherData.RegisterObserver(mockObserver4, 3);
 
-	weatherData.NotifyObservers();
+	weatherData.SetMeasurements(-10, 60, 700);
 
 	std::vector<std::string> requredPriotities = {
 		"first",
@@ -128,4 +126,6 @@ TEST_CASE("Test subject notify priority")
 	};
 
 	CHECK(IsVectorsEqual(priorities, requredPriotities));
+
+	CHECK_NOTHROW(weatherData.RemoveObserver(mockObserver1));
 }

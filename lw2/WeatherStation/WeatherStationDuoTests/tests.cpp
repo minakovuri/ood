@@ -42,4 +42,6 @@ TEST_CASE("Test observers that can handle data from inside and outside weather d
 	CHECK(IsStatsEqual(statsDisplay.GetOutTemperatureStats(), Stats{ 0, 20.7, (20.7 + 12.2) / 2 }));
 	CHECK(IsStatsEqual(statsDisplay.GetOutHumidityStats(), Stats{ 0, 67.0, (67.0 + 56.0) / 2 }));
 	CHECK(IsStatsEqual(statsDisplay.GetOutPressureStats(), Stats{ 0, 600.0, (600.0 + 500.0) / 2 }));
+
+	CHECK_NOTHROW(inWeatherData.RemoveObserver(statsDisplay));
 }
