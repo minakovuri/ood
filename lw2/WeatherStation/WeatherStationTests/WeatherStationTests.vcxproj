@@ -171,7 +171,6 @@
     <ClInclude Include="..\WeatherStation\StatsDisplay.h" />
     <ClInclude Include="..\WeatherStation\WeatherData.h" />
     <ClInclude Include="catch.hpp" />
-    <ClInclude Include="headers\MockSubjects.h" />
     <ClInclude Include="MockDisplays.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

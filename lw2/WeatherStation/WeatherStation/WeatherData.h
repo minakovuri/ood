@@ -35,6 +35,7 @@ private:
 
 class CWeatherPrioritiesData : public IPrioritySubject<SWeatherInfo>
 {
+public:
 	void RegisterObserver(WeatherObserver& observerRef, unsigned int priority = 0) override;
 	void RemoveObserver(WeatherObserver& observerRef) override;
 	void NotifyObservers() override;

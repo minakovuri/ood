@@ -1,6 +1,7 @@
 #pragma once
 #include "../WeatherStation/WeatherData.h"
 #include <string>
+#include <vector>
 
 class MockDeleteDisplay : public IObserver<SWeatherInfo>
 {
@@ -22,15 +23,19 @@ private:
 
 class MockPriorityObserver : public IObserver<SWeatherInfo>
 {
-	MockPriorityObserver(std::string& const name)
+public:
+	MockPriorityObserver(const std::string& name, std::vector<std::string>* priorities)
 	{
 		m_name = name;
+		m_priorityVector = priorities;
 	}
 
 	void Update(SWeatherInfo const& data)
 	{
+		m_priorityVector->push_back(m_name);
 	}
 
 private:
 	std::string m_name;
+	std::vector<std::string>* m_priorityVector;
 };
