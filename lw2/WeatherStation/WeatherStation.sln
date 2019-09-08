@@ -7,6 +7,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WeatherStation", "WeatherSt
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WeatherStationTests", "WeatherStationTests\WeatherStationTests.vcxproj", "{0C738D1F-655C-4C97-BE1B-B165067F0451}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WeatherStationDuo", "WeatherStationDuo\WeatherStationDuo.vcxproj", "{BADEDC2A-2BD9-4A05-8775-ED3A8279E313}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WeatherStationDuoTests", "WeatherStationDuoTests\WeatherStationDuoTests.vcxproj", "{D70345AA-1245-482A-9A48-BE16CD69CE96}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +35,22 @@ Global
 		{0C738D1F-655C-4C97-BE1B-B165067F0451}.Release|x64.Build.0 = Release|x64
 		{0C738D1F-655C-4C97-BE1B-B165067F0451}.Release|x86.ActiveCfg = Release|Win32
 		{0C738D1F-655C-4C97-BE1B-B165067F0451}.Release|x86.Build.0 = Release|Win32
+		{BADEDC2A-2BD9-4A05-8775-ED3A8279E313}.Debug|x64.ActiveCfg = Debug|x64
+		{BADEDC2A-2BD9-4A05-8775-ED3A8279E313}.Debug|x64.Build.0 = Debug|x64
+		{BADEDC2A-2BD9-4A05-8775-ED3A8279E313}.Debug|x86.ActiveCfg = Debug|Win32
+		{BADEDC2A-2BD9-4A05-8775-ED3A8279E313}.Debug|x86.Build.0 = Debug|Win32
+		{BADEDC2A-2BD9-4A05-8775-ED3A8279E313}.Release|x64.ActiveCfg = Release|x64
+		{BADEDC2A-2BD9-4A05-8775-ED3A8279E313}.Release|x64.Build.0 = Release|x64
+		{BADEDC2A-2BD9-4A05-8775-ED3A8279E313}.Release|x86.ActiveCfg = Release|Win32
+		{BADEDC2A-2BD9-4A05-8775-ED3A8279E313}.Release|x86.Build.0 = Release|Win32
+		{D70345AA-1245-482A-9A48-BE16CD69CE96}.Debug|x64.ActiveCfg = Debug|x64
+		{D70345AA-1245-482A-9A48-BE16CD69CE96}.Debug|x64.Build.0 = Debug|x64
+		{D70345AA-1245-482A-9A48-BE16CD69CE96}.Debug|x86.ActiveCfg = Debug|Win32
+		{D70345AA-1245-482A-9A48-BE16CD69CE96}.Debug|x86.Build.0 = Debug|Win32
+		{D70345AA-1245-482A-9A48-BE16CD69CE96}.Release|x64.ActiveCfg = Release|x64
+		{D70345AA-1245-482A-9A48-BE16CD69CE96}.Release|x64.Build.0 = Release|x64
+		{D70345AA-1245-482A-9A48-BE16CD69CE96}.Release|x86.ActiveCfg = Release|Win32
+		{D70345AA-1245-482A-9A48-BE16CD69CE96}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

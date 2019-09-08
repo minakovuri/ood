@@ -11,6 +11,22 @@ struct Stats
 	float average;
 };
 
+class CStatsData
+{
+public:
+	void Update(float value);
+	void Display();
+
+	Stats GetStats() const;
+
+private:
+	float m_min = 0;
+	float m_max = 0;
+	float m_average = 0;
+	float m_sum = 0;
+	float m_counts = 0;
+};
+
 class CStatsDisplay
 	: virtual public IObserver<SWeatherInfo>
 	, virtual public IDisplayElement
@@ -26,23 +42,7 @@ public:
 	Stats GetPressureStats() const;
 
 private:
-	class CStatsHandler
-	{
-	public:
-		void Update(float value);
-		void Display();
-
-		Stats GetStats() const;
-
-	private:
-		float m_min = 0;
-		float m_max = 0;
-		float m_average = 0;
-		float m_sum = 0;
-		float m_counts = 0;
-	};
-
-	CStatsHandler m_temperature;
-	CStatsHandler m_humidity;
-	CStatsHandler m_pressure;
+	CStatsData m_temperature;
+	CStatsData m_humidity;
+	CStatsData m_pressure;
 };

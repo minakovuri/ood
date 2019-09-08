@@ -150,6 +150,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ConditionDisplay.cpp" />
+    <ClCompile Include="CStatsData.cpp" />
     <ClCompile Include="CWeatherPrioritiesData.cpp" />
     <ClCompile Include="StatsDisplay.cpp" />
     <ClCompile Include="CWeatherData.cpp" />

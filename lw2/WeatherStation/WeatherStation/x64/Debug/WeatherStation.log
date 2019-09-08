@@ -1,0 +1,9 @@
+﻿  ConditionDisplay.cpp
+  CStatsData.cpp
+  CWeatherPrioritiesData.cpp
+  StatsDisplay.cpp
+  CWeatherData.cpp
+  main.cpp
+  Generating Code...
+D:\Study\ood\lw2\WeatherStation\WeatherStation\main.cpp(11,43): warning C4305:  'argument': truncation from 'double' to 'float'
+  WeatherStation.vcxproj -> D:\Study\ood\lw2\WeatherStation\x64\Debug\WeatherStation.exe

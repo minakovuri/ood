@@ -44,5 +44,8 @@
     <ClCompile Include="..\WeatherStation\CWeatherPrioritiesData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\WeatherStation\CStatsData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

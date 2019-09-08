@@ -161,6 +161,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\WeatherStation\CStatsData.cpp" />
     <ClCompile Include="..\WeatherStation\CWeatherData.cpp" />
     <ClCompile Include="..\WeatherStation\CWeatherPrioritiesData.cpp" />
     <ClCompile Include="..\WeatherStation\StatsDisplay.cpp" />

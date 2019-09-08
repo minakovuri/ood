@@ -1,0 +1,46 @@
+﻿  CStatsData.cpp
+  CWeatherData.cpp
+  StatsDisplay.cpp
+  main.cpp
+  tests.cpp
+  Generating Code...
+  WeatherStationDuoTests.vcxproj -> D:\Study\ood\lw2\WeatherStation\x64\Debug\WeatherStationDuoTests.exe
+  Weather data: 
+  	 inside: 
+  		 temperature: min: 0, max: 15.3, average: 15.3
+  		 humidity: min: 0, max: 70, average: 70
+  		 pressure: min: 0, max: 650, average: 650
+  	 outside: 
+  		 temperature: min: 0, max: 0, average: 0
+  		 humidity: min: 0, max: 0, average: 0
+  		 pressure: min: 0, max: 0, average: 0
+  Weather data: 
+  	 inside: 
+  		 temperature: min: 0, max: 15.3, average: 15.3
+  		 humidity: min: 0, max: 70, average: 70
+  		 pressure: min: 0, max: 650, average: 650
+  	 outside: 
+  		 temperature: min: 0, max: 20.7, average: 20.7
+  		 humidity: min: 0, max: 67, average: 67
+  		 pressure: min: 0, max: 600, average: 600
+  Weather data: 
+  	 inside: 
+  		 temperature: min: -8.4, max: 15.3, average: 3.45
+  		 humidity: min: 0, max: 70, average: 65
+  		 pressure: min: 0, max: 650, average: 631.5
+  	 outside: 
+  		 temperature: min: 0, max: 20.7, average: 20.7
+  		 humidity: min: 0, max: 67, average: 67
+  		 pressure: min: 0, max: 600, average: 600
+  Weather data: 
+  	 inside: 
+  		 temperature: min: -8.4, max: 15.3, average: 3.45
+  		 humidity: min: 0, max: 70, average: 65
+  		 pressure: min: 0, max: 650, average: 631.5
+  	 outside: 
+  		 temperature: min: 0, max: 20.7, average: 16.45
+  		 humidity: min: 0, max: 67, average: 61.5
+  		 pressure: min: 0, max: 600, average: 550
+  ===============================================================================
+  All tests passed (6 assertions in 1 test case)
+  
