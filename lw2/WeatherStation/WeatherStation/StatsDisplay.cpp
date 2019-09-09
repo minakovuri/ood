@@ -1,7 +1,7 @@
 #include "StatsDisplay.h"
 #include <iostream>
 
-CStatsDisplay::CStatsDisplay(ISubject<SWeatherInfo>& weatherDataRef)
+CStatsDisplay::CStatsDisplay(IObservable<SWeatherInfo>& weatherDataRef)
 {
 	weatherDataRef.RegisterObserver(*this);
 }

@@ -1,7 +1,7 @@
 #include "StatsDisplay.h"
 #include <iostream>
 
-CStatsDisplay::CStatsDisplay(ISubject<SWeatherInfo>& in, ISubject<SWeatherInfo>& out)
+CStatsDisplay::CStatsDisplay(IObservable<SWeatherInfo>& in, IObservable<SWeatherInfo>& out)
 	: m_in(in)
 	, m_out(out)
 {
@@ -9,7 +9,7 @@ CStatsDisplay::CStatsDisplay(ISubject<SWeatherInfo>& in, ISubject<SWeatherInfo>&
 	out.RegisterObserver(*this);
 }
 
-void CStatsDisplay::Update(SWeatherInfo const& data, ISubject<SWeatherInfo>& subject)
+void CStatsDisplay::Update(SWeatherInfo const& data, IObservable<SWeatherInfo>& subject)
 {
 	if (&subject == &m_in)
 	{

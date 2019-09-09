@@ -1,7 +1,7 @@
 #pragma once
 #include <set>
 #include <map>
-#include "ISubject.h"
+#include "IObservable.h"
 #include "IObserver.h"
 
 struct SWeatherInfo
@@ -13,7 +13,7 @@ struct SWeatherInfo
 
 typedef IObserver<SWeatherInfo> WeatherObserver;
 
-class CWeatherData : public ISubject<SWeatherInfo>
+class CWeatherData : public IObservable<SWeatherInfo>
 {
 public:
 	void RegisterObserver(WeatherObserver& observerRef, unsigned int priority = 0) override;

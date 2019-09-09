@@ -15,7 +15,7 @@ struct SWeatherInfo
 
 typedef IObserver<SWeatherInfo> WeatherObserver;
 
-class CWeatherData : public ISubject<SWeatherInfo>
+class CWeatherData : public IObservable<SWeatherInfo>
 {
 public:
 	void RegisterObserver(WeatherObserver& observerRef, unsigned int priority = 0) override;

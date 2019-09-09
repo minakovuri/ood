@@ -1,38 +1,38 @@
 #pragma once
 #include "IDisplayElement.h"
 #include "IObserver.h"
-#include "ISubject.h"
+#include "IObservable.h"
 #include "WeatherData.h"
 
 struct Stats
 {
-	float min;
-	float max;
-	float average;
+	double min;
+	double max;
+	double average;
 };
 
 class CStatsData
 {
 public:
-	void Update(float value);
+	void Update(double value);
 	void Display();
 
 	Stats GetStats() const;
 
 private:
-	float m_min = 0;
-	float m_max = 0;
-	float m_average = 0;
-	float m_sum = 0;
-	float m_counts = 0;
+	double m_min = -DBL_MAX;
+	double m_max = DBL_MAX;
+	double m_average = 0;
+	double m_sum = 0;
+	double m_counts = 0;
 };
 
 class CStatsDisplay
-	: virtual public IObserver<SWeatherInfo>
-	, virtual public IDisplayElement
+	: private IObserver<SWeatherInfo>
+	, public IDisplayElement
 {
 public:
-	CStatsDisplay(ISubject<SWeatherInfo>& weatherDataRef);
+	CStatsDisplay(IObservable<SWeatherInfo>& weatherDataRef);
 
 	void Update(SWeatherInfo const& data) override;
 	void Display() override;

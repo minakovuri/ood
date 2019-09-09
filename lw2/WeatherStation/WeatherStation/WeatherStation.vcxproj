@@ -149,7 +149,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ConditionDisplay.cpp" />
     <ClCompile Include="CStatsData.cpp" />
     <ClCompile Include="CWeatherPrioritiesData.cpp" />
     <ClCompile Include="StatsDisplay.cpp" />
@@ -157,11 +156,10 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ConditionDisplay.h" />
     <ClInclude Include="StatsDisplay.h" />
     <ClInclude Include="IDisplayElement.h" />
     <ClInclude Include="IObserver.h" />
-    <ClInclude Include="ISubject.h" />
+    <ClInclude Include="IObservable.h" />
     <ClInclude Include="WeatherData.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

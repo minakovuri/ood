@@ -7,11 +7,11 @@ void CWeatherPrioritiesData::RegisterObserver(WeatherObserver& observerRef, unsi
 
 void CWeatherPrioritiesData::RemoveObserver(WeatherObserver& observerRef)
 {
-	for (auto priority : m_observersPriority)
+	for (auto iterator = m_observersPriority.begin(); iterator != m_observersPriority.end(); ++iterator)
 	{
-		if (priority.second == &observerRef)
+		if (iterator->second == &observerRef)
 		{
-			m_observersPriority.erase(priority.first);
+			m_observersPriority.erase(iterator);
 			break;
 		}
 	}
@@ -34,7 +34,7 @@ void CWeatherPrioritiesData::MeasurementsChanged()
 	NotifyObservers();
 }
 
-void CWeatherPrioritiesData::SetMeasurements(float temperature, float humidity, float pressure)
+void CWeatherPrioritiesData::SetMeasurements(double temperature, double humidity, double pressure)
 {
 	m_temperature = temperature;
 	m_humidity = humidity;

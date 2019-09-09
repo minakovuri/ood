@@ -75,18 +75,18 @@ TEST_CASE("Test stats display")
 	CStatsDisplay statsDisplay(weatherData);
 
 	Stats stats = statsDisplay.GetTemperatureStats();
-	CHECK(IsStatsEqual(stats, Stats{ 0, 0, 0 }));
+	CHECK(IsStatsEqual(stats, Stats{ -DBL_MAX, DBL_MAX, 0 }));
 
 	stats = statsDisplay.GetHumodityStats();
-	CHECK(IsStatsEqual(stats, Stats{ 0, 0, 0 }));
+	CHECK(IsStatsEqual(stats, Stats{ -DBL_MAX, DBL_MAX, 0 }));
 
 	stats = statsDisplay.GetPressureStats();
-	CHECK(IsStatsEqual(stats, Stats{ 0, 0, 0 }));
+	CHECK(IsStatsEqual(stats, Stats{ -DBL_MAX, DBL_MAX, 0 }));
 
 	weatherData.SetMeasurements(10.2, 60, 700);
 
 	stats = statsDisplay.GetTemperatureStats();
-	CHECK(IsStatsEqual(stats, Stats{ 0, 10.2, 10.2 }));
+	CHECK(IsStatsEqual(stats, Stats{ 10.2, 10.2, 10.2 }));
 
 	// TODO: добавить тесты для давления и влажности
 }
@@ -127,5 +127,5 @@ TEST_CASE("Test subject notify priority")
 
 	CHECK(IsVectorsEqual(priorities, requredPriotities));
 
-	CHECK_NOTHROW(weatherData.RemoveObserver(mockObserver1));
+	weatherData.RemoveObserver(mockObserver1);
 }

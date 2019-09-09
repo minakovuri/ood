@@ -46,7 +46,7 @@ class CStatsDisplay
 	, virtual public IDisplayElement
 {
 public:
-	CStatsDisplay(ISubject<SWeatherInfo>& weatherDataRef);
+	CStatsDisplay(IObservable<SWeatherInfo>& weatherDataRef);
 
 	void Update(SWeatherInfo const& data) override;
 	void Display() override;

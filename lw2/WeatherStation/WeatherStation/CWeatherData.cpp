@@ -27,7 +27,7 @@ void CWeatherData::MeasurementsChanged()
 	NotifyObservers();
 }
 
-void CWeatherData::SetMeasurements(float temperature, float humidity, float pressure)
+void CWeatherData::SetMeasurements(double temperature, double humidity, double pressure)
 {
 	m_temperature = temperature;
 	m_humidity = humidity;

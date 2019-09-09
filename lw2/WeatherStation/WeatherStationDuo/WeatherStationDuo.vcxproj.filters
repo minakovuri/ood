@@ -35,13 +35,13 @@
     <ClInclude Include="IObserver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ISubject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="WeatherData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="StatsDisplay.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IObservable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

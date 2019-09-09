@@ -6,7 +6,7 @@
 class MockDeleteDisplay : public IObserver<SWeatherInfo>
 {
 public:
-	MockDeleteDisplay(ISubject<SWeatherInfo>& weatherDataRef)
+	MockDeleteDisplay(IObservable<SWeatherInfo>& weatherDataRef)
 	{
 		m_subject = &weatherDataRef;
 		m_subject->RegisterObserver(*this);
@@ -18,7 +18,7 @@ public:
 	}
 
 private:
-	ISubject<SWeatherInfo>* m_subject;
+	IObservable<SWeatherInfo>* m_subject;
 };
 
 class MockPriorityObserver : public IObserver<SWeatherInfo>

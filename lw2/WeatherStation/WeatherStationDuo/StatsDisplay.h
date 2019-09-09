@@ -1,7 +1,7 @@
 #pragma once
 #include "IDisplayElement.h"
 #include "IObserver.h"
-#include "ISubject.h"
+#include "IObservable.h"
 #include "WeatherData.h"
 
 struct Stats
@@ -32,9 +32,9 @@ class CStatsDisplay
 	, virtual public IDisplayElement
 {
 public:
-	CStatsDisplay(ISubject<SWeatherInfo>& in, ISubject<SWeatherInfo>& out);
+	CStatsDisplay(IObservable<SWeatherInfo>& in, IObservable<SWeatherInfo>& out);
 
-	void Update(SWeatherInfo const& data, ISubject<SWeatherInfo>& subject) override;
+	void Update(SWeatherInfo const& data, IObservable<SWeatherInfo>& subject) override;
 	void Display() override;
 
 	Stats GetInTemperatureStats() const;
@@ -54,6 +54,6 @@ private:
 	CStatsData m_outHumidity;
 	CStatsData m_outPressure;
 
-	ISubject<SWeatherInfo>& m_in;
-	ISubject<SWeatherInfo>& m_out;
+	IObservable<SWeatherInfo>& m_in;
+	IObservable<SWeatherInfo>& m_out;
 };

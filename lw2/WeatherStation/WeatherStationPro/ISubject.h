@@ -2,7 +2,7 @@
 #include "IObserver.h"
 
 template <typename T>
-class ISubject
+class IObservable
 {
 public:
 	typedef IObserver<T> ObserverType;

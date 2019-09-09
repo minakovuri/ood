@@ -159,7 +159,7 @@
   <ItemGroup>
     <ClInclude Include="IDisplayElement.h" />
     <ClInclude Include="IObserver.h" />
-    <ClInclude Include="ISubject.h" />
+    <ClInclude Include="IObservable.h" />
     <ClInclude Include="StatsDisplay.h" />
     <ClInclude Include="WeatherData.h" />
   </ItemGroup>

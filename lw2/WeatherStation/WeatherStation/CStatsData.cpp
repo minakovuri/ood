@@ -1,8 +1,18 @@
 #include "StatsDisplay.h"
 #include <iostream>
 
-void CStatsData::Update(float value)
+void CStatsData::Update(double value)
 {
+	if (m_min == -DBL_MAX)
+	{
+		m_min = value;
+	}
+
+	if (m_max == DBL_MAX)
+	{
+		m_max = value;
+	}
+
 	if (value < m_min)
 	{
 		m_min = value;
@@ -18,9 +28,27 @@ void CStatsData::Update(float value)
 
 void CStatsData::Display()
 {
-	std::cout << "min: " << m_min << ", "
-			  << "max: " << m_max << ", "
-			  << "average: " << m_average << "\n";
+	std::cout << "min: ";
+	if (m_min == -DBL_MAX)
+	{
+		std::cout << "undefined, ";
+	}
+	else
+	{
+		std::cout << m_min;
+	}
+
+	std::cout << "max: ";
+	if (m_max == DBL_MAX)
+	{
+		std::cout << "undefined, ";
+	}
+	else
+	{
+		std::cout << m_max;
+	}
+
+	std::cout << "average: " << m_average << "\n";
 }
 
 Stats CStatsData::GetStats() const
