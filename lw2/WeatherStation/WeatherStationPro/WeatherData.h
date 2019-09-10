@@ -2,7 +2,7 @@
 #include <set>
 #include <map>
 #include "IObserver.h"
-#include "ISubject.h"
+#include "IObservable.h"
 
 struct SWeatherInfo
 {

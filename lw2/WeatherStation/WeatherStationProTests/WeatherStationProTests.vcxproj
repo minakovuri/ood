@@ -155,14 +155,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\WeatherStationPro\CStatsData.cpp" />
-    <ClCompile Include="..\WeatherStationPro\CWeatherData.cpp" />
-    <ClCompile Include="..\WeatherStationPro\CWindStatsData.cpp" />
+    <ClCompile Include="..\WeatherStationPro\StatsData.cpp" />
     <ClCompile Include="..\WeatherStationPro\StatsDisplay.cpp" />
+    <ClCompile Include="..\WeatherStationPro\WeatherData.cpp" />
+    <ClCompile Include="..\WeatherStationPro\WindStatsData.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="tests.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\WeatherStationPro\StatsData.h" />
     <ClInclude Include="..\WeatherStationPro\StatsDisplay.h" />
     <ClInclude Include="..\WeatherStationPro\WeatherData.h" />
   </ItemGroup>

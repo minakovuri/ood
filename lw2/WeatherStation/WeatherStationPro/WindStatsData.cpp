@@ -1,4 +1,4 @@
-#include "StatsDisplay.h"
+#include "StatsData.h"
 #define _USE_MATH_DEFINES
 #include <iostream>
 #include <math.h>

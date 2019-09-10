@@ -151,16 +151,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CStatsData.cpp" />
-    <ClCompile Include="CWeatherData.cpp" />
-    <ClCompile Include="CWindStatsData.cpp" />
+    <ClCompile Include="StatsData.cpp" />
+    <ClCompile Include="WeatherData.cpp" />
+    <ClCompile Include="WindStatsData.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="StatsDisplay.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IDisplayElement.h" />
     <ClInclude Include="IObserver.h" />
-    <ClInclude Include="ISubject.h" />
+    <ClInclude Include="IObservable.h" />
+    <ClInclude Include="StatsData.h" />
     <ClInclude Include="StatsDisplay.h" />
     <ClInclude Include="WeatherData.h" />
   </ItemGroup>
