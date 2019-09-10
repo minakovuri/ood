@@ -1,11 +1,11 @@
 #include "WeatherData.h"
 
-void CWeatherData::RegisterObserver(WeatherObserver& observerRef)
+void CWeatherData::RegisterObserver(InsideWeatherObserver& observerRef)
 {
 	m_observers.insert(&observerRef);
 }
 
-void CWeatherData::RemoveObserver(WeatherObserver& observerRef)
+void CWeatherData::RemoveObserver(InsideWeatherObserver& observerRef)
 {
 	m_observers.erase(&observerRef);
 }

@@ -11,20 +11,20 @@ struct SWeatherInfo
 	double pressure = 0;
 };
 
-typedef IObserver<SWeatherInfo> WeatherObserver;
+typedef IObserver<SWeatherInfo> InsideWeatherObserver;
 
 class CWeatherData : public IObservable<SWeatherInfo>
 {
 public:
-	void RegisterObserver(WeatherObserver& observerRef) override;
-	void RemoveObserver(WeatherObserver& observerRef) override;
+	void RegisterObserver(InsideWeatherObserver& observerRef) override;
+	void RemoveObserver(InsideWeatherObserver& observerRef) override;
 	void NotifyObservers() override;
 
 	void MeasurementsChanged();
 	void SetMeasurements(double temperature, double humidity, double pressure);
 
 private:
-	std::set<WeatherObserver*> m_observers;
+	std::set<InsideWeatherObserver*> m_observers;
 
 	double m_temperature = 0;
 	double m_humidity = 0;
@@ -36,15 +36,15 @@ private:
 class CWeatherPrioritiesData : public IObservableWithPriority<SWeatherInfo>
 {
 public:
-	void RegisterObserver(WeatherObserver& observerRef, unsigned int priority = 0) override;
-	void RemoveObserver(WeatherObserver& observerRef) override;
+	void RegisterObserver(InsideWeatherObserver& observerRef, unsigned int priority = 0) override;
+	void RemoveObserver(InsideWeatherObserver& observerRef) override;
 	void NotifyObservers() override;
 
 	void MeasurementsChanged();
 	void SetMeasurements(double temperature, double humidity, double pressure);
 
 private:
-	std::multimap<unsigned int, WeatherObserver*> m_observersPriority;
+	std::multimap<unsigned int, InsideWeatherObserver*> m_observersPriority;
 
 	double m_temperature = 0;
 	double m_humidity = 0;

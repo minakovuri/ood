@@ -4,16 +4,16 @@
 #include "IObservable.h"
 #include "IObserver.h"
 
-struct SWeatherInfo
+struct SInsideWeatherInfo
 {
 	double temperature = 0;
 	double humidity = 0;
 	double pressure = 0;
 };
 
-typedef IObserver<SWeatherInfo> InsideWeatherObserver;
+typedef IObserver<SInsideWeatherInfo> InsideWeatherObserver;
 
-class CWeatherData : public IObservable<SWeatherInfo>
+class CInsideWeatherData : public IObservable<SInsideWeatherInfo>
 {
 public:
 	void RegisterObserver(InsideWeatherObserver& observerRef, unsigned int priority = 0) override;
@@ -24,11 +24,11 @@ public:
 	void SetMeasurements(double temperature, double humidity, double pressure);
 
 private:
-	std::multimap<unsigned int, InsideWeatherObserver*> m_observersPriority;
+	std::multimap<unsigned int, InsideWeatherObserver*> m_observers;
 
 	double m_temperature = 0;
 	double m_humidity = 0;
 	double m_pressure = 0;
 
-	SWeatherInfo GetChangedData() const;
+	SInsideWeatherInfo GetChangedData() const;
 };

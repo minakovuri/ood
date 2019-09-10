@@ -2,9 +2,9 @@
 #include <set>
 #include <map>
 #include "IObserver.h"
-#include "ISubject.h"
+#include "IObservable.h"
 
-struct SWeatherInfo
+struct SOutsideWeatherInfo
 {
 	double temperature = 0;
 	double humidity = 0;
@@ -13,20 +13,20 @@ struct SWeatherInfo
 	double windDirection = 0;
 };
 
-typedef IObserver<SWeatherInfo> InsideWeatherObserver;
+typedef IObserver<SOutsideWeatherInfo> OutsideWeatherObserver;
 
-class CWeatherData : public IObservable<SWeatherInfo>
+class COutsideWeatherData : public IObservable<SOutsideWeatherInfo>
 {
 public:
-	void RegisterObserver(InsideWeatherObserver& observerRef, unsigned int priority = 0) override;
-	void RemoveObserver(InsideWeatherObserver& observerRef) override;
+	void RegisterObserver(OutsideWeatherObserver& observerRef, unsigned int priority = 0) override;
+	void RemoveObserver(OutsideWeatherObserver& observerRef) override;
 	void NotifyObservers() override;
 
 	void MeasurementsChanged();
 	void SetMeasurements(double temperature, double humidity, double pressure, double windSpeed, double windDirection);
 
 private:
-	std::multimap<unsigned int, InsideWeatherObserver*> m_observersPriority;
+	std::multimap<unsigned int, OutsideWeatherObserver*> m_observers;
 
 	double m_temperature = 0;
 	double m_humidity = 0;
@@ -34,5 +34,5 @@ private:
 	double m_windSpeed = 0;
 	double m_windDirection = 0;
 
-	SWeatherInfo GetChangedData() const;
+	SOutsideWeatherInfo GetChangedData() const;
 };

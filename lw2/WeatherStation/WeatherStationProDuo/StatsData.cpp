@@ -1,4 +1,4 @@
-#include "StatsDisplay.h"
+#include "StatsData.h"
 #include <iostream>
 
 void CStatsData::Update(double value)

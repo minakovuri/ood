@@ -1,11 +1,11 @@
 #include "WeatherData.h"
 
-void CWeatherPrioritiesData::RegisterObserver(WeatherObserver& observerRef, unsigned int priority)
+void CWeatherPrioritiesData::RegisterObserver(InsideWeatherObserver& observerRef, unsigned int priority)
 {
 	m_observersPriority.emplace(priority, &observerRef);
 }
 
-void CWeatherPrioritiesData::RemoveObserver(WeatherObserver& observerRef)
+void CWeatherPrioritiesData::RemoveObserver(InsideWeatherObserver& observerRef)
 {
 	for (auto iterator = m_observersPriority.begin(); iterator != m_observersPriority.end(); ++iterator)
 	{

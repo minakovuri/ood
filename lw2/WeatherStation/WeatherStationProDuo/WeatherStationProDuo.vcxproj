@@ -20,9 +20,9 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{7E8D2999-7611-46F6-B3AF-E7DB16638368}</ProjectGuid>
+    <ProjectGuid>{5F7AD647-E86B-4F27-B1D0-10001F0EB5B8}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>WeatherStationProTests</RootNamespace>
+    <RootNamespace>WeatherStationProDuo</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -84,7 +84,8 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
@@ -95,13 +96,11 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
-    <PostBuildEvent>
-      <Command>$(TargetPath)</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
@@ -112,9 +111,6 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
-    <PostBuildEvent>
-      <Command>$(TargetPath)</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -155,16 +151,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\WeatherStationPro\CStatsData.cpp" />
-    <ClCompile Include="..\WeatherStationPro\CWeatherData.cpp" />
-    <ClCompile Include="..\WeatherStationPro\CWindStatsData.cpp" />
-    <ClCompile Include="..\WeatherStationPro\StatsDisplay.cpp" />
+    <ClCompile Include="StatsData.cpp" />
+    <ClCompile Include="InsideWeatherData.cpp" />
+    <ClCompile Include="OutsideWeatherData.cpp" />
+    <ClCompile Include="WindStatsData.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="tests.cpp" />
+    <ClCompile Include="OutsideStatsDisplay.cpp" />
+    <ClCompile Include="InsideStatsDisplay.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\WeatherStationPro\StatsDisplay.h" />
-    <ClInclude Include="..\WeatherStationPro\WeatherData.h" />
+    <ClInclude Include="StatsData.h" />
+    <ClInclude Include="IDisplayElement.h" />
+    <ClInclude Include="IObserver.h" />
+    <ClInclude Include="IObservable.h" />
+    <ClInclude Include="OutsideStatsDisplay.h" />
+    <ClInclude Include="OutsideWeatherData.h" />
+    <ClInclude Include="InsideWeatherData.h" />
+    <ClInclude Include="InsideStatsDisplay.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
