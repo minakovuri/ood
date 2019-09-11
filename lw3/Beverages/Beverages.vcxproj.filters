@@ -38,5 +38,32 @@
     <ClInclude Include="Milkshake.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Cinnamon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Lemon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IceCube.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Syrup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ChocolateCrumbs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CoconutFlakses.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Cream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Chocolate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Liquor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

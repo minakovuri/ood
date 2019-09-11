@@ -153,10 +153,19 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Beverage.h" />
+    <ClInclude Include="Chocolate.h" />
+    <ClInclude Include="ChocolateCrumbs.h" />
+    <ClInclude Include="Cinnamon.h" />
+    <ClInclude Include="CoconutFlakses.h" />
     <ClInclude Include="Coffee.h" />
     <ClInclude Include="Condiments.h" />
+    <ClInclude Include="Cream.h" />
     <ClInclude Include="IBeverage.h" />
+    <ClInclude Include="IceCube.h" />
+    <ClInclude Include="Lemon.h" />
+    <ClInclude Include="Liquor.h" />
     <ClInclude Include="Milkshake.h" />
+    <ClInclude Include="Syrup.h" />
     <ClInclude Include="Tea.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
