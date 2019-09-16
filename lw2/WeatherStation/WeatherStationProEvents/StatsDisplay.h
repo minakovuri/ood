@@ -7,7 +7,7 @@
 class CStatsDisplay : virtual public IObserver
 {
 public:
-	CStatsDisplay(IObserver& observerRef);
+	CStatsDisplay(IObservable& observableRef);
 
 	void UpdateTemperature(double temperature); 
 	void UpdateHumidity(double humidity);
@@ -15,27 +15,17 @@ public:
 	void UpdateWindSpeed(double windSpeed);
 	void UpdateWindDirection(double windDirection);
 
-	void DisplayTemperature();
-	void DisplayHumidity();
-	void DisplayPressure();
-	void DisplayWindSpeed();
-	void DisplayWindDirection();
-
-	Stats GetTemperatureStats() const;
-	Stats GetHumidityStats() const;
-	Stats GetPressureStats() const;
-	Stats GetWindSpeedStats() const;
-	double GetAverageWindDirection() const;
+	void Display();
 
 	~CStatsDisplay();
 
-private:
+protected:
 	CStatsData m_temperature;
 	CStatsData m_humidity;
 	CStatsData m_pressure;
 	CStatsData m_windSpeed;
 	CWindDirectionData m_windDirection;
 
-
-	std::set<IObservable*> m_observables;
+private:
+	IObservable* m_observable;
 };

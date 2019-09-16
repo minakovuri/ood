@@ -8,7 +8,8 @@ public:
 	CWeatherData();
 
 	void SubscribeToEvent(IObserver& observerRef, EventType eventType, unsigned int priority = 0) override;
-	void UnsubscribeFromEvent(IObserver& observerRef, EventType eventType, unsigned int priority = 0) override;
+	void UnsubscribeFromEvent(IObserver& observerRef, EventType eventType) override;
+	void RemoveObserver(IObserver& observerRef) override;
 
 	void TemperatureChanged();
 	void HumidityChanged();

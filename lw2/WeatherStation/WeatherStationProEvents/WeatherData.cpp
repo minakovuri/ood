@@ -12,11 +12,20 @@ CWeatherData::CWeatherData()
 
 void CWeatherData::SubscribeToEvent(IObserver& observerRef, EventType eventType, unsigned int priority)
 {
-	auto it = m_observers.find(eventType);
-	it->second.emplace(priority, &observerRef);
+	auto eventTypeKey = m_observers.find(eventType);
+
+	for (auto& priorityKey : eventTypeKey->second)
+	{
+		if ((priorityKey.first == priority) && (priorityKey.second == &observerRef))
+		{
+			return;
+		}
+	}
+
+	eventTypeKey->second.emplace(priority, &observerRef);
 }
 
-void CWeatherData::UnsubscribeFromEvent(IObserver& observerRef, EventType eventType, unsigned int priority)
+void CWeatherData::UnsubscribeFromEvent(IObserver& observerRef, EventType eventType)
 {
 	auto it = m_observers.find(eventType);
 	for (auto priority : it->second)
@@ -25,6 +34,22 @@ void CWeatherData::UnsubscribeFromEvent(IObserver& observerRef, EventType eventT
 		{
 			it->second.erase(priority.first);
 			break;
+		}
+	}
+}
+
+void CWeatherData::RemoveObserver(IObserver& observerRef)
+{
+	for (auto& eventTypeKey : m_observers)
+	{
+		auto priorityKeys(eventTypeKey.second);
+
+		for (auto& priorityKey : priorityKeys)
+		{
+			if (priorityKey.second == &observerRef)
+			{
+				eventTypeKey.second.erase(priorityKey.first);
+			}
 		}
 	}
 }

@@ -1,4 +1,10 @@
+#include <iostream>
 #include "StatsDisplay.h"
+
+CStatsDisplay::CStatsDisplay(IObservable& observableRef)
+	: m_observable(&observableRef)
+{
+}
 
 void CStatsDisplay::UpdateTemperature(double temperature)
 {
@@ -25,52 +31,28 @@ void CStatsDisplay::UpdateWindDirection(double windDirection)
 	m_windDirection.Update(windDirection);
 }
 
-void CStatsDisplay::DisplayTemperature()
+void CStatsDisplay::Display()
 {
+	std::cout << "Stats data: \n";
+
+	std::cout << "\t temperature: ";
 	m_temperature.Display();
-}
-
-void CStatsDisplay::DisplayHumidity()
-{
+	
+	std::cout << "\t humidity: ";
 	m_humidity.Display();
-}
-
-void CStatsDisplay::DisplayPressure()
-{
+	
+	std::cout << "\t pressure: ";
 	m_pressure.Display();
-}
-
-void CStatsDisplay::DisplayWindSpeed()
-{
+	
+	std::cout << "\t wind speed: ";
 	m_windSpeed.Display();
-}
-
-void CStatsDisplay::DisplayWindDirection()
-{
+	
+	std::cout << "\t wind direction: ";
 	m_windDirection.Display();
+	
 }
 
-Stats CStatsDisplay::GetTemperatureStats() const
+CStatsDisplay::~CStatsDisplay()
 {
-	return m_temperature.GetStats();
-}
-
-Stats CStatsDisplay::GetHumidityStats() const
-{
-	return m_humidity.GetStats();
-}
-
-Stats CStatsDisplay::GetPressureStats() const
-{
-	return m_pressure.GetStats();
-}
-
-Stats CStatsDisplay::GetWindSpeedStats() const
-{
-	return m_windSpeed.GetStats();
-}
-
-double CStatsDisplay::GetAverageWindDirection() const
-{
-	return m_windDirection.GetAverage();
+	m_observable->RemoveObserver(*this);
 }

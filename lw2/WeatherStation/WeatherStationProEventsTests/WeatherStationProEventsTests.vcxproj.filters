@@ -56,5 +56,8 @@
     <ClInclude Include="..\WeatherStationProEvents\WeatherData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MockDisplay.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

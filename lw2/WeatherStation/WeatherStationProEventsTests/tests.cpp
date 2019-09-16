@@ -1,7 +1,5 @@
+#include "MockDisplay.h"
 #include "catch.hpp"
-#include "../WeatherStationProEvents/WeatherData.h"
-#include "../WeatherStationProEvents/StatsDisplay.h"
-#include "../WeatherStationProEvents/EventType.h"
 
 bool IsStatsEqual(Stats stats1, Stats stats2)
 {
@@ -26,7 +24,7 @@ bool IsStatsEqual(Stats stats1, Stats stats2)
 TEST_CASE("Test subscription and unsubscription from events")
 {
 	CWeatherData weatherData;
-	CStatsDisplay statsDisplay;
+	CMockStatsDisplay statsDisplay(weatherData);
 
 	weatherData.SubscribeToEvent(statsDisplay, EventType::Temperature);
 	weatherData.SubscribeToEvent(statsDisplay, EventType::Humidity);
@@ -52,4 +50,17 @@ TEST_CASE("Test subscription and unsubscription from events")
 	CHECK(IsStatsEqual(statsDisplay.GetPressureStats(), Stats{ 631.0, 751, (631.0 + 751.0) / 2 }));
 	CHECK(IsStatsEqual(statsDisplay.GetWindSpeedStats(), Stats{ 5.6, 5.6, 5.6 }));
 	CHECK(fabs(statsDisplay.GetAverageWindDirection() - 301) < FLT_EPSILON);
+
+	{
+		CMockStatsDisplay statsDisplay2(weatherData);
+
+		weatherData.SubscribeToEvent(statsDisplay2, EventType::Temperature);
+		weatherData.SubscribeToEvent(statsDisplay2, EventType::Temperature);
+
+		weatherData.SetMeasurements(15.1, 52, 744, 3.4, 145);
+
+		CHECK(IsStatsEqual(statsDisplay2.GetTemperatureStats(), Stats{ 15.1, 15.1, 15.1 }));
+	}
+
+	weatherData.SetMeasurements(2.2, 61, 730, 4.4, 16);
 }
