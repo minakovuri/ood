@@ -4,9 +4,9 @@
 class CTea : public CBeverage
 {
 public:
-	CTea()
+	CTea(const std::string& description = "Tea")
+		: CBeverage(description)
 	{
-		m_description = "Tea";
 	}
 
 	double GetCost() const override
@@ -19,8 +19,8 @@ class CBlackTea : public CTea
 {
 public:
 	CBlackTea()
+		: CTea("Black Tea")
 	{
-		m_description = "Black Tea";
 	}
 };
 
@@ -28,8 +28,8 @@ class CGreenTea : public CTea
 {
 public:
 	CGreenTea()
+		: CTea("Green Tea")
 	{
-		m_description = "Green Tea";
 	}
 };
 
@@ -37,8 +37,8 @@ class CRedTea : public CTea
 {
 public:
 	CRedTea()
+		: CTea("Red Tea")
 	{
-		m_description = "Red Tea";
 	}
 };
 
@@ -46,7 +46,7 @@ class CYellowTea : public CTea
 {
 public:
 	CYellowTea()
+		: CTea("Yellow Tea")
 	{
-		m_description = "Yellow Tea";
 	}
 };

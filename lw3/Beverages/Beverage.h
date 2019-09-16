@@ -4,12 +4,12 @@
 class CBeverage : public IBeverage
 {
 public:
-	CBeverage()
+	CBeverage(const std::string description = "Unknown Beverage")
+		: m_description(description)
 	{
-		m_description = "Unknown Beverage";
 	}
 
-	std::string GetDescription() const override final
+	std::string GetDescription() const final
 	{
 		return m_description;
 	}

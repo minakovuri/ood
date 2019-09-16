@@ -38,11 +38,11 @@ public:
 			return 50;
 		case MilkshakePortionType::Medium:
 			return 60;
-		case MilkshakePortionType::Large:
-			return 80;
 		default:
 			break;
 		}
+
+		return 80;
 	}
 
 protected:

@@ -1,7 +1,6 @@
 #pragma once
 #include "Condiments.h"
 
-// Лимонная добавка
 class CLemon : public CCondimentDecorator
 {
 public:

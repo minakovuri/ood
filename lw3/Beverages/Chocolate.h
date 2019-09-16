@@ -8,8 +8,12 @@ class CChocolate : public CCondimentDecorator
 public:
 	CChocolate(IBeveragePtr&& beverage, unsigned slices = 1)
 		: CCondimentDecorator(move(beverage))
+		, m_slices(slices)
 	{
-		m_slices = (slices > MAX_SLICES_COUNT) ? MAX_SLICES_COUNT : slices;
+		if (slices < MAX_SLICES_COUNT)
+		{
+			m_slices = MAX_SLICES_COUNT;
+		}
 	}
 
 protected:

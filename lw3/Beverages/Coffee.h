@@ -10,10 +10,10 @@ enum class CoffeePortionType
 class CCoffee : public CBeverage
 {
 public:
-	CCoffee(CoffeePortionType portionType = CoffeePortionType::Standart)
-		: m_portionType(portionType)
+	CCoffee(const std::string description = "Coffee")
+		: CBeverage(description)
+		, m_portionType(CoffeePortionType::Standart)
 	{
-		m_description = "Coffee";
 	}
 
 	double GetCost() const override
@@ -22,6 +22,12 @@ public:
 	}
 
 protected:
+	CCoffee(const std::string description, CoffeePortionType portionType = CoffeePortionType::Standart)
+		: CBeverage(description)
+		, m_portionType(portionType)
+	{
+	}
+
 	CoffeePortionType m_portionType;
 };
 
@@ -29,13 +35,9 @@ class CCappuccino : public CCoffee
 {
 public:
 	CCappuccino(CoffeePortionType portionType = CoffeePortionType::Standart)
-		: CCoffee(portionType)
+		: CCoffee("Cappuccino Standart", portionType)
 	{
-		if (portionType == CoffeePortionType::Standart)
-		{
-			m_description = "Cappuccino Standart";
-		}
-		else if (portionType == CoffeePortionType::Double)
+		if (portionType == CoffeePortionType::Double)
 		{
 			m_description = "Double Cappuccino";
 		}
@@ -47,10 +49,8 @@ public:
 		{
 			return 80;
 		}
-		else if (m_portionType == CoffeePortionType::Double)
-		{
-			return 120;
-		}
+		
+		return 120;
 	}
 };
 
@@ -58,13 +58,9 @@ class CLatte : public CCoffee
 {
 public:
 	CLatte(CoffeePortionType portionType = CoffeePortionType::Standart)
-		: CCoffee(portionType)
+		: CCoffee("Latte Standart", portionType)
 	{
-		if (portionType == CoffeePortionType::Standart)
-		{
-			m_description = "Latte Standart";
-		}
-		else if (portionType == CoffeePortionType::Double)
+		if (portionType == CoffeePortionType::Double)
 		{
 			m_description = "Double Latte";
 		}
@@ -76,9 +72,7 @@ public:
 		{
 			return 90;
 		}
-		else if (m_portionType == CoffeePortionType::Double)
-		{
-			return 130;
-		}
+		
+		return 130;
 	}
 };
