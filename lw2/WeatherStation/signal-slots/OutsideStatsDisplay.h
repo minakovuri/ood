@@ -20,25 +20,26 @@ private:
 class COutsideStatsDisplay : boost::noncopyable
 {
 public:
-	typedef COutsideWeatherData Observable;
-
-	COutsideStatsDisplay(Observable& cr);
+	COutsideStatsDisplay(COutsideWeatherData& cr);
 	void Display();
 
-	Stats GetTemperatureStats() const;
-	Stats GetHumodityStats() const;
-	Stats GetPressureStats() const;
-	Stats GetWindSpeedStats() const;
-	double GetAverageWindDirection() const;
-
-private:
-	void OnStatsChange(SOutsideWeatherInfo stats);
-
+protected:
 	CStatsData m_temperature;
 	CStatsData m_humidity;
 	CStatsData m_pressure;
 	CStatsData m_windSpeed;
 	CWindDirectionData m_windDirection;
 
-	signals::scoped_connection m_statsChangeConnection;
+private:
+	void OnTemperatureChange(double temperature);
+	void OnHumidityChange(double humidity);
+	void OnPressureChange(double pressure);
+	void OnWindSpeedChange(double windSpeed);
+	void OnWindDirectionChange(double windDirection);
+
+	signals::scoped_connection m_temperatureChangeConnection;
+	signals::scoped_connection m_humidityChangeConnection;
+	signals::scoped_connection m_pressureChangeConnection;
+	signals::scoped_connection m_windSpeedChangeConnection;
+	signals::scoped_connection m_windDirectionChangeConnection;
 };

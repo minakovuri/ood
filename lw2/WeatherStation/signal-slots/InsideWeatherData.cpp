@@ -1,30 +1,37 @@
 #include "InsideWeatherData.h"
 
-signals::connection CInsideWeatherData::DoOnDataChange(const DataChangeSignal::slot_type& slot)
+signals::connection CInsideWeatherData::DoOnTemperatureChange(const TemperatureChangeSignal::slot_type& slot)
 {
-	return m_weatherChangeSignal.connect(slot);
+	return m_temperatureChangeSignal.connect(slot);
 }
 
-SInsideWeatherInfo CInsideWeatherData::GetData() const
+signals::connection CInsideWeatherData::DoOnHumidityChange(const HumidityChangeSignal::slot_type& slot)
 {
-	SInsideWeatherInfo info;
-	info.temperature = m_temperature;
-	info.humidity = m_humidity;
-	info.pressure = m_pressure;
-	return info;
+	return m_humidityChangeSignal.connect(slot);
 }
 
-void CInsideWeatherData::MeasurementsChanged()
+signals::connection CInsideWeatherData::DoOnPressureChange(const PressureChangeSignal::slot_type& slot)
 {
-	SInsideWeatherInfo data = GetData();
-	m_weatherChangeSignal(data);
+	return m_pressureChangeSignal.connect(slot);
 }
 
 void CInsideWeatherData::SetMeasurements(double temperature, double humidity, double pressure)
 {
-	m_temperature = temperature;
-	m_humidity = humidity;
-	m_pressure = pressure;
+	if (m_temperature != temperature)
+	{
+		m_temperature = temperature;
+		m_temperatureChangeSignal(temperature);
+	}
 
-	MeasurementsChanged();
+	if (m_humidity != humidity)
+	{
+		m_humidity = humidity;
+		m_humidityChangeSignal(humidity);
+	}
+
+	if (m_pressure != pressure)
+	{
+		m_pressure = pressure;
+		m_pressureChangeSignal(pressure);
+	}
 }

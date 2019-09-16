@@ -15,12 +15,18 @@ struct SOutsideWeatherInfo
 class COutsideWeatherData
 {
 public:
-	using DataChangeSignal = signals::signal<void(SOutsideWeatherInfo data)>;
+	using TemperatureChangeSignal = signals::signal<void(double temperature)>;
+	using HumidityChangeSignal = signals::signal<void(double humidity)>;
+	using PressureChangeSignal = signals::signal<void(double pressure)>;
+	using WindSpeedChangeSignal = signals::signal<void(double windSpeed)>;
+	using WindDirectionChangeSignal = signals::signal<void(double windDirection)>;
 
-	signals::connection DoOnDataChange(const DataChangeSignal::slot_type& slot);
-	SOutsideWeatherInfo GetData() const;
-
-	void MeasurementsChanged();
+	signals::connection DoOnTemperatureChange(const TemperatureChangeSignal::slot_type& slot);
+	signals::connection DoOnHumidityChange(const HumidityChangeSignal::slot_type& slot);
+	signals::connection DoOnPressureChange(const PressureChangeSignal::slot_type& slot);
+	signals::connection DoOnWindSpeedChange(const WindSpeedChangeSignal::slot_type& slot);
+	signals::connection DoOnWindDirectionChange(const WindDirectionChangeSignal::slot_type& slot);
+	
 	void SetMeasurements(double temperature, double humidity, double pressure, double windSpeed, double windDirection);
 
 private:
@@ -30,5 +36,9 @@ private:
 	double m_windSpeed = 0;
 	double m_windDirection = 0;
 
-	DataChangeSignal m_weatherChangeSignal;
+	TemperatureChangeSignal m_temperatureChangeSignal;
+	HumidityChangeSignal m_humidityChangeSignal;
+	PressureChangeSignal m_pressureChangeSignal;
+	WindSpeedChangeSignal m_windSpeedChangeSignal;
+	WindDirectionChangeSignal m_windDirectionChangeSignal;
 };

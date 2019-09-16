@@ -6,21 +6,20 @@
 class CInsideStatsDisplay : boost::noncopyable
 {
 public:
-	typedef CInsideWeatherData Observable;
-
-	CInsideStatsDisplay(Observable& cr);
+	CInsideStatsDisplay(CInsideWeatherData& cr);
 	void Display();
 
-	Stats GetTemperatureStats() const;
-	Stats GetHumodityStats() const;
-	Stats GetPressureStats() const;
-
-private:
-	void OnStatsChange(SInsideWeatherInfo stats);
-
+protected:
 	CStatsData m_temperature;
 	CStatsData m_humidity;
 	CStatsData m_pressure;
 
-	signals::scoped_connection m_statsChangeConnection;
+private:
+	void OnTemperatureChange(double temperature);
+	void OnHumidityChange(double humidity);
+	void OnPressureChange(double pressure);
+
+	signals::scoped_connection m_temperatureChangeConnection;
+	signals::scoped_connection m_humidityChangeConnection;
+	signals::scoped_connection m_pressureChangeConnection;
 };

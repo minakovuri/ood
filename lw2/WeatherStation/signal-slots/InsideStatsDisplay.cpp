@@ -1,10 +1,18 @@
 #include "InsideStatsDisplay.h"
 #include <iostream>
 
-CInsideStatsDisplay::CInsideStatsDisplay(Observable& cr)
+CInsideStatsDisplay::CInsideStatsDisplay(CInsideWeatherData& cr)
 {
-	m_statsChangeConnection = cr.DoOnDataChange([this](SInsideWeatherInfo stats) {
-		OnStatsChange(stats);
+	m_temperatureChangeConnection = cr.DoOnTemperatureChange([this](double temperature) {
+		OnTemperatureChange(temperature);
+	});
+
+	m_humidityChangeConnection = cr.DoOnHumidityChange([this](double humidity) {
+		OnHumidityChange(humidity);
+	});
+
+	m_pressureChangeConnection = cr.DoOnPressureChange([this](double pressure) {
+		OnPressureChange(pressure);
 	});
 }
 
@@ -19,26 +27,17 @@ void CInsideStatsDisplay::Display()
 	m_pressure.Display();
 }
 
-Stats CInsideStatsDisplay::GetTemperatureStats() const
+void CInsideStatsDisplay::OnTemperatureChange(double temperature)
 {
-	return m_temperature.GetStats();
+	m_temperature.Update(temperature);
 }
 
-Stats CInsideStatsDisplay::GetHumodityStats() const
+void CInsideStatsDisplay::OnHumidityChange(double humidity)
 {
-	return m_humidity.GetStats();
+	m_humidity.Update(humidity);
 }
 
-Stats CInsideStatsDisplay::GetPressureStats() const
+void CInsideStatsDisplay::OnPressureChange(double pressure)
 {
-	return m_pressure.GetStats();
-}
-
-void CInsideStatsDisplay::OnStatsChange(SInsideWeatherInfo stats)
-{
-	m_temperature.Update(stats.temperature);
-	m_humidity.Update(stats.humidity);
-	m_pressure.Update(stats.pressure);
-	
-	Display();
+	m_pressure.Update(pressure);
 }

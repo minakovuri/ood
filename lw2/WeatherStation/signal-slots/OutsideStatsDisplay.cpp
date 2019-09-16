@@ -1,10 +1,26 @@
 #include "OutsideStatsDisplay.h"
 #include <iostream>
 
-COutsideStatsDisplay::COutsideStatsDisplay(Observable& cr)
+COutsideStatsDisplay::COutsideStatsDisplay(COutsideWeatherData& cr)
 {
-	m_statsChangeConnection = cr.DoOnDataChange([this](SOutsideWeatherInfo stats) {
-		OnStatsChange(stats);
+	m_temperatureChangeConnection = cr.DoOnTemperatureChange([this](double temperature) {
+		OnTemperatureChange(temperature);
+	});
+
+	m_humidityChangeConnection = cr.DoOnHumidityChange([this](double humidity) {
+		OnHumidityChange(humidity);
+	});
+
+	m_pressureChangeConnection = cr.DoOnPressureChange([this](double pressure) {
+		OnPressureChange(pressure);
+	});
+
+	m_windSpeedChangeConnection = cr.DoOnWindSpeedChange([this](double windSpeed) {
+		OnWindSpeedChange(windSpeed);
+	});
+
+	m_windDirectionChangeConnection = cr.DoOnWindDirectionChange([this](double windDirection) {
+		OnWindDirectionChange(windDirection);
 	});
 }
 
@@ -23,38 +39,27 @@ void COutsideStatsDisplay::Display()
 	m_windDirection.Display();
 }
 
-Stats COutsideStatsDisplay::GetTemperatureStats() const
+void COutsideStatsDisplay::OnTemperatureChange(double temperature)
 {
-	return m_temperature.GetStats();
+	m_temperature.Update(temperature);
 }
 
-Stats COutsideStatsDisplay::GetHumodityStats() const
+void COutsideStatsDisplay::OnHumidityChange(double humidity)
 {
-	return m_humidity.GetStats();
+	m_humidity.Update(humidity);
 }
 
-Stats COutsideStatsDisplay::GetPressureStats() const
+void COutsideStatsDisplay::OnPressureChange(double pressure)
 {
-	return m_pressure.GetStats();
+	m_pressure.Update(pressure);
 }
 
-Stats COutsideStatsDisplay::GetWindSpeedStats() const
+void COutsideStatsDisplay::OnWindSpeedChange(double windSpeed)
 {
-	return m_windSpeed.GetStats();
+	m_windSpeed.Update(windSpeed);
 }
 
-double COutsideStatsDisplay::GetAverageWindDirection() const
+void COutsideStatsDisplay::OnWindDirectionChange(double windDirection)
 {
-	return m_windDirection.GetAverage();
-}
-
-void COutsideStatsDisplay::OnStatsChange(SOutsideWeatherInfo stats)
-{
-	m_temperature.Update(stats.temperature);
-	m_humidity.Update(stats.humidity);
-	m_pressure.Update(stats.pressure);
-	m_windSpeed.Update(stats.windSpeed);
-	m_windDirection.Update(stats.windDirection);
-
-	Display();
+	m_windDirection.Update(windDirection);
 }

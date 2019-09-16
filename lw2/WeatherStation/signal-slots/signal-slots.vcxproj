@@ -175,6 +175,7 @@
   <ItemGroup>
     <ClInclude Include="InsideStatsDisplay.h" />
     <ClInclude Include="InsideWeatherData.h" />
+    <ClInclude Include="MockDisplays.h" />
     <ClInclude Include="OutsideStatsDisplay.h" />
     <ClInclude Include="OutsideWeatherData.h" />
     <ClInclude Include="StatsData.h" />

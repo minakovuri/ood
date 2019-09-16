@@ -56,5 +56,8 @@
     <ClInclude Include="StatsData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MockDisplays.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

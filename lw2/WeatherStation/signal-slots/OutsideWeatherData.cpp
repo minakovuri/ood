@@ -1,34 +1,59 @@
 #include "OutsideWeatherData.h"
 
-signals::connection COutsideWeatherData::DoOnDataChange(const DataChangeSignal::slot_type& slot)
+signals::connection COutsideWeatherData::DoOnTemperatureChange(const TemperatureChangeSignal::slot_type& slot)
 {
-	return m_weatherChangeSignal.connect(slot);
+	return m_temperatureChangeSignal.connect(slot);
 }
 
-SOutsideWeatherInfo COutsideWeatherData::GetData() const
+signals::connection COutsideWeatherData::DoOnHumidityChange(const HumidityChangeSignal::slot_type& slot)
 {
-	SOutsideWeatherInfo info;
-	info.temperature = m_temperature;
-	info.humidity = m_humidity;
-	info.pressure = m_pressure;
-	info.windSpeed = m_windSpeed;
-	info.windDirection = m_windDirection;
-	return info;
+	return m_humidityChangeSignal.connect(slot);
 }
 
-void COutsideWeatherData::MeasurementsChanged()
+signals::connection COutsideWeatherData::DoOnPressureChange(const PressureChangeSignal::slot_type& slot)
 {
-	SOutsideWeatherInfo data = GetData();
-	m_weatherChangeSignal(data);
+	return m_pressureChangeSignal.connect(slot);
+}
+
+signals::connection COutsideWeatherData::DoOnWindSpeedChange(const WindSpeedChangeSignal::slot_type& slot)
+{
+	return m_windSpeedChangeSignal.connect(slot);
+}
+
+signals::connection COutsideWeatherData::DoOnWindDirectionChange(const WindDirectionChangeSignal::slot_type& slot)
+{
+	return m_windDirectionChangeSignal.connect(slot);
 }
 
 void COutsideWeatherData::SetMeasurements(double temperature, double humidity, double pressure, double windSpeed, double windDirection)
 {
-	m_temperature = temperature;
-	m_humidity = humidity;
-	m_pressure = pressure;
-	m_windSpeed = windSpeed;
-	m_windDirection = windDirection;
+	if (m_temperature != temperature)
+	{
+		m_temperature = temperature;
+		m_temperatureChangeSignal(temperature);
+	}
 
-	MeasurementsChanged();
+	if (m_humidity != humidity)
+	{
+		m_humidity = humidity;
+		m_humidityChangeSignal(humidity);
+	}
+
+	if (m_pressure != pressure)
+	{
+		m_pressure = pressure;
+		m_pressureChangeSignal(pressure);
+	}
+
+	if (m_windSpeed != windSpeed)
+	{
+		m_windSpeed = windSpeed;
+		m_windSpeedChangeSignal(windSpeed);
+	}
+
+	if (m_windDirection != windDirection)
+	{
+		m_windDirection = windDirection;
+		m_windDirectionChangeSignal(windDirection);
+	}
 }
