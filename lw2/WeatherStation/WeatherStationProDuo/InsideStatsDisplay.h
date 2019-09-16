@@ -4,7 +4,7 @@
 #include "InsideWeatherData.h"
 #include "StatsData.h"
 
-class CInsideStatsDisplay : public IObserver<SInsideWeatherInfo>
+class CInsideStatsDisplay : private IObserver<SInsideWeatherInfo>
 {
 public:
 	typedef IObservable<SInsideWeatherInfo> ObservableType;
@@ -14,10 +14,6 @@ public:
 	void Update(SInsideWeatherInfo const& data) override;
 	void Display();
 
-	Stats GetTemperatureStats() const;
-	Stats GetHumodityStats() const;
-	Stats GetPressureStats() const;
-
 	~CInsideStatsDisplay();
 
 private:
@@ -25,5 +21,5 @@ private:
 	CStatsData m_humidity;
 	CStatsData m_pressure;
 
-	std::set<ObservableType*> m_observables;
+	ObservableType* m_observable;
 };

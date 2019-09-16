@@ -18,7 +18,7 @@ private:
 	double m_y = 0;
 };
 
-class COutsideStatsDisplay : public IObserver<SOutsideWeatherInfo>
+class COutsideStatsDisplay : private IObserver<SOutsideWeatherInfo>
 {
 public:
 	typedef IObservable<SOutsideWeatherInfo> ObservableType;
@@ -27,12 +27,6 @@ public:
 
 	void Update(SOutsideWeatherInfo const& data) override;
 	void Display();
-
-	Stats GetTemperatureStats() const;
-	Stats GetHumodityStats() const;
-	Stats GetPressureStats() const;
-	Stats GetWindSpeedStats() const;
-	double GetAverageWindDirection() const;
 
 	~COutsideStatsDisplay();
 

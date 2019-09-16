@@ -4,7 +4,7 @@
 CInsideStatsDisplay::CInsideStatsDisplay(ObservableType& weatherDataRef)
 {
 	weatherDataRef.RegisterObserver(*this);
-	m_observables.insert(&weatherDataRef);
+	m_observable = &weatherDataRef;
 }
 
 void CInsideStatsDisplay::Update(SInsideWeatherInfo const& data)
@@ -27,25 +27,7 @@ void CInsideStatsDisplay::Display()
 	m_pressure.Display();
 }
 
-Stats CInsideStatsDisplay::GetTemperatureStats() const
-{
-	return m_temperature.GetStats();
-}
-
-Stats CInsideStatsDisplay::GetHumodityStats() const
-{
-	return m_humidity.GetStats();
-}
-
-Stats CInsideStatsDisplay::GetPressureStats() const
-{
-	return m_pressure.GetStats();
-}
-
 CInsideStatsDisplay::~CInsideStatsDisplay()
 {
-	for (auto& observable : m_observables)
-	{
-		observable->RemoveObserver(*this);
-	}
+	m_observable->RemoveObserver(*this);
 }

@@ -33,31 +33,6 @@ void COutsideStatsDisplay::Display()
 	m_windDirection.Display();
 }
 
-Stats COutsideStatsDisplay::GetTemperatureStats() const
-{
-	return m_temperature.GetStats();
-}
-
-Stats COutsideStatsDisplay::GetHumodityStats() const
-{
-	return m_humidity.GetStats();
-}
-
-Stats COutsideStatsDisplay::GetPressureStats() const
-{
-	return m_pressure.GetStats();
-}
-
-Stats COutsideStatsDisplay::GetWindSpeedStats() const
-{
-	return m_windSpeed.GetStats();
-}
-
-double COutsideStatsDisplay::GetAverageWindDirection() const
-{
-	return m_windDirection.GetAverage();
-}
-
 COutsideStatsDisplay::~COutsideStatsDisplay()
 {
 	for (auto& observable : m_observables)
