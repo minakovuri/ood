@@ -38,9 +38,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="IDisplayElement.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="IObserver.h">
       <Filter>Header Files</Filter>
     </ClInclude>

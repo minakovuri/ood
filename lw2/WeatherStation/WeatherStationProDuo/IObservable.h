@@ -10,4 +10,6 @@ public:
 	virtual void RegisterObserver(ObserverType& observerRef, unsigned int priority = 0) = 0;
 	virtual void RemoveObserver(ObserverType& observerRef) = 0;
 	virtual void NotifyObservers() = 0;
+
+	virtual ~IObservable() = default;
 };

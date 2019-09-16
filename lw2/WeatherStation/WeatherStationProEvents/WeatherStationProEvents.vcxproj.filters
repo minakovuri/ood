@@ -32,9 +32,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="IDisplayElement.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="IObservable.h">
       <Filter>Header Files</Filter>
     </ClInclude>

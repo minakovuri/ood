@@ -161,7 +161,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StatsData.h" />
-    <ClInclude Include="IDisplayElement.h" />
     <ClInclude Include="IObserver.h" />
     <ClInclude Include="IObservable.h" />
     <ClInclude Include="OutsideStatsDisplay.h" />

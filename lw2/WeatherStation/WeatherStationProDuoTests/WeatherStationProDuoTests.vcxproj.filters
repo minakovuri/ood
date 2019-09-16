@@ -41,9 +41,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\WeatherStationProDuo\IDisplayElement.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\WeatherStationProDuo\InsideStatsDisplay.h">
       <Filter>Header Files</Filter>
     </ClInclude>

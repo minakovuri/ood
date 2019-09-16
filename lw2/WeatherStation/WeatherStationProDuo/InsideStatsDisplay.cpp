@@ -1,9 +1,10 @@
 #include "InsideStatsDisplay.h"
 #include <iostream>
 
-CInsideStatsDisplay::CInsideStatsDisplay(IObservable<SInsideWeatherInfo>& weatherDataRef)
+CInsideStatsDisplay::CInsideStatsDisplay(ObservableType& weatherDataRef)
 {
 	weatherDataRef.RegisterObserver(*this);
+	m_observables.insert(&weatherDataRef);
 }
 
 void CInsideStatsDisplay::Update(SInsideWeatherInfo const& data)
@@ -39,4 +40,12 @@ Stats CInsideStatsDisplay::GetHumodityStats() const
 Stats CInsideStatsDisplay::GetPressureStats() const
 {
 	return m_pressure.GetStats();
+}
+
+CInsideStatsDisplay::~CInsideStatsDisplay()
+{
+	for (auto& observable : m_observables)
+	{
+		observable->RemoveObserver(*this);
+	}
 }

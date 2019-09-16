@@ -1,26 +1,25 @@
 #pragma once
 #include <set>
-#include "IDisplayElement.h"
 #include "IObserver.h"
 #include "WeatherData.h"
 #include "StatsData.h"
 
-class CStatsDisplay
-	: virtual public IObserver
-	, virtual public IDisplayElement
+class CStatsDisplay : virtual public IObserver
 {
 public:
+	CStatsDisplay(IObserver& observerRef);
+
 	void UpdateTemperature(double temperature); 
 	void UpdateHumidity(double humidity);
 	void UpdatePressure(double pressure);
 	void UpdateWindSpeed(double windSpeed);
 	void UpdateWindDirection(double windDirection);
 
-	void DisplayTemperature() override;
-	void DisplayHumidity() override;
-	void DisplayPressure() override;
-	void DisplayWindSpeed() override;
-	void DisplayWindDirection() override;
+	void DisplayTemperature();
+	void DisplayHumidity();
+	void DisplayPressure();
+	void DisplayWindSpeed();
+	void DisplayWindDirection();
 
 	Stats GetTemperatureStats() const;
 	Stats GetHumidityStats() const;
@@ -28,10 +27,15 @@ public:
 	Stats GetWindSpeedStats() const;
 	double GetAverageWindDirection() const;
 
+	~CStatsDisplay();
+
 private:
 	CStatsData m_temperature;
 	CStatsData m_humidity;
 	CStatsData m_pressure;
 	CStatsData m_windSpeed;
 	CWindDirectionData m_windDirection;
+
+
+	std::set<IObservable*> m_observables;
 };

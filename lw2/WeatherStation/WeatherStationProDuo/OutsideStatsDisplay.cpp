@@ -1,9 +1,10 @@
 #include "OutsideStatsDisplay.h"
 #include <iostream>
 
-COutsideStatsDisplay::COutsideStatsDisplay(IObservable<SOutsideWeatherInfo>& weatherDataRef)
+COutsideStatsDisplay::COutsideStatsDisplay(ObservableType& weatherDataRef)
 {
 	weatherDataRef.RegisterObserver(*this);
+	m_observables.insert(&weatherDataRef);
 }
 
 void COutsideStatsDisplay::Update(SOutsideWeatherInfo const& data)
@@ -55,4 +56,12 @@ Stats COutsideStatsDisplay::GetWindSpeedStats() const
 double COutsideStatsDisplay::GetAverageWindDirection() const
 {
 	return m_windDirection.GetAverage();
+}
+
+COutsideStatsDisplay::~COutsideStatsDisplay()
+{
+	for (auto& observable : m_observables)
+	{
+		observable->RemoveObserver(*this);
+	}
 }

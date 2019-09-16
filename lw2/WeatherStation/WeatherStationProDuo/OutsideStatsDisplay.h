@@ -1,5 +1,4 @@
 #pragma once
-#include "IDisplayElement.h"
 #include "IObserver.h"
 #include "IObservable.h"
 #include "OutsideWeatherData.h"
@@ -19,15 +18,15 @@ private:
 	double m_y = 0;
 };
 
-class COutsideStatsDisplay
-	: virtual public IObserver<SOutsideWeatherInfo>
-	, virtual public IDisplayElement
+class COutsideStatsDisplay : public IObserver<SOutsideWeatherInfo>
 {
 public:
-	COutsideStatsDisplay(IObservable<SOutsideWeatherInfo>& weatherDataRef);
+	typedef IObservable<SOutsideWeatherInfo> ObservableType;
+
+	COutsideStatsDisplay(ObservableType& weatherDataRef);
 
 	void Update(SOutsideWeatherInfo const& data) override;
-	void Display() override;
+	void Display();
 
 	Stats GetTemperatureStats() const;
 	Stats GetHumodityStats() const;
@@ -35,10 +34,14 @@ public:
 	Stats GetWindSpeedStats() const;
 	double GetAverageWindDirection() const;
 
+	~COutsideStatsDisplay();
+
 private:
 	CStatsData m_temperature;
 	CStatsData m_humidity;
 	CStatsData m_pressure;
 	CStatsData m_windSpeed;
 	CWindDirectionData m_windDirection;
+
+	std::set<ObservableType*> m_observables;
 };

@@ -167,7 +167,6 @@
     <ClCompile Include="tests.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\WeatherStationProDuo\IDisplayElement.h" />
     <ClInclude Include="..\WeatherStationProDuo\InsideStatsDisplay.h" />
     <ClInclude Include="..\WeatherStationProDuo\InsideWeatherData.h" />
     <ClInclude Include="..\WeatherStationProDuo\IObservable.h" />
