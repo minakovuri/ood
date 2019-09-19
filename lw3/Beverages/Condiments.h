@@ -14,7 +14,6 @@ public:
 		return m_beverage->GetCost() + GetCondimentCost();
 	}
 
-	// Стоимость и описание добавки вычисляется в классах конкретных декораторов
 	virtual std::string GetCondimentDescription() const = 0;
 	virtual double GetCondimentCost() const = 0;
 

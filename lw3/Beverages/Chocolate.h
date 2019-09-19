@@ -10,13 +10,12 @@ public:
 		: CCondimentDecorator(move(beverage))
 		, m_slices(slices)
 	{
-		if (slices < MAX_SLICES_COUNT)
+		if (slices > MAX_SLICES_COUNT)
 		{
 			m_slices = MAX_SLICES_COUNT;
 		}
 	}
 
-protected:
 	double GetCondimentCost() const override
 	{
 		return 10 * m_slices;

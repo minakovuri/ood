@@ -17,7 +17,6 @@ public:
 	{
 	}
 
-protected:
 	double GetCondimentCost() const override
 	{
 		return 50;
