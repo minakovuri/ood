@@ -1,13 +1,17 @@
 #pragma once
 #include "IInputDataStream.h"
+#include <vector>
 
 class CMemoryInputStream : public IInputDataStream
 {
-	CMemoryInputStream() = default;
+public:
+	CMemoryInputStream(std::vector<uint8_t>& memoryStream);
 
 	bool IsEOF() const override;
 	uint8_t ReadByte() override;
 	std::streamsize ReadBlock(void* dstBuffer, std::streamsize size) override;
 
-	~CMemoryInputStream() = default;
+private:
+	std::vector<uint8_t>& m_memoryStream;
+	size_t m_pos = 0;
 };

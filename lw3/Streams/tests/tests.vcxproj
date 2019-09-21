@@ -95,6 +95,9 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>$(TargetPath)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -109,6 +112,9 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>$(TargetPath)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -150,8 +156,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\inputStream\CFileInputStream.cpp" />
+    <ClCompile Include="..\inputStream\CMemoryInputStream.cpp" />
     <ClCompile Include="fileInputStreamTests.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="memoryInputStreamTests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\inputStream\CFileInputStream.h" />

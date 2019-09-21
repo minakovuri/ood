@@ -152,6 +152,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="inputStream\CFileInputStream.cpp" />
+    <ClCompile Include="inputStream\CMemoryInputStream.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
