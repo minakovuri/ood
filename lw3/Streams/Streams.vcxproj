@@ -154,6 +154,7 @@
     <ClCompile Include="inputStream\CFileInputStream.cpp" />
     <ClCompile Include="inputStream\CMemoryInputStream.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="outputStream\CFileOutputStream.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inputStream\CFileInputStream.h" />

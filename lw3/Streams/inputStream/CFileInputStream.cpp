@@ -2,8 +2,8 @@
 
 CFileInputStream::CFileInputStream(const std::string& fileName)
 {
-	m_inputFileStream.open(fileName.c_str(), std::ios::binary | std::ios::in);
-	
+	m_inputFileStream.open(fileName, std::ios::binary);
+
 	if (!m_inputFileStream.is_open())
 	{
 		throw std::ios_base::failure("failed to open file" + fileName);
@@ -24,6 +24,9 @@ uint8_t CFileInputStream::ReadByte()
 
 std::streamsize CFileInputStream::ReadBlock(void* dstBuffer, std::streamsize size)
 {
-	m_inputFileStream.read(static_cast<char*>(dstBuffer), size);
+	if (!m_inputFileStream.read(static_cast<char*>(dstBuffer), size))
+	{
+		throw std::ios_base::failure("failed to read data");
+	}
 	return m_inputFileStream.gcount();
 }

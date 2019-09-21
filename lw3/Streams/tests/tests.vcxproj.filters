@@ -30,6 +30,12 @@
     <ClCompile Include="memoryInputStreamTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="fileOutputStreamTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\outputStream\CFileOutputStream.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\inputStream\CFileInputStream.h">
