@@ -149,6 +149,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="decorators\CDecryptionInputStream.cpp" />
+    <ClCompile Include="decorators\CEncryptionOutputStream.cpp" />
     <ClCompile Include="inputStream\CFileInputStream.cpp" />
     <ClCompile Include="inputStream\CMemoryInputStream.cpp" />
     <ClCompile Include="main.cpp" />
@@ -157,7 +159,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="decorators\CDecryptionInputStream.h" />
+    <ClInclude Include="decorators\CEncryptionOutputStream.h" />
     <ClInclude Include="decorators\CInputStreamDecorator.h" />
+    <ClInclude Include="decorators\COutputStreamDecorator.h" />
     <ClInclude Include="decorators\CReplacementTable.h" />
     <ClInclude Include="inputStream\CFileInputStream.h" />
     <ClInclude Include="inputStream\CMemoryInputStream.h" />

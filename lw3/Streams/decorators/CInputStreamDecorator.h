@@ -15,6 +15,5 @@ protected:
 	{
 	}
 
-private:
 	IInputDataStreamPtr m_stream;
 };

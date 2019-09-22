@@ -1,10 +1,11 @@
 #pragma once
 #include "CInputStreamDecorator.h"
+#include "CReplacementTable.h"
 
 class CDecryptionInputStream : public CInputStreamDecorator
 {
 public:
-	CDecryptionInputStream(IInputDataStreamPtr&& stream, unsigned int key);
+	CDecryptionInputStream(IInputDataStreamPtr&& stream, CReplacementTable& table);
 
 	uint8_t ReadByte() final;
 	std::streamsize ReadBlock(void* dstBuffer, std::streamsize size) final;
@@ -12,5 +13,5 @@ public:
 private:
 	uint8_t DecryptByte(uint8_t byte) const;
 
-	unsigned int m_key;
+	CReplacementTable& m_table;
 };
