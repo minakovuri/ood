@@ -12,7 +12,12 @@ bool CMemoryInputStream::IsEOF() const
 
 uint8_t CMemoryInputStream::ReadByte()
 {
-	return uint8_t();
+	if (m_pos >= m_memoryStream.size())
+	{
+		throw std::ios_base::failure("canno't read byte from memory");
+	}
+
+	return m_memoryStream[m_pos++];
 }
 
 std::streamsize CMemoryInputStream::ReadBlock(void* dstBuffer, std::streamsize size)

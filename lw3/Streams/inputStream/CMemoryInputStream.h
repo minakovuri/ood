@@ -1,6 +1,6 @@
 #pragma once
-#include "IInputDataStream.h"
 #include <vector>
+#include "IInputDataStream.h"
 
 class CMemoryInputStream : public IInputDataStream
 {

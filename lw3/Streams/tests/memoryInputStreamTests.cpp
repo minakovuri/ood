@@ -2,7 +2,23 @@
 #include "../inputStream/CMemoryInputStream.h"
 #include <array>
 
-TEST_CASE("Test reading block of bytes from memory")
+TEST_CASE("Test reading byte from memory stream")
+{
+	std::vector<uint8_t> container{ 0, 1, 2, 3, 4, 5, 6 };
+	CMemoryInputStream memInputStream(container);
+	
+	CHECK(memInputStream.ReadByte() == 0);
+	CHECK(memInputStream.ReadByte() == 1);
+	CHECK(memInputStream.ReadByte() == 2);
+	CHECK(memInputStream.ReadByte() == 3);
+	CHECK(memInputStream.ReadByte() == 4);
+	CHECK(memInputStream.ReadByte() == 5);
+	CHECK(memInputStream.ReadByte() == 6);
+
+	CHECK_THROWS_AS(memInputStream.ReadByte(), std::ios_base::failure);
+}
+
+TEST_CASE("Test reading block of bytes from memory stream")
 {
 	std::vector<uint8_t> container{ 0, 1, 2, 3, 4, 5, 6 };
 	CMemoryInputStream memInputStream(container);
@@ -22,5 +38,5 @@ TEST_CASE("Test reading block of bytes from memory")
 	CHECK(buff[1] == 5);
 	CHECK(buff[2] == 6);
 
-	// TODO: спросить про ситуацию с исключением
+	// TODO: спросить про ситуацию с исключением - выбрасывать исключение или возвращать size 
 }

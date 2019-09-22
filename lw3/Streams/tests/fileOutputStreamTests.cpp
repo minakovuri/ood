@@ -21,7 +21,7 @@ TEST_CASE("Test GetFileContent function")
 	CHECK(GetFileContent("input.dat") == "ABC#");
 }
 
-TEST_CASE("Test writing byte to stream")
+TEST_CASE("Test writing byte to file stream")
 {
 	CFileOutputStream stream(OUTPUT_FILE_NAME);
 
@@ -34,7 +34,7 @@ TEST_CASE("Test writing byte to stream")
 	CHECK(GetFileContent(OUTPUT_FILE_NAME) == "1AB");
 }
 
-TEST_CASE("Test writing block of bytes to stream")
+TEST_CASE("Test writing block of bytes to file stream")
 {
 	CFileOutputStream stream(OUTPUT_FILE_NAME);
 

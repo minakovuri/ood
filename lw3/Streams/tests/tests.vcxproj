@@ -158,15 +158,19 @@
     <ClCompile Include="..\inputStream\CFileInputStream.cpp" />
     <ClCompile Include="..\inputStream\CMemoryInputStream.cpp" />
     <ClCompile Include="..\outputStream\CFileOutputStream.cpp" />
+    <ClCompile Include="..\outputStream\CMemoryOutputStream.cpp" />
     <ClCompile Include="fileInputStreamTests.cpp" />
     <ClCompile Include="fileOutputStreamTests.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="memoryInputStreamTests.cpp" />
+    <ClCompile Include="memoryOutputStreamTests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\inputStream\CFileInputStream.h" />
     <ClInclude Include="..\inputStream\CMemoryInputStream.h" />
     <ClInclude Include="..\inputStream\IInputDataStream.h" />
+    <ClInclude Include="..\outputStream\CFileOutputStream.h" />
+    <ClInclude Include="..\outputStream\CMemoryOutputStream.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

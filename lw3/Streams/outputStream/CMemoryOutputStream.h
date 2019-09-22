@@ -1,13 +1,16 @@
 #pragma once
+#include <vector>
 #include "IOutputDataStream.h"
 
 class CMemoryOutputStream : public IOutputDataStream
 {
 public:
-	CMemoryOutputStream() = default;
+	CMemoryOutputStream(std::vector<uint8_t>& memoryStream);
 
 	void WriteByte(uint8_t data) override;
 	void WriteBlock(const void* srcData, std::streamsize size) override;
 
-	~CMemoryOutputStream() = default;
+private:
+	std::vector<uint8_t>& m_memoryStream;
+	size_t m_pos = 0;
 };
