@@ -1,4 +1,4 @@
-#include "../catch.hpp"
+#include "../../catch.hpp"
 #include "Coffee.h"
 #include "Tea.h"
 #include "Milkshake.h"
