@@ -50,5 +50,14 @@
     <ClInclude Include="outputStream\IOutputDataStream.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="decorators\CInputStreamDecorator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="decorators\CDecryptionInputStream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="decorators\CReplacementTable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

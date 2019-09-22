@@ -164,6 +164,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="memoryInputStreamTests.cpp" />
     <ClCompile Include="memoryOutputStreamTests.cpp" />
+    <ClCompile Include="replacementTableTests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\inputStream\CFileInputStream.h" />

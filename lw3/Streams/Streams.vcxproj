@@ -156,6 +156,9 @@
     <ClCompile Include="outputStream\CMemoryOutputStream.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="decorators\CDecryptionInputStream.h" />
+    <ClInclude Include="decorators\CInputStreamDecorator.h" />
+    <ClInclude Include="decorators\CReplacementTable.h" />
     <ClInclude Include="inputStream\CFileInputStream.h" />
     <ClInclude Include="inputStream\CMemoryInputStream.h" />
     <ClInclude Include="inputStream\IInputDataStream.h" />
