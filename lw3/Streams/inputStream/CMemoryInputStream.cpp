@@ -31,7 +31,7 @@ std::streamsize CMemoryInputStream::ReadBlock(void* dstBuffer, std::streamsize s
 
 	for (std::streamsize i = 0; i < size; ++i)
 	{
-		*(buffPtr++) = m_memoryStream[m_pos++];
+		*(buffPtr++) = ReadByte();
 	}
 
 	return size;

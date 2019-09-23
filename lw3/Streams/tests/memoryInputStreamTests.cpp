@@ -5,6 +5,7 @@
 TEST_CASE("Test reading byte from memory stream")
 {
 	std::vector<uint8_t> container{ 0, 1, 2, 3, 4, 5, 6 };
+
 	CMemoryInputStream memInputStream(container);
 	
 	CHECK(memInputStream.ReadByte() == 0);
@@ -37,6 +38,4 @@ TEST_CASE("Test reading block of bytes from memory stream")
 	CHECK(buff[0] == 4);
 	CHECK(buff[1] == 5);
 	CHECK(buff[2] == 6);
-
-	// TODO: спросить про ситуацию с исключением - выбрасывать исключение или возвращать size 
 }

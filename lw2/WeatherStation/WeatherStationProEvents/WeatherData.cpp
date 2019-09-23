@@ -140,7 +140,7 @@ CWeatherData::~CWeatherData()
 
 		for (auto& priorityKey : priorityKeys)
 		{
-			eventTypeKey.second.erase(priorityKey.first);
+			priorityKey.second->RemoveObservable();
 		}
 	}
 }

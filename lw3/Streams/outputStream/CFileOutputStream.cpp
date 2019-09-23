@@ -23,7 +23,7 @@ void CFileOutputStream::WriteByte(uint8_t data)
 
 void CFileOutputStream::WriteBlock(const void* srcData, std::streamsize size)
 {
-	if (!m_outputFileStream.write(reinterpret_cast<const char*>(srcData), size * sizeof(uint8_t)))
+	if (!m_outputFileStream.write(static_cast<const char*>(srcData), size * sizeof(uint8_t)))
 	{
 		throw std::ios_base::failure("failed to write data");
 	}

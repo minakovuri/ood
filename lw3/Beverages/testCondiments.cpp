@@ -3,14 +3,16 @@
 #include "Coffee.h"
 #include "Cream.h"
 #include "Liquor.h"
+#include "Syrup.h"
 
 TEST_CASE("Test cream")
 {
 	auto latte = std::make_unique<CLatte>(CoffeePortionType::Standart);
 	auto latteWithCream = std::make_unique<CCream>(std::move(latte));
+	auto latteWithCreamAndSyrup = std::make_unique<CSyrup>(std::move(latteWithCream), SyrupType::Chocolate);
 
-	CHECK(latteWithCream->GetCost() == 90 + 25);
-	CHECK(latteWithCream->GetDescription() == "Latte Standart, Cream");
+	CHECK(latteWithCreamAndSyrup->GetCost() == 90 + 25 + 15);
+	CHECK(latteWithCreamAndSyrup->GetDescription() == "Latte Standart, Cream, Chocolate syrup");
 }
 
 TEST_CASE("Test choclate")

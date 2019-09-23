@@ -1,4 +1,5 @@
 #include "CEncryptionOutputStream.h"
+#include <cstdlib>
 
 CEncryptionOutputStream::CEncryptionOutputStream(IOutputDataStreamPtr&& stream, CReplacementTable& table)
 	: COutputStreamDecorator(std::move(stream))
@@ -14,12 +15,16 @@ void CEncryptionOutputStream::WriteByte(uint8_t data)
 
 void CEncryptionOutputStream::WriteBlock(const void* srcData, std::streamsize size)
 {
+	auto allocMemPtr = static_cast<uint8_t*>(std::malloc(size));
 	auto buffPtr = static_cast<const uint8_t*>(srcData);
 
 	for (std::streamsize i = 0; i < size; ++i)
 	{
-		WriteByte(*(buffPtr++));
+		*(allocMemPtr + i) = EncryptByte(*(buffPtr++));
 	}
+
+	m_stream->WriteBlock(allocMemPtr, size);
+	std::free(allocMemPtr);
 }
 
 uint8_t CEncryptionOutputStream::EncryptByte(uint8_t byte) const
