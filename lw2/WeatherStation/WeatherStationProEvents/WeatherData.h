@@ -19,6 +19,8 @@ public:
 	
 	void SetMeasurements(double temperature, double humidity, double pressure, double windSpeed, double windDirection);
 
+	~CWeatherData();
+
 private:
 	std::map<EventType, std::multimap<unsigned int, IObserver*>> m_observers;
 

@@ -10,5 +10,7 @@ public:
 	virtual void UpdateWindSpeed(double windSpeed) = 0;
 	virtual void UpdateWindDirection(double windDirection) = 0;
 
+	virtual void RemoveObservable() = 0;
+
 	virtual ~IObserver() = default;
 };

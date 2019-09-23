@@ -9,11 +9,13 @@ class CStatsDisplay : virtual public IObserver
 public:
 	CStatsDisplay(IObservable& observableRef);
 
-	void UpdateTemperature(double temperature); 
-	void UpdateHumidity(double humidity);
-	void UpdatePressure(double pressure);
-	void UpdateWindSpeed(double windSpeed);
-	void UpdateWindDirection(double windDirection);
+	void UpdateTemperature(double temperature) final; 
+	void UpdateHumidity(double humidity) final;
+	void UpdatePressure(double pressure) final;
+	void UpdateWindSpeed(double windSpeed) final;
+	void UpdateWindDirection(double windDirection) final;
+
+	void RemoveObservable() final;
 
 	void Display();
 

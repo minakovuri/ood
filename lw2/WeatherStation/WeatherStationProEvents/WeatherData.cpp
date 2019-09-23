@@ -131,3 +131,16 @@ void CWeatherData::SetMeasurements(double temperature, double humidity, double p
 		WindDirectionChanged();
 	}
 }
+
+CWeatherData::~CWeatherData()
+{
+	for (auto& eventTypeKey : m_observers)
+	{
+		auto priorityKeys(eventTypeKey.second);
+
+		for (auto& priorityKey : priorityKeys)
+		{
+			eventTypeKey.second.erase(priorityKey.first);
+		}
+	}
+}

@@ -31,6 +31,11 @@ void CStatsDisplay::UpdateWindDirection(double windDirection)
 	m_windDirection.Update(windDirection);
 }
 
+void CStatsDisplay::RemoveObservable()
+{
+	m_observable->RemoveObserver(*this);
+}
+
 void CStatsDisplay::Display()
 {
 	std::cout << "Stats data: \n";
@@ -54,5 +59,5 @@ void CStatsDisplay::Display()
 
 CStatsDisplay::~CStatsDisplay()
 {
-	m_observable->RemoveObserver(*this);
+	RemoveObservable();
 }
