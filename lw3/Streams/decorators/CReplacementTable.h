@@ -10,12 +10,11 @@ public:
 		: m_encryptTable(256)
 		, m_decryptTable(256)
 	{
-		std::mt19937 gen;
-		gen.seed(key);
+		std::iota(m_encryptTable.begin(), m_encryptTable.end(), 0);
+		std::shuffle(m_encryptTable.begin(), m_encryptTable.end(), std::mt19937(key));
 
-		for (size_t i = 0; i < 255; ++i)
+		for (size_t i = 0; i < 256; ++i)
 		{
-			m_encryptTable[i] = gen();
 			m_decryptTable[m_encryptTable[i]] = static_cast<uint8_t>(i);
 		}
 	}

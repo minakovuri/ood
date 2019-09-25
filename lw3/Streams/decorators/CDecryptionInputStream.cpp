@@ -1,8 +1,8 @@
 #include "CDecryptionInputStream.h"
 
-CDecryptionInputStream::CDecryptionInputStream(IInputDataStreamPtr&& stream, CReplacementTable& table)
+CDecryptionInputStream::CDecryptionInputStream(IInputDataStreamPtr&& stream, unsigned key)
 	: CInputStreamDecorator(std::move(stream))
-	, m_table(table)
+	, m_table(key)
 {
 }
 

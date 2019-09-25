@@ -5,7 +5,7 @@
 class CEncryptionOutputStream : public COutputStreamDecorator
 {
 public:
-	CEncryptionOutputStream(IOutputDataStreamPtr&& stream, CReplacementTable& table);
+	CEncryptionOutputStream(IOutputDataStreamPtr&& stream, unsigned key);
 
 	void WriteByte(uint8_t data) final;
 	void WriteBlock(const void* srcData, std::streamsize size) final;
@@ -13,5 +13,5 @@ public:
 private:
 	uint8_t EncryptByte(uint8_t byte) const;
 
-	CReplacementTable& m_table;
+	CReplacementTable m_table;
 };

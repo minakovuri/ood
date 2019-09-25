@@ -5,7 +5,7 @@
 class CDecryptionInputStream : public CInputStreamDecorator
 {
 public:
-	CDecryptionInputStream(IInputDataStreamPtr&& stream, CReplacementTable& table);
+	CDecryptionInputStream(IInputDataStreamPtr&& stream, unsigned key);
 
 	uint8_t ReadByte() final;
 	std::streamsize ReadBlock(void* dstBuffer, std::streamsize size) final;
@@ -13,5 +13,5 @@ public:
 private:
 	uint8_t DecryptByte(uint8_t byte) const;
 
-	CReplacementTable& m_table;
+	CReplacementTable m_table;
 };
