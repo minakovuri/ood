@@ -3,8 +3,9 @@
 
 CEncryptionOutputStream::CEncryptionOutputStream(IOutputDataStreamPtr&& stream, unsigned key)
 	: COutputStreamDecorator(std::move(stream))
-	, m_table(key)
+	, m_encryptTable(256)
 {
+	GenerateEncryptTable(key);
 }
 
 void CEncryptionOutputStream::WriteByte(uint8_t data)
@@ -27,7 +28,13 @@ void CEncryptionOutputStream::WriteBlock(const void* srcData, std::streamsize si
 	std::free(allocMemPtr);
 }
 
+void CEncryptionOutputStream::GenerateEncryptTable(unsigned key)
+{
+	std::iota(m_encryptTable.begin(), m_encryptTable.end(), 0);
+	std::shuffle(m_encryptTable.begin(), m_encryptTable.end(), std::mt19937(key));
+}
+
 uint8_t CEncryptionOutputStream::EncryptByte(uint8_t byte) const
 {
-	return m_table.Encrypt(byte);
+	return m_encryptTable.at(byte);
 }

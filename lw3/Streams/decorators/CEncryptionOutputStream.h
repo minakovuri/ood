@@ -11,7 +11,8 @@ public:
 	void WriteBlock(const void* srcData, std::streamsize size) final;
 
 private:
+	void GenerateEncryptTable(unsigned key);
 	uint8_t EncryptByte(uint8_t byte) const;
 
-	CReplacementTable m_table;
+	std::vector<uint8_t> m_encryptTable;
 };

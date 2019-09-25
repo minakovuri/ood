@@ -11,7 +11,8 @@ public:
 	std::streamsize ReadBlock(void* dstBuffer, std::streamsize size) final;
 
 private:
+	void GenerateDecryptTable(unsigned key);
 	uint8_t DecryptByte(uint8_t byte) const;
 
-	CReplacementTable m_table;
+	std::vector<uint8_t> m_decryptTable;
 };
