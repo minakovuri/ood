@@ -1,5 +1,7 @@
 #include "CEncryptionOutputStream.h"
 #include <cstdlib>
+#include <numeric>
+#include <random>
 
 CEncryptionOutputStream::CEncryptionOutputStream(IOutputDataStreamPtr&& stream, unsigned key)
 	: COutputStreamDecorator(std::move(stream))

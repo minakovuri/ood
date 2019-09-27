@@ -42,9 +42,6 @@
     <ClCompile Include="..\outputStream\CMemoryOutputStream.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="replacementTableTests.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\decorators\CDecryptionInputStream.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -81,9 +78,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\decorators\COutputStreamDecorator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\decorators\CReplacementTable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,6 +1,6 @@
 #pragma once
+#include <vector>
 #include "COutputStreamDecorator.h"
-#include "CReplacementTable.h"
 
 class CEncryptionOutputStream : public COutputStreamDecorator
 {

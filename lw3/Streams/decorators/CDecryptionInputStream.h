@@ -1,6 +1,6 @@
 #pragma once
 #include "CInputStreamDecorator.h"
-#include "CReplacementTable.h"
+#include <vector>
 
 class CDecryptionInputStream : public CInputStreamDecorator
 {
