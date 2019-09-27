@@ -12,17 +12,25 @@ using namespace std;
 TEST_CASE("Test compress and decompress bytes with decorators")
 {
 	std::vector<uint8_t> memory;
-	memory.reserve(6);
 
-	auto memOutStream = make_unique<CMemoryOutputStream>(memory);
-	auto compressOutStream = make_unique<CCompressedOutputStream>(move(memOutStream));
+	{
+		auto memOutStream = make_unique<CMemoryOutputStream>(memory);
+		auto compressOutStream = make_unique<CCompressedOutputStream>(move(memOutStream));
 
-	compressOutStream->WriteByte('A');
-	compressOutStream->WriteByte('A');
-	compressOutStream->WriteByte('A');
-	compressOutStream->WriteByte('B');
-	compressOutStream->WriteByte('B');
-	compressOutStream->WriteByte('C');
+		compressOutStream->WriteByte('A');
+		compressOutStream->WriteByte('A');
+		compressOutStream->WriteByte('A');
+		compressOutStream->WriteByte(1);
+		compressOutStream->WriteByte(1);
+		compressOutStream->WriteByte('#');
+	}
+
+	CHECK(memory[0] == 3);
+	CHECK(memory[1] == 'A');
+	CHECK(memory[2] == 2);
+	CHECK(memory[3] == 1);
+	CHECK(memory[4] == 1);
+	CHECK(memory[5] == '#');
 
 	auto memInStream = make_unique<CMemoryInputStream>(memory);
 	auto decompressInStream = make_unique<CDecompressedInputStream>(move(memInStream));
@@ -30,7 +38,31 @@ TEST_CASE("Test compress and decompress bytes with decorators")
 	CHECK(decompressInStream->ReadByte() == 'A');
 	CHECK(decompressInStream->ReadByte() == 'A');
 	CHECK(decompressInStream->ReadByte() == 'A');
-	CHECK(decompressInStream->ReadByte() == 'B');
-	CHECK(decompressInStream->ReadByte() == 'B');
-	CHECK(decompressInStream->ReadByte() == 'C');
+	CHECK(decompressInStream->ReadByte() == 1);
+	CHECK(decompressInStream->ReadByte() == 1);
+	CHECK(decompressInStream->ReadByte() == '#');
+}
+
+TEST_CASE("Test compress and decompress block of bytes with decorators")
+{
+	std::vector<uint8_t> memory;
+	std::array<uint8_t, 6> inBlock{ 'A', 'A', 'A', 1, 1, '#' };
+
+	{
+		auto memOutStream = make_unique<CMemoryOutputStream>(memory);
+		auto compressOutStream = make_unique<CCompressedOutputStream>(move(memOutStream));
+
+		compressOutStream->WriteBlock(inBlock.data(), 6);
+	}
+
+	auto memInStream = make_unique<CMemoryInputStream>(memory);
+	auto decompressInStream = make_unique<CDecompressedInputStream>(move(memInStream));
+
+	std::array<uint8_t, 6> outBlock;
+	decompressInStream->ReadBlock(outBlock.data(), 6);
+
+	for (size_t i = 0; i < inBlock.size(); ++i)
+	{
+		CHECK(inBlock[i] == outBlock[i]);
+	}
 }

@@ -20,6 +20,7 @@ void CCompressedOutputStream::WriteByte(uint8_t data)
 	}
 
 	FlushChunk();
+	InitChunk(data);
 }
 
 void CCompressedOutputStream::WriteBlock(const void* srcData, std::streamsize size)
@@ -51,6 +52,7 @@ void CCompressedOutputStream::ResetChunk()
 
 void CCompressedOutputStream::FlushChunk()
 {
-	m_stream->WriteBlock(m_chunk.get(), 2);
+	uint8_t memory[2] = { static_cast<uint8_t>(m_chunk.get()->bytesConter), m_chunk.get()->byte };
+	m_stream->WriteBlock(&memory, 2);
 	ResetChunk();
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include "COutputStreamDecorator.h"
+#include "Chunk.h"
 
 class CCompressedOutputStream : public COutputStreamDecorator
 {
@@ -12,12 +13,6 @@ public:
 	~CCompressedOutputStream();
 
 private:
-	struct Chunk
-	{
-		size_t bytesConter;
-		uint8_t byte;
-	};
-
 	void InitChunk(uint8_t byte);
 	void ResetChunk();
 	void FlushChunk();

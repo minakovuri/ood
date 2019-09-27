@@ -5,7 +5,6 @@
 TEST_CASE("Test writing byte to memory stream")
 {
 	std::vector<uint8_t> container;
-	container.reserve(3);
 
 	CMemoryOutputStream memOutputStream(container);
 
@@ -20,18 +19,15 @@ TEST_CASE("Test writing byte to memory stream")
 	CHECK(container[0] == 'A');
 	CHECK(container[1] == 'B');
 	CHECK(container[2] == 'C');
-
-	CHECK_THROWS_AS(memOutputStream.WriteByte('#'), std::ios_base::failure);
 }
 
 TEST_CASE("Test writing block of bytes to memory stream")
 {
 	std::vector<uint8_t> container;
-	container.reserve(4);
 
 	CMemoryOutputStream memOutputStream(container);
 
-	std::array<uint8_t, 5> block{'1', '2', '3', '4', '5'};
+	std::array<uint8_t, 5> block{ '1', '2', '3', '4', '5' };
 
 	CHECK_NOTHROW(memOutputStream.WriteBlock(block.data(), 2));
 	CHECK_NOTHROW(memOutputStream.WriteBlock(block.data() + 2, 2));
@@ -40,6 +36,4 @@ TEST_CASE("Test writing block of bytes to memory stream")
 	CHECK(container[1] == '2');
 	CHECK(container[2] == '3');
 	CHECK(container[3] == '4');
-
-	CHECK_THROWS_AS(memOutputStream.WriteBlock(block.data() + 3, 2), std::ios_base::failure);
 }

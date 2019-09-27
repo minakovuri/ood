@@ -39,6 +39,9 @@
     <ClCompile Include="decorators\CCompressedOutputStream.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="decorators\CDecompressedInputStream.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inputStream\CFileInputStream.h">
@@ -75,6 +78,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="decorators\CDecompressedInputStream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="decorators\Chunk.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

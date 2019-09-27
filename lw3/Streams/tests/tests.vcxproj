@@ -156,6 +156,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\decorators\CCompressedOutputStream.cpp" />
+    <ClCompile Include="..\decorators\CDecompressedInputStream.cpp" />
     <ClCompile Include="..\decorators\CDecryptionInputStream.cpp" />
     <ClCompile Include="..\decorators\CEncryptionOutputStream.cpp" />
     <ClCompile Include="..\inputStream\CFileInputStream.cpp" />
@@ -175,6 +176,7 @@
     <ClInclude Include="..\decorators\CDecompressedInputStream.h" />
     <ClInclude Include="..\decorators\CDecryptionInputStream.h" />
     <ClInclude Include="..\decorators\CEncryptionOutputStream.h" />
+    <ClInclude Include="..\decorators\Chunk.h" />
     <ClInclude Include="..\decorators\CInputStreamDecorator.h" />
     <ClInclude Include="..\decorators\COutputStreamDecorator.h" />
     <ClInclude Include="..\inputStream\CFileInputStream.h" />
