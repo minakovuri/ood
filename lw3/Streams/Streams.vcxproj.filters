@@ -36,6 +36,9 @@
     <ClCompile Include="decorators\CEncryptionOutputStream.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="decorators\CCompressedOutputStream.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inputStream\CFileInputStream.h">

@@ -9,7 +9,7 @@
 
 using namespace std;
 
-TEST_CASE("Test encryption and decryption byte with decorators")
+TEST_CASE("Test encryption and decryption bytes with decorators")
 {
 	unsigned int key = rand();
 

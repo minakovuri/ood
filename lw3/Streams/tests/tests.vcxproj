@@ -155,12 +155,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\decorators\CCompressedOutputStream.cpp" />
     <ClCompile Include="..\decorators\CDecryptionInputStream.cpp" />
     <ClCompile Include="..\decorators\CEncryptionOutputStream.cpp" />
     <ClCompile Include="..\inputStream\CFileInputStream.cpp" />
     <ClCompile Include="..\inputStream\CMemoryInputStream.cpp" />
     <ClCompile Include="..\outputStream\CFileOutputStream.cpp" />
     <ClCompile Include="..\outputStream\CMemoryOutputStream.cpp" />
+    <ClCompile Include="compressDecompressDecoratorTests.cpp" />
     <ClCompile Include="encryptDecryptDecoratorTests.cpp" />
     <ClCompile Include="fileInputStreamTests.cpp" />
     <ClCompile Include="fileOutputStreamTests.cpp" />
@@ -169,6 +171,8 @@
     <ClCompile Include="memoryOutputStreamTests.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\decorators\CCompressedOutputStream.h" />
+    <ClInclude Include="..\decorators\CDecompressedInputStream.h" />
     <ClInclude Include="..\decorators\CDecryptionInputStream.h" />
     <ClInclude Include="..\decorators\CEncryptionOutputStream.h" />
     <ClInclude Include="..\decorators\CInputStreamDecorator.h" />

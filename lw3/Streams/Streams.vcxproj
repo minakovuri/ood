@@ -149,6 +149,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="decorators\CCompressedOutputStream.cpp" />
     <ClCompile Include="decorators\CDecryptionInputStream.cpp" />
     <ClCompile Include="decorators\CEncryptionOutputStream.cpp" />
     <ClCompile Include="inputStream\CFileInputStream.cpp" />
