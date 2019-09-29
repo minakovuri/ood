@@ -43,7 +43,6 @@ void RunProgram(const OptionsVector& options, const string& inputFileName, const
 
 	while (!inputFile->IsEOF())
 	{
-		uint8_t byte = inputFile->ReadByte();
-		outputFile->WriteByte(byte);
+		outputFile->WriteByte(inputFile->ReadByte());
 	}
 }

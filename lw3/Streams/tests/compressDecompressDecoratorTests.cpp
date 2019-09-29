@@ -66,3 +66,29 @@ TEST_CASE("Test compress and decompress block of bytes with decorators")
 		CHECK(inBlock[i] == outBlock[i]);
 	}
 }
+
+TEST_CASE("Test multiple compress and decompress")
+{
+	std::vector<uint8_t> memory;
+	std::array<uint8_t, 6> inBlock{ 'A', 'A', 'A', 1, 1, '#' };
+
+	{
+		unique_ptr<IOutputDataStream> memOutStream = make_unique<CMemoryOutputStream>(memory);
+		memOutStream = make_unique<CCompressedOutputStream>(move(memOutStream));
+		memOutStream = make_unique<CCompressedOutputStream>(move(memOutStream));
+
+		memOutStream->WriteBlock(inBlock.data(), 6);
+	}
+
+	unique_ptr<IInputDataStream> memInStream = make_unique<CMemoryInputStream>(memory);
+	memInStream = make_unique<CDecompressedInputStream>(move(memInStream));
+	memInStream = make_unique<CDecompressedInputStream>(move(memInStream));
+
+	std::array<uint8_t, 6> outBlock;
+	memInStream->ReadBlock(outBlock.data(), 6);
+
+	for (size_t i = 0; i < inBlock.size(); ++i)
+	{
+		CHECK(inBlock[i] == outBlock[i]);
+	}
+}

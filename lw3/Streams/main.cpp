@@ -10,6 +10,11 @@ const string DECOMPRESS_OPTION = "--decompress";
 
 int main(int argc, char* argv[])
 {
+	if (argc < 2)
+	{
+		cerr << "Invalid parameters count: " << argc << ", want 2 minimum" << endl;
+	}
+
 	OptionsVector options;
 	string inputFileName = argv[argc - 2];
 	string outputFileName = argv[argc - 1];

@@ -13,7 +13,7 @@ TEST_CASE("Test encryption and decryption bytes with decorators")
 {
 	unsigned int key = rand();
 
-	std::vector<uint8_t> memory;
+	vector<uint8_t> memory;
 	memory.reserve(3);
 
 	auto memOutStream = make_unique<CMemoryOutputStream>(memory);
@@ -35,7 +35,7 @@ TEST_CASE("Test encryption and decryption block of bytes with decorators")
 {
 	unsigned int key = rand();
 
-	std::vector<uint8_t> memory;
+	vector<uint8_t> memory;
 	memory.reserve(3);
 
 	auto memOutStream = make_unique<CMemoryOutputStream>(memory);
@@ -49,6 +49,30 @@ TEST_CASE("Test encryption and decryption block of bytes with decorators")
 
 	std::array<uint8_t, 3> outBlock;
 	decryptInStream->ReadBlock(outBlock.data(), 3);
+
+	for (size_t i = 0; i < inBlock.size(); ++i)
+	{
+		CHECK(inBlock[i] == outBlock[i]);
+	}
+}
+
+TEST_CASE("Test multiple encryption and decryption")
+{
+	std::vector<uint8_t> memory;
+
+	unique_ptr<IOutputDataStream> memOutStream = make_unique<CMemoryOutputStream>(memory);
+	memOutStream = make_unique<CEncryptionOutputStream>(move(memOutStream), 3);
+	memOutStream = make_unique<CEncryptionOutputStream>(move(memOutStream), 100500);
+
+	std::array<uint8_t, 6> inBlock{ 'A', 'A', 'A', 'B', 'B', 'C' };
+	memOutStream->WriteBlock(inBlock.data(), 6);
+
+	unique_ptr<IInputDataStream> memInStream = make_unique<CMemoryInputStream>(memory);
+	memInStream = make_unique<CDecryptionInputStream>(move(memInStream), 3);
+	memInStream = make_unique<CDecryptionInputStream>(move(memInStream), 100500);
+
+	std::array<uint8_t, 6> outBlock;
+	memInStream->ReadBlock(outBlock.data(), 6);
 
 	for (size_t i = 0; i < inBlock.size(); ++i)
 	{
