@@ -60,6 +60,9 @@
     <ClCompile Include="..\decorators\CDecompressedInputStream.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GetFileContent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\inputStream\CFileInputStream.h">
@@ -96,6 +99,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\decorators\Chunk.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GetFileContent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

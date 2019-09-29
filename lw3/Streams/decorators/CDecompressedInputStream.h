@@ -13,7 +13,6 @@ public:
 
 private:
 	void ExpandBuffer(std::streamsize size);
-	void AddToBuffer(uint8_t memory[2]);
 
 	std::queue<uint8_t> m_bytesBuffer;
 };

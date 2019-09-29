@@ -2,7 +2,7 @@
 #include <numeric>
 #include <random>
 
-CDecryptionInputStream::CDecryptionInputStream(IInputDataStreamPtr&& stream, unsigned key)
+CDecryptionInputStream::CDecryptionInputStream(IInputDataStreamPtr&& stream, unsigned long key)
 	: CInputStreamDecorator(std::move(stream))
 	, m_decryptTable(256)
 {
@@ -28,7 +28,7 @@ std::streamsize CDecryptionInputStream::ReadBlock(void* dstBuffer, std::streamsi
 	return bytesRead;
 }
 
-void CDecryptionInputStream::GenerateDecryptTable(unsigned key)
+void CDecryptionInputStream::GenerateDecryptTable(unsigned long key)
 {
 	std::vector<uint8_t> m_encryptTable(256);
 	std::iota(m_encryptTable.begin(), m_encryptTable.end(), 0);

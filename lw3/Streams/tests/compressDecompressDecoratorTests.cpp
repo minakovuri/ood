@@ -1,13 +1,19 @@
 #include "../../../catch.hpp"
 #include "../decorators/CCompressedOutputStream.h"
 #include "../decorators/CDecompressedInputStream.h"
+#include "../inputStream/CFileInputStream.h"
 #include "../inputStream/CMemoryInputStream.h"
+#include "../outputStream/CFileOutputStream.h"
 #include "../outputStream/CMemoryOutputStream.h"
+#include "GetFileContent.h"
 
 #include <array>
 #include <iostream>
 
 using namespace std;
+
+/*const string INPUT_FILE_NAME = "input_compress.dat";
+const string OUTPUT_FILE_NAME = "output_compress.dat";*/
 
 TEST_CASE("Test compress and decompress bytes with decorators")
 {
@@ -66,6 +72,22 @@ TEST_CASE("Test compress and decompress block of bytes with decorators")
 		CHECK(inBlock[i] == outBlock[i]);
 	}
 }
+
+/*TEST_CASE("Test compress and decompress with files")
+{
+	unique_ptr<IOutputDataStream> outputFileStream = make_unique<CFileOutputStream>(OUTPUT_FILE_NAME);
+	unique_ptr<IInputDataStream> inputFileStream = make_unique<CFileInputStream>(INPUT_FILE_NAME);
+
+	outputFileStream = make_unique<CCompressedOutputStream>(move(outputFileStream));
+	inputFileStream = make_unique<CDecompressedInputStream>(move(inputFileStream));
+
+	while (!inputFileStream->IsEOF())
+	{
+		outputFileStream->WriteByte(inputFileStream->ReadByte());
+	}
+
+	CHECK(GetFileContent(INPUT_FILE_NAME) == GetFileContent(OUTPUT_FILE_NAME));
+}*/
 
 TEST_CASE("Test multiple compress and decompress")
 {

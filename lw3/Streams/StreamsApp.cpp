@@ -1,8 +1,8 @@
 #include "StreamsApp.h"
-#include "decorators/CDecryptionInputStream.h"
-#include "decorators/CEncryptionOutputStream.h"
 #include "decorators/CCompressedOutputStream.h"
 #include "decorators/CDecompressedInputStream.h"
+#include "decorators/CDecryptionInputStream.h"
+#include "decorators/CEncryptionOutputStream.h"
 #include "inputStream/CFileInputStream.h"
 #include "outputStream/CFileOutputStream.h"
 
@@ -42,7 +42,7 @@ void RunProgram(const OptionsVector& options, const string& inputFileName, const
 	}
 
 	while (!inputFile->IsEOF())
-	{
+	{		
 		outputFile->WriteByte(inputFile->ReadByte());
 	}
 }

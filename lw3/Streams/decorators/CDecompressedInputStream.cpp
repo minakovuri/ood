@@ -23,32 +23,34 @@ std::streamsize CDecompressedInputStream::ReadBlock(void* dstBuffer, std::stream
 
 	auto buffPtr = static_cast<uint8_t*>(dstBuffer);
 
-	for (auto it = buffPtr; it < buffPtr + size; it++)
+	std::streamsize realSize = 0;
+
+	for (auto it = buffPtr; (it < buffPtr + size) && (m_bytesBuffer.size()); it++)
 	{
 		*it = m_bytesBuffer.front();
 		m_bytesBuffer.pop();
+		realSize++;
 	}
 
-	return size;
+	return realSize;
 }
 
 void CDecompressedInputStream::ExpandBuffer(std::streamsize size)
 {
 	while (m_bytesBuffer.size() < static_cast<size_t>(size))
 	{
-		uint8_t memory[2];
-		m_stream->ReadBlock(&memory, 2);
-		AddToBuffer(memory);
-	}
-}
+		uint8_t firstByte = m_stream->ReadByte();
 
-void CDecompressedInputStream::AddToBuffer(uint8_t memory[2])
-{
-	uint8_t bytesCount = memory[0];
-	uint8_t byte = memory[1];
+		if (m_stream->IsEOF())
+		{
+			return;
+		}
 
-	for (size_t i = 0; i < bytesCount; ++i)
-	{
-		m_bytesBuffer.push(byte);
+		uint8_t secondByte = m_stream->ReadByte();
+
+		for (size_t i = 0; i < firstByte; ++i)
+		{
+			m_bytesBuffer.push(secondByte);
+		}
 	}
 }

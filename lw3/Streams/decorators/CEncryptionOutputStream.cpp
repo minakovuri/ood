@@ -3,7 +3,7 @@
 #include <numeric>
 #include <random>
 
-CEncryptionOutputStream::CEncryptionOutputStream(IOutputDataStreamPtr&& stream, unsigned key)
+CEncryptionOutputStream::CEncryptionOutputStream(IOutputDataStreamPtr&& stream, unsigned long key)
 	: COutputStreamDecorator(std::move(stream))
 	, m_encryptTable(256)
 {
@@ -30,7 +30,7 @@ void CEncryptionOutputStream::WriteBlock(const void* srcData, std::streamsize si
 	std::free(allocMemPtr);
 }
 
-void CEncryptionOutputStream::GenerateEncryptTable(unsigned key)
+void CEncryptionOutputStream::GenerateEncryptTable(unsigned long key)
 {
 	std::iota(m_encryptTable.begin(), m_encryptTable.end(), 0);
 	std::shuffle(m_encryptTable.begin(), m_encryptTable.end(), std::mt19937(key));

@@ -6,7 +6,7 @@ CFileInputStream::CFileInputStream(const std::string& fileName)
 
 	if (!m_inputFileStream.is_open())
 	{
-		throw std::ios_base::failure("failed to open file" + fileName);
+		throw std::ios_base::failure("failed to open file " + fileName);
 	}
 }
 

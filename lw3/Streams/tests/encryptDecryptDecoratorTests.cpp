@@ -1,15 +1,21 @@
 #include "../../../catch.hpp"
 #include "../decorators/CDecryptionInputStream.h"
 #include "../decorators/CEncryptionOutputStream.h"
+#include "../inputStream/CFileInputStream.h"
 #include "../inputStream/CMemoryInputStream.h"
+#include "../outputStream/CFileOutputStream.h"
 #include "../outputStream/CMemoryOutputStream.h"
+#include "GetFileContent.h"
 
 #include <array>
 #include <iostream>
 
 using namespace std;
 
-TEST_CASE("Test encryption and decryption bytes with decorators")
+/*const string INPUT_FILE_NAME = "input.dat";
+const string OUTPUT_FILE_NAME = "output.dat";*/
+
+TEST_CASE("Test encryption and decryption bytes with memory")
 {
 	unsigned int key = rand();
 
@@ -56,7 +62,25 @@ TEST_CASE("Test encryption and decryption block of bytes with decorators")
 	}
 }
 
-TEST_CASE("Test multiple encryption and decryption")
+/*TEST_CASE("Test encryption and decryption bytes with files")
+{
+	unsigned int key = rand();
+
+	unique_ptr<IOutputDataStream> outputFileStream = make_unique<CFileOutputStream>(OUTPUT_FILE_NAME);
+	unique_ptr<IInputDataStream> inputFileStream = make_unique<CFileInputStream>(INPUT_FILE_NAME);
+
+	outputFileStream = make_unique<CEncryptionOutputStream>(move(outputFileStream), key);
+	inputFileStream = make_unique<CDecryptionInputStream>(move(inputFileStream), key);
+
+	while (!inputFileStream->IsEOF())
+	{
+		outputFileStream->WriteByte(inputFileStream->ReadByte());
+	}
+
+	CHECK(GetFileContent(INPUT_FILE_NAME) == GetFileContent(OUTPUT_FILE_NAME));
+}*/
+
+TEST_CASE("Test multiple encryption and decryption with memory")
 {
 	std::vector<uint8_t> memory;
 

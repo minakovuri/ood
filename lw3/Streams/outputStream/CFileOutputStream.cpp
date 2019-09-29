@@ -5,7 +5,7 @@ CFileOutputStream::CFileOutputStream(const std::string& fileName)
 {
 	if (!m_outputFileStream)
 	{
-		throw std::ios_base::failure("failed to create/open file" + fileName);
+		throw std::ios_base::failure("failed to create/open file " + fileName);
 	}
 }
 
