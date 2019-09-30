@@ -15,8 +15,6 @@ void CMemoryOutputStream::WriteByte(uint8_t data)
 	{
 		throw std::ios_base::failure("canno't write byte to stream");
 	}
-
-	m_pos++;
 }
 
 void CMemoryOutputStream::WriteBlock(const void* srcData, std::streamsize size)

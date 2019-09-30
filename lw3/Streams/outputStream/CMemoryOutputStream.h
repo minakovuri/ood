@@ -12,5 +12,4 @@ public:
 
 private:
 	std::vector<uint8_t>& m_memoryStream;
-	size_t m_pos = 0;
 };

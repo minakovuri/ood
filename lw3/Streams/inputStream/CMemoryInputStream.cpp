@@ -14,7 +14,7 @@ uint8_t CMemoryInputStream::ReadByte()
 {
 	if (m_pos >= m_memoryStream.size())
 	{
-		throw std::ios_base::failure("canno't read byte from memory");
+		throw std::ios_base::failure("cannot read byte from memory");
 	}
 
 	return m_memoryStream[m_pos++];

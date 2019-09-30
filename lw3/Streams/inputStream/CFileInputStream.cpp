@@ -19,6 +19,12 @@ uint8_t CFileInputStream::ReadByte()
 {
 	char x;
 	m_inputFileStream.read(&x, 1);
+
+	if (IsEOF())
+	{
+		throw std::ios_base::failure("cannot read byte from file");
+	}
+
 	return (uint8_t)(x);
 }
 

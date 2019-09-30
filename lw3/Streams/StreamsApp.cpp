@@ -43,6 +43,12 @@ void RunProgram(const OptionsVector& options, const string& inputFileName, const
 
 	while (!inputFile->IsEOF())
 	{		
-		outputFile->WriteByte(inputFile->ReadByte());
+		try
+		{
+			outputFile->WriteByte(inputFile->ReadByte());
+		}
+		catch (const std::exception&)
+		{
+		}
 	}
 }

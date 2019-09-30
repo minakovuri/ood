@@ -21,7 +21,7 @@ TEST_CASE("Test reading bytes from file input stream")
 	CHECK(fileInputStream.ReadByte() == 'C');
 	CHECK(fileInputStream.ReadByte() == '#');
 
-	fileInputStream.ReadByte();
+	CHECK_THROWS_AS(fileInputStream.ReadByte(), std::ios_base::failure);
 	CHECK(fileInputStream.IsEOF());
 }
 
@@ -38,6 +38,6 @@ TEST_CASE("Test reading block of bytes from file input stream")
 	CHECK(buff[2] == 'C');
 	CHECK(buff[3] == '#');
 
-	fileInputStream.ReadByte();
+	CHECK_THROWS_AS(fileInputStream.ReadByte(), std::ios_base::failure);
 	CHECK(fileInputStream.IsEOF());
 }

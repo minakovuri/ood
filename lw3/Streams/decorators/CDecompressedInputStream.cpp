@@ -12,8 +12,9 @@ bool CDecompressedInputStream::IsEOF() const
 
 uint8_t CDecompressedInputStream::ReadByte()
 {
-	uint8_t byte;
-	ReadBlock(&byte, 1);
+	ExpandBuffer(1);
+	auto byte = m_bytesBuffer.front();
+	m_bytesBuffer.pop();
 	return byte;
 }
 
@@ -40,12 +41,6 @@ void CDecompressedInputStream::ExpandBuffer(std::streamsize size)
 	while (m_bytesBuffer.size() < static_cast<size_t>(size))
 	{
 		uint8_t firstByte = m_stream->ReadByte();
-
-		if (m_stream->IsEOF())
-		{
-			return;
-		}
-
 		uint8_t secondByte = m_stream->ReadByte();
 
 		for (size_t i = 0; i < firstByte; ++i)

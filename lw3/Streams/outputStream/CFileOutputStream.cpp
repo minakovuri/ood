@@ -11,14 +11,7 @@ CFileOutputStream::CFileOutputStream(const std::string& fileName)
 
 void CFileOutputStream::WriteByte(uint8_t data)
 {
-	try
-	{
-		WriteBlock(&data, 1);
-	}
-	catch (const std::exception&)
-	{
-		throw;
-	}
+	WriteBlock(&data, 1);
 }
 
 void CFileOutputStream::WriteBlock(const void* srcData, std::streamsize size)
