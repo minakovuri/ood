@@ -2,6 +2,8 @@
 #include "GetFileContent.h"
 #include <fstream>
 
+const std::string INPUT_FILE_NAME = "test_files/input.bin";
+
 std::string GetFileContent(const std::string& fileName)
 {
 	std::ifstream file(fileName, std::ios::binary);
@@ -16,5 +18,5 @@ std::string GetFileContent(const std::string& fileName)
 
 TEST_CASE("Test GetFileContent function")
 {
-	CHECK(GetFileContent("input.dat") == "ABC#");
+	CHECK(GetFileContent(INPUT_FILE_NAME) == "ABC#");
 }

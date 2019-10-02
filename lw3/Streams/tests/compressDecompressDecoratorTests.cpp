@@ -8,12 +8,11 @@
 #include "GetFileContent.h"
 
 #include <array>
-#include <iostream>
 
 using namespace std;
 
-/*const string INPUT_FILE_NAME = "input_compress.dat";
-const string OUTPUT_FILE_NAME = "output_compress.dat";*/
+/*const string INPUT_FILE_NAME = "test_files/input.bin";
+const string OUTPUT_FILE_NAME = "test_files/output.bin";*/
 
 TEST_CASE("Test compress and decompress bytes with decorators")
 {
@@ -83,7 +82,13 @@ TEST_CASE("Test compress and decompress block of bytes with decorators")
 
 	while (!inputFileStream->IsEOF())
 	{
-		outputFileStream->WriteByte(inputFileStream->ReadByte());
+		try
+		{
+			outputFileStream->WriteByte(inputFileStream->ReadByte());
+		}
+		catch (const std::exception&)
+		{
+		}
 	}
 
 	CHECK(GetFileContent(INPUT_FILE_NAME) == GetFileContent(OUTPUT_FILE_NAME));

@@ -3,7 +3,7 @@
 #include "GetFileContent.h"
 #include <array>
 
-const std::string OUTPUT_FILE_NAME = "output.dat";
+const std::string OUTPUT_FILE_NAME = "test_files/output.bin";
 
 TEST_CASE("Test writing byte to file stream")
 {

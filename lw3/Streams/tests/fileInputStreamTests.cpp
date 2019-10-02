@@ -2,7 +2,7 @@
 #include "../inputStream/CFileInputStream.h"
 #include <array>
 
-const std::string INPUT_FILE_NAME = "input.dat";
+const std::string INPUT_FILE_NAME = "test_files/input.bin";
 
 TEST_CASE("Test creating input file streams")
 {

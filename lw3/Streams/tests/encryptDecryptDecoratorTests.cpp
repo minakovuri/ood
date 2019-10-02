@@ -12,8 +12,8 @@
 
 using namespace std;
 
-/*const string INPUT_FILE_NAME = "input.dat";
-const string OUTPUT_FILE_NAME = "output.dat";*/
+const string INPUT_FILE_NAME = "test_files/input.bin";
+const string OUTPUT_FILE_NAME = "test_files/output.bin";
 
 TEST_CASE("Test encryption and decryption bytes with memory")
 {
@@ -62,7 +62,7 @@ TEST_CASE("Test encryption and decryption block of bytes with decorators")
 	}
 }
 
-/*TEST_CASE("Test encryption and decryption bytes with files")
+TEST_CASE("Test encryption and decryption bytes with files")
 {
 	unsigned int key = rand();
 
@@ -74,26 +74,32 @@ TEST_CASE("Test encryption and decryption block of bytes with decorators")
 
 	while (!inputFileStream->IsEOF())
 	{
-		outputFileStream->WriteByte(inputFileStream->ReadByte());
+		try
+		{
+			outputFileStream->WriteByte(inputFileStream->ReadByte());
+		}
+		catch (const std::exception&)
+		{
+		}
 	}
 
 	CHECK(GetFileContent(INPUT_FILE_NAME) == GetFileContent(OUTPUT_FILE_NAME));
-}*/
+}
 
 TEST_CASE("Test multiple encryption and decryption with memory")
 {
 	std::vector<uint8_t> memory;
 
 	unique_ptr<IOutputDataStream> memOutStream = make_unique<CMemoryOutputStream>(memory);
-	memOutStream = make_unique<CEncryptionOutputStream>(move(memOutStream), 3);
 	memOutStream = make_unique<CEncryptionOutputStream>(move(memOutStream), 100500);
+	memOutStream = make_unique<CEncryptionOutputStream>(move(memOutStream), 3);
 
 	std::array<uint8_t, 6> inBlock{ 'A', 'A', 'A', 'B', 'B', 'C' };
 	memOutStream->WriteBlock(inBlock.data(), 6);
 
 	unique_ptr<IInputDataStream> memInStream = make_unique<CMemoryInputStream>(memory);
-	memInStream = make_unique<CDecryptionInputStream>(move(memInStream), 3);
 	memInStream = make_unique<CDecryptionInputStream>(move(memInStream), 100500);
+	memInStream = make_unique<CDecryptionInputStream>(move(memInStream), 3);
 
 	std::array<uint8_t, 6> outBlock;
 	memInStream->ReadBlock(outBlock.data(), 6);
