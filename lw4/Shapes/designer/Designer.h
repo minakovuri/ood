@@ -6,7 +6,9 @@ class CDesigner : public IDesigner
 {
 public:
 	CDesigner(IShapeFactory& factory);
+
 	CPictureDraft CreateDraft(std::istream& inputData) override;
+
 	~CDesigner();
 
 private:

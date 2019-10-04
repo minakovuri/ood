@@ -2,5 +2,5 @@
 
 struct Point
 {
-	unsigned x, y;
+	float x, y;
 };

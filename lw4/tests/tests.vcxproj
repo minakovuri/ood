@@ -20,9 +20,9 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{E8851A41-541B-4C9A-8454-D16CB4EEC64B}</ProjectGuid>
+    <ProjectGuid>{917B9026-6BE5-4554-9073-CC96167BB3E0}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Shapes</RootNamespace>
+    <RootNamespace>tests</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -72,13 +72,9 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>D:\sdk\boost_1_71_0;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\sdk\boost_1_71_0\stage\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>D:\sdk\boost_1_71_0;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\sdk\boost_1_71_0\stage\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -88,8 +84,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
@@ -100,11 +95,13 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>$(TargetPath)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
@@ -115,6 +112,9 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>$(TargetPath)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -155,29 +155,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="designer\Designer.cpp" />
-    <ClCompile Include="draft\PictureDraft.cpp" />
+    <ClCompile Include="..\Shapes\shapes\Ellipse.cpp" />
+    <ClCompile Include="..\Shapes\shapes\Rectangle.cpp" />
+    <ClCompile Include="..\Shapes\shapes\Shape.cpp" />
+    <ClCompile Include="..\Shapes\shapes\Triangle.cpp" />
+    <ClCompile Include="clientTests.cpp" />
+    <ClCompile Include="designerTests.cpp" />
+    <ClCompile Include="draftTests.cpp" />
+    <ClCompile Include="factoryTests.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="shapes\Ellipse.cpp" />
-    <ClCompile Include="shapes\Rectangle.cpp" />
-    <ClCompile Include="shapes\Shape.cpp" />
-    <ClCompile Include="shapes\Triangle.cpp" />
+    <ClCompile Include="painterTests.cpp" />
+    <ClCompile Include="shapesTests.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="canvas\ICanvas.h" />
-    <ClInclude Include="Color.h" />
-    <ClInclude Include="designer\Designer.h" />
-    <ClInclude Include="designer\IDesigner.h" />
-    <ClInclude Include="draft\PictureDraft.h" />
-    <ClInclude Include="factory\ShapeFactory.h" />
-    <ClInclude Include="factory\IShapeFactory.h" />
-    <ClInclude Include="Painter.h" />
-    <ClInclude Include="Point.h" />
-    <ClInclude Include="shapes\Ellipse.h" />
-    <ClInclude Include="shapes\Rectangle.h" />
-    <ClInclude Include="shapes\RegularPolygon.h" />
-    <ClInclude Include="shapes\Triangle.h" />
-    <ClInclude Include="shapes\Shape.h" />
+    <ClInclude Include="..\Shapes\shapes\Ellipse.h" />
+    <ClInclude Include="..\Shapes\shapes\Rectangle.h" />
+    <ClInclude Include="..\Shapes\shapes\RegularPolygon.h" />
+    <ClInclude Include="..\Shapes\shapes\Shape.h" />
+    <ClInclude Include="..\Shapes\shapes\Triangle.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
