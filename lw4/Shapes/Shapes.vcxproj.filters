@@ -42,6 +42,12 @@
     <ClCompile Include="factory\ShapeFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="canvas\StreamCanvas.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="painter\Painter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Color.h">
@@ -68,9 +74,6 @@
     <ClInclude Include="draft\PictureDraft.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Painter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="shapes\Triangle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -84,6 +87,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="factory\ShapeFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="canvas\StreamCanvas.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="painter\Painter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

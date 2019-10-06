@@ -100,8 +100,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>$(TargetPath)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -118,8 +117,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>$(TargetPath)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -161,15 +159,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\Shapes\canvas\StreamCanvas.cpp" />
     <ClCompile Include="..\Shapes\designer\Designer.cpp" />
     <ClCompile Include="..\Shapes\draft\PictureDraft.cpp" />
     <ClCompile Include="..\Shapes\factory\ShapeFactory.cpp" />
+    <ClCompile Include="..\Shapes\painter\Painter.cpp" />
     <ClCompile Include="..\Shapes\shapes\Ellipse.cpp" />
     <ClCompile Include="..\Shapes\shapes\Rectangle.cpp" />
     <ClCompile Include="..\Shapes\shapes\RegularPolygon.cpp" />
     <ClCompile Include="..\Shapes\shapes\Shape.cpp" />
     <ClCompile Include="..\Shapes\shapes\Triangle.cpp" />
-    <ClCompile Include="clientTests.cpp" />
+    <ClCompile Include="canvasTests.cpp" />
     <ClCompile Include="designerTests.cpp" />
     <ClCompile Include="draftTests.cpp" />
     <ClCompile Include="factoryTests.cpp" />

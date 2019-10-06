@@ -155,10 +155,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="canvas\StreamCanvas.cpp" />
     <ClCompile Include="designer\Designer.cpp" />
     <ClCompile Include="draft\PictureDraft.cpp" />
     <ClCompile Include="factory\ShapeFactory.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="painter\Painter.cpp" />
     <ClCompile Include="shapes\Ellipse.cpp" />
     <ClCompile Include="shapes\Rectangle.cpp" />
     <ClCompile Include="shapes\RegularPolygon.cpp" />
@@ -166,6 +168,7 @@
     <ClCompile Include="shapes\Triangle.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="canvas\StreamCanvas.h" />
     <ClInclude Include="canvas\ICanvas.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="designer\Designer.h" />
@@ -173,7 +176,7 @@
     <ClInclude Include="draft\PictureDraft.h" />
     <ClInclude Include="factory\ShapeFactory.h" />
     <ClInclude Include="factory\IShapeFactory.h" />
-    <ClInclude Include="Painter.h" />
+    <ClInclude Include="painter\Painter.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="shapes\Ellipse.h" />
     <ClInclude Include="shapes\Rectangle.h" />
