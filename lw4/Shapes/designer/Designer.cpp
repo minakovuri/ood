@@ -7,14 +7,16 @@ CDesigner::CDesigner(IShapeFactory& factory)
 {
 }
 
-CPictureDraft CDesigner::CreateDraft(std::istream& inputData)
+CPictureDraft CDesigner::CreateDraft(istream& inputData)
 {
 	CPictureDraft draft;
 	string line;
+
 	while (getline(inputData, line))
 	{
 		draft.AddShape(m_factory.CreateShape(line));
 	}
+
 	return draft;
 }
 

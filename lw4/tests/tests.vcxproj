@@ -161,6 +161,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\Shapes\designer\Designer.cpp" />
+    <ClCompile Include="..\Shapes\draft\PictureDraft.cpp" />
     <ClCompile Include="..\Shapes\factory\ShapeFactory.cpp" />
     <ClCompile Include="..\Shapes\shapes\Ellipse.cpp" />
     <ClCompile Include="..\Shapes\shapes\Rectangle.cpp" />
@@ -177,10 +179,6 @@
     <ClCompile Include="utils.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Shapes\shapes\Ellipse.h" />
-    <ClInclude Include="..\Shapes\shapes\Rectangle.h" />
-    <ClInclude Include="..\Shapes\shapes\RegularPolygon.h" />
-    <ClInclude Include="..\Shapes\shapes\Shape.h" />
     <ClInclude Include="..\Shapes\shapes\Triangle.h" />
     <ClInclude Include="utils.h" />
   </ItemGroup>

@@ -7,23 +7,11 @@
 class CPictureDraft
 {
 public:
-	CPictureDraft();
+	CPictureDraft() = default;
 
-	/*CPictureDraft(CPictureDraft&&) = default;
-	CPictureDraft& operator=(CPictureDraft&&) = default;
-
-	CPictureDraft(const CPictureDraft&) = delete;
-	CPictureDraft& operator=(const CPictureDraft&) = delete;*/
-
-	//typedef boost::indirect_iterator<Storage::const_iterator, const CShape&> ConstIterator;
-
-	//bool IsEmpty() const;
-
-	/*ConstIterator begin() const;
-	ConstIterator end() const;*/
-
+	bool IsEmpty() const;
 	void AddShape(std::unique_ptr<CShape>&& shape);
-	std::unique_ptr<CShape> GetShape(unsigned index) const;
+	CShape& GetShape(unsigned index) const;
 	unsigned GetShapesCount() const;
 
 private:
