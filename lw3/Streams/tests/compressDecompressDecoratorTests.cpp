@@ -11,9 +11,6 @@
 
 using namespace std;
 
-/*const string INPUT_FILE_NAME = "test_files/input.bin";
-const string OUTPUT_FILE_NAME = "test_files/output.bin";*/
-
 TEST_CASE("Test compress and decompress bytes with decorators")
 {
 	std::vector<uint8_t> memory;
@@ -71,28 +68,6 @@ TEST_CASE("Test compress and decompress block of bytes with decorators")
 		CHECK(inBlock[i] == outBlock[i]);
 	}
 }
-
-/*TEST_CASE("Test compress and decompress with files")
-{
-	unique_ptr<IOutputDataStream> outputFileStream = make_unique<CFileOutputStream>(OUTPUT_FILE_NAME);
-	unique_ptr<IInputDataStream> inputFileStream = make_unique<CFileInputStream>(INPUT_FILE_NAME);
-
-	outputFileStream = make_unique<CCompressedOutputStream>(move(outputFileStream));
-	inputFileStream = make_unique<CDecompressedInputStream>(move(inputFileStream));
-
-	while (!inputFileStream->IsEOF())
-	{
-		try
-		{
-			outputFileStream->WriteByte(inputFileStream->ReadByte());
-		}
-		catch (const std::exception&)
-		{
-		}
-	}
-
-	CHECK(GetFileContent(INPUT_FILE_NAME) == GetFileContent(OUTPUT_FILE_NAME));
-}*/
 
 TEST_CASE("Test multiple compress and decompress")
 {
