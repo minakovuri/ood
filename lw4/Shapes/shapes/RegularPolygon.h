@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 #include "../Point.h"
 #include "Shape.h"
 
@@ -10,6 +11,7 @@ public:
 	Point GetCenter() const;
 	double GetRadius() const;
 	unsigned GetVertexCount() const;
+	std::vector<Point> GetVertexes() const;
 
 	void Draw(ICanvas& canvas) const final;
 private:

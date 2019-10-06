@@ -5,7 +5,7 @@ CEllipse::CEllipse(Color color, const Point& center, double horizontalRadius, do
 	: CShape(color)
 {
 	if (horizontalRadius < 0 || verticalRadius < 0)
-		throw std::logic_error("cannot create ellipse");
+		throw std::logic_error("cannot create ellipse with negative radius");
 
 	m_center = center;
 	m_horizontalRadius = horizontalRadius;

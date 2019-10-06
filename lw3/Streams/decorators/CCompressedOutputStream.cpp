@@ -40,19 +40,17 @@ CCompressedOutputStream::~CCompressedOutputStream()
 
 void CCompressedOutputStream::InitChunk(uint8_t byte)
 {
-	m_chunk = std::make_unique<Chunk>();
-	m_chunk->byte = byte;
-	m_chunk->bytesConter = 1;
+	m_chunk = Chunk{ 1, byte };
 }
 
 void CCompressedOutputStream::ResetChunk()
 {
-	m_chunk.reset();
+	m_chunk = std::nullopt;
 }
 
 void CCompressedOutputStream::FlushChunk()
 {
-	uint8_t memory[2] = { static_cast<uint8_t>(m_chunk.get()->bytesConter), m_chunk.get()->byte };
+	uint8_t memory[2] = { static_cast<uint8_t>(m_chunk->bytesConter), m_chunk->byte };
 	m_stream->WriteBlock(&memory, 2);
 	ResetChunk();
 }

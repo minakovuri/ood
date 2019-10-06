@@ -1,4 +1,5 @@
 #pragma once
+#include <optional>
 #include "COutputStreamDecorator.h"
 #include "Chunk.h"
 
@@ -17,5 +18,5 @@ private:
 	void ResetChunk();
 	void FlushChunk();
 
-	std::unique_ptr<Chunk> m_chunk;
+	std::optional<Chunk> m_chunk;
 };

@@ -157,9 +157,11 @@
   <ItemGroup>
     <ClCompile Include="designer\Designer.cpp" />
     <ClCompile Include="draft\PictureDraft.cpp" />
+    <ClCompile Include="factory\ShapeFactory.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="shapes\Ellipse.cpp" />
     <ClCompile Include="shapes\Rectangle.cpp" />
+    <ClCompile Include="shapes\RegularPolygon.cpp" />
     <ClCompile Include="shapes\Shape.cpp" />
     <ClCompile Include="shapes\Triangle.cpp" />
   </ItemGroup>
