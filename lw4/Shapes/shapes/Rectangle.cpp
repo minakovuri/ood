@@ -3,19 +3,9 @@
 
 CRectangle::CRectangle(Color color, const Point& leftTop, const Point& rightBottom)
 	: CShape(color)
+	, m_leftTop(leftTop)
+	, m_rightBottom(rightBottom)
 {
-	if (leftTop.y > rightBottom.y)
-	{
-		throw std::logic_error("cannot create rectangle");
-	}
-
-	if (leftTop.x > rightBottom.x)
-	{
-		throw std::logic_error("cannot create rectangle");
-	}
-
-	m_leftTop = leftTop;
-	m_rightBottom = rightBottom;
 }
 
 Point CRectangle::GetLeftTop() const

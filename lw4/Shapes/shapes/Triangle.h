@@ -14,8 +14,6 @@ public:
 	void Draw(ICanvas& canvas) const final;
 
 private:
-	bool IsValid(const Point& vertex1, const Point& vertex2, const Point& vertex3);
-
 	Point m_vertex1;
 	Point m_vertex2;
 	Point m_vertex3;
