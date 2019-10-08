@@ -7,7 +7,7 @@
 
 using namespace std;
 
-TEST_CASE("Test painter")
+TEST_CASE("Draw single shape")
 {
 	CPainter painter;
 

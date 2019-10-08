@@ -31,5 +31,9 @@ void CEllipse::Draw(ICanvas& canvas) const
 {
 	canvas.SetColor(GetColor());
 
-	canvas.DrawEllipse(m_center, m_horizontalRadius, m_verticalRadius);
+	Point leftTop = { m_center.x - m_horizontalRadius, m_center.y - m_verticalRadius };
+	double width = 2 * m_horizontalRadius;
+	double height = 2 * m_verticalRadius;
+
+	canvas.DrawEllipse(leftTop, width, height);
 }

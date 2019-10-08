@@ -9,7 +9,7 @@ public:
 
 	void SetColor(Color color) override;
 	void DrawLine(Point from, Point to) override;
-	void DrawEllipse(Point center, double horizontalRadius, double verticalRadius) override;
+	void DrawEllipse(Point leftTop, double width, double height) override;
 
 private:
 	std::string GetColor();

@@ -16,9 +16,9 @@ void CStreamCanvas::DrawLine(Point from, Point to)
 	m_stream << "Draw " << GetColor() << " line from {" << from.x << ";" << from.y << "} to {" << to.x << ";" << to.y << "}" << std::endl;
 }
 
-void CStreamCanvas::DrawEllipse(Point center, double horizontalRadius, double verticalRadius)
+void CStreamCanvas::DrawEllipse(Point leftTop, double width, double height)
 {
-	m_stream << "Draw " << GetColor() << " ellipse with center in {" << center.x << ";" << center.y << "}, horizontal radius " << horizontalRadius << " and vertical radius " << verticalRadius << std::endl;
+	m_stream << "Draw " << GetColor() << " ellipse with left top at {" << leftTop.x << ";" << leftTop.y << "}, width " << width << " and height " << height << std::endl;
 }
 
 std::string CStreamCanvas::GetColor()

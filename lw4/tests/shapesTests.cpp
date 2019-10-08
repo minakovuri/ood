@@ -59,9 +59,6 @@ TEST_CASE("Test rectangle")
 	rectangle.Draw(canvas);
 	CHECK(canvas.GetLinesCount() == 4);
 	CHECK(canvas.GetEllipsesCount() == 0);
-
-	CHECK_THROWS_AS(CRectangle(Color::Blue, Point{ 10, 10 }, Point{ 5, 20 }), logic_error);
-	CHECK_THROWS_AS(CRectangle(Color::Blue, Point{ 10, 10 }, Point{ 20, 5 }), logic_error);
 }
 
 TEST_CASE("Test triangle")
@@ -77,8 +74,6 @@ TEST_CASE("Test triangle")
 	triangle.Draw(canvas);
 	CHECK(canvas.GetLinesCount() == 3);
 	CHECK(canvas.GetEllipsesCount() == 0);
-
-	CHECK_THROWS_AS(CTriangle(Color::Black, Point{ -2, 5 }, Point{ 4, 3 }, Point{ 16, -1 }), logic_error);
 }
 
 TEST_CASE("Test ellipse")
