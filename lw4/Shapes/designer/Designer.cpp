@@ -14,6 +14,8 @@ CPictureDraft CDesigner::CreateDraft(istream& inputData)
 
 	while (getline(inputData, line))
 	{
+		if (line == "stop")
+			break;
 		draft.AddShape(m_factory.CreateShape(line));
 	}
 

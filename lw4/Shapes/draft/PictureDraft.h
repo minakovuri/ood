@@ -11,8 +11,8 @@ public:
 
 	bool IsEmpty() const;
 	void AddShape(std::unique_ptr<CShape>&& shape);
-	CShape& GetShape(unsigned index) const;
-	unsigned GetShapesCount() const;
+	CShape& GetShape(size_t index) const;
+	size_t GetShapesCount() const;
 
 private:
 	typedef std::vector<std::unique_ptr<CShape>> Storage;
