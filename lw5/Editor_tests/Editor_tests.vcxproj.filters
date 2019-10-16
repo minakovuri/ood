@@ -24,9 +24,30 @@
     <ClCompile Include="..\Editor\document\History.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="paragraphTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Editor\document\paragraph\Paragraph.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Editor\command\AbstractCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Editor\command\ChangeStringCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Editor\document\History.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Editor\document\paragraph\Paragraph.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Editor\command\AbstractCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Editor\command\ChangeStringCommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

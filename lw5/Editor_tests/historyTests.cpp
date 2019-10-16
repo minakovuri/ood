@@ -35,9 +35,8 @@ TEST_CASE("execute one command")
 	CHistory history;
 
 	int num = 0;
-	ICommandPtr commandPtr = make_unique<MockIncrementCommand>(num);
 
-	history.AddAndExecuteCommand(move(commandPtr));
+	history.AddAndExecuteCommand(make_unique<MockIncrementCommand>(num));
 	CHECK(num == 1);
 }
 
@@ -46,10 +45,9 @@ TEST_CASE("execute command and undo")
 	CHistory history;
 
 	int num = 0;
-	ICommandPtr commandPtr = make_unique<MockIncrementCommand>(num);
 
 	CHECK_FALSE(history.CanUndo());
-	history.AddAndExecuteCommand(move(commandPtr));
+	history.AddAndExecuteCommand(make_unique<MockIncrementCommand>(num));
 	CHECK(history.CanUndo());
 
 	history.Undo();
@@ -65,10 +63,9 @@ TEST_CASE("execute command and redo")
 	CHistory history;
 
 	int num = 0;
-	ICommandPtr commandPtr = make_unique<MockIncrementCommand>(num);
 
 	CHECK_FALSE(history.CanRedo());
-	history.AddAndExecuteCommand(move(commandPtr));
+	history.AddAndExecuteCommand(make_unique<MockIncrementCommand>(num));
 	CHECK_FALSE(history.CanRedo());
 
 	history.Redo();
@@ -80,9 +77,9 @@ TEST_CASE("execute command, undo and then redo")
 	CHistory history;
 
 	int num = 0;
-	ICommandPtr commandPtr = make_unique<MockIncrementCommand>(num);
+	//ICommandPtr commandPtr = make_unique<MockIncrementCommand>(num);
 
-	history.AddAndExecuteCommand(move(commandPtr));
+	history.AddAndExecuteCommand(make_unique<MockIncrementCommand>(num));
 	history.Undo();
 	CHECK(history.CanRedo());
 
@@ -96,13 +93,10 @@ TEST_CASE("execute 3 command, undo 2, redo and execute command")
 	CHistory history;
 
 	int num = 0;
-	ICommandPtr firstCommand = make_unique<MockIncrementCommand>(num);
-	ICommandPtr secondCommand = make_unique<MockIncrementCommand>(num);
-	ICommandPtr thirdCommand = make_unique<MockIncrementCommand>(num);
 
-	history.AddAndExecuteCommand(move(firstCommand));
-	history.AddAndExecuteCommand(move(secondCommand));
-	history.AddAndExecuteCommand(move(thirdCommand));
+	history.AddAndExecuteCommand(make_unique<MockIncrementCommand>(num));
+	history.AddAndExecuteCommand(make_unique<MockIncrementCommand>(num));
+	history.AddAndExecuteCommand(make_unique<MockIncrementCommand>(num));
 
 	CHECK(num == 3);
 
@@ -114,10 +108,8 @@ TEST_CASE("execute 3 command, undo 2, redo and execute command")
 	history.Redo();
 	CHECK(num == 2);
 
-	ICommandPtr fourthCommand = make_unique<MockIncrementCommand>(num);
-	history.AddAndExecuteCommand(move(fourthCommand));
+	history.AddAndExecuteCommand(make_unique<MockIncrementCommand>(num));
 	CHECK(num == 3);
 
-	ICommandPtr fifthCommand = make_unique<MockIncrementCommand>(num);
-	CHECK_THROWS(history.AddAndExecuteCommand(move(fifthCommand)));
+	CHECK_THROWS(history.AddAndExecuteCommand(make_unique<MockIncrementCommand>(num)));
 }

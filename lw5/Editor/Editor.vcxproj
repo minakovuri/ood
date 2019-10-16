@@ -159,6 +159,7 @@
     <ClCompile Include="document\Document.cpp" />
     <ClCompile Include="document\DocumentItem.cpp" />
     <ClCompile Include="document\History.cpp" />
+    <ClCompile Include="document\paragraph\Paragraph.cpp" />
     <ClCompile Include="Editor.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="menu\Menu.cpp" />
