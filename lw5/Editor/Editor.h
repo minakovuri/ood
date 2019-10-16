@@ -7,15 +7,9 @@ using namespace std;
 class CEditor
 {
 public:
-	CEditor()
-		: m_document(make_unique<CDocument>())
-	{
-	}
+	CEditor();
 
-	void Start()
-	{
-		m_menu.Run();
-	}
+	void Start();
 
 private:
 	CMenu m_menu;

@@ -5,8 +5,6 @@
 class CHistory
 {
 public:
-	CHistory();
-
 	bool CanUndo()const;	
 	void Undo();
 	bool CanRedo()const;

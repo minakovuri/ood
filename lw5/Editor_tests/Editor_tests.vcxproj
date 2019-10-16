@@ -20,9 +20,9 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{1B7CCD35-86B3-4683-8794-0A703B47E02F}</ProjectGuid>
+    <ProjectGuid>{4476E420-51C3-4C72-B6FD-F90A57562EE9}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Editor</RootNamespace>
+    <RootNamespace>Editortests</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -91,12 +91,15 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -107,12 +110,15 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -132,6 +138,10 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -151,38 +161,18 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="command\AbstractCommand.cpp" />
-    <ClCompile Include="command\ChangeStringCommand.cpp" />
-    <ClCompile Include="document\ConstDocumentItem.cpp" />
-    <ClCompile Include="document\Document.cpp" />
-    <ClCompile Include="document\DocumentItem.cpp" />
-    <ClCompile Include="document\History.cpp" />
-    <ClCompile Include="Editor.cpp" />
+    <ClCompile Include="..\Editor\document\History.cpp" />
+    <ClCompile Include="historyTests.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="menu\Menu.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="command\AbstractCommand.h" />
-    <ClInclude Include="command\ChangeStringCommand.h" />
-    <ClInclude Include="command\ICommand.h" />
-    <ClInclude Include="command\InsertImageCommand.h" />
-    <ClInclude Include="command\InsertParagraphCommand.h" />
-    <ClInclude Include="document\ConstDocumentItem.h" />
-    <ClInclude Include="document\Document.h" />
-    <ClInclude Include="document\DocumentItem.h" />
-    <ClInclude Include="document\History.h" />
-    <ClInclude Include="document\IDocument.h" />
-    <ClInclude Include="document\image\IImage.h" />
-    <ClInclude Include="document\image\Image.h" />
-    <ClInclude Include="document\paragraph\IParagraph.h" />
-    <ClInclude Include="document\paragraph\Paragraph.h" />
-    <ClInclude Include="Editor.h" />
-    <ClInclude Include="menu\Menu.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
+    <ClInclude Include="..\Editor\document\History.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
