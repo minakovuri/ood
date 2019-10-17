@@ -14,6 +14,8 @@ protected:
 	void DoUnexecute() override;
 
 private:
+	void SwapValues();
+
 	string m_newValue;
 	string& m_target;
 };

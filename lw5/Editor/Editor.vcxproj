@@ -125,6 +125,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -144,6 +145,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -155,10 +157,12 @@
   <ItemGroup>
     <ClCompile Include="command\AbstractCommand.cpp" />
     <ClCompile Include="command\ChangeStringCommand.cpp" />
+    <ClCompile Include="command\ResizeImageCommand.cpp" />
     <ClCompile Include="document\ConstDocumentItem.cpp" />
     <ClCompile Include="document\Document.cpp" />
     <ClCompile Include="document\DocumentItem.cpp" />
     <ClCompile Include="document\History.cpp" />
+    <ClCompile Include="document\image\Image.cpp" />
     <ClCompile Include="document\paragraph\Paragraph.cpp" />
     <ClCompile Include="Editor.cpp" />
     <ClCompile Include="main.cpp" />
@@ -170,6 +174,7 @@
     <ClInclude Include="command\ICommand.h" />
     <ClInclude Include="command\InsertImageCommand.h" />
     <ClInclude Include="command\InsertParagraphCommand.h" />
+    <ClInclude Include="command\ResizeImageCommand.h" />
     <ClInclude Include="document\ConstDocumentItem.h" />
     <ClInclude Include="document\Document.h" />
     <ClInclude Include="document\DocumentItem.h" />
@@ -181,9 +186,6 @@
     <ClInclude Include="document\paragraph\Paragraph.h" />
     <ClInclude Include="Editor.h" />
     <ClInclude Include="menu\Menu.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

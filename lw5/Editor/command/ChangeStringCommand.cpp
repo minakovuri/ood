@@ -8,10 +8,15 @@ CChangeStringCommand::CChangeStringCommand(std::string & target, std::string con
 
 void CChangeStringCommand::DoExecute()
 {
-	m_newValue.swap(m_target);
+	SwapValues();
 }
 
 void CChangeStringCommand::DoUnexecute()
+{
+	SwapValues();
+}
+
+void CChangeStringCommand::SwapValues()
 {
 	m_newValue.swap(m_target);
 }

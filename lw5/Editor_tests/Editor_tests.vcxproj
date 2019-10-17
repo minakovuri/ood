@@ -91,6 +91,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -110,6 +111,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -131,6 +133,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -154,6 +157,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -169,16 +173,22 @@
   <ItemGroup>
     <ClCompile Include="..\Editor\command\AbstractCommand.cpp" />
     <ClCompile Include="..\Editor\command\ChangeStringCommand.cpp" />
+    <ClCompile Include="..\Editor\command\ResizeImageCommand.cpp" />
     <ClCompile Include="..\Editor\document\History.cpp" />
+    <ClCompile Include="..\Editor\document\image\Image.cpp" />
     <ClCompile Include="..\Editor\document\paragraph\Paragraph.cpp" />
+    <ClCompile Include="commandTests.cpp" />
     <ClCompile Include="historyTests.cpp" />
+    <ClCompile Include="imageTests.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="paragraphTests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Editor\command\AbstractCommand.h" />
     <ClInclude Include="..\Editor\command\ChangeStringCommand.h" />
+    <ClInclude Include="..\Editor\command\ResizeImageCommand.h" />
     <ClInclude Include="..\Editor\document\History.h" />
+    <ClInclude Include="..\Editor\document\image\Image.h" />
     <ClInclude Include="..\Editor\document\paragraph\Paragraph.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
