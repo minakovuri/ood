@@ -1,11 +1,11 @@
 #pragma once
-#include "IImage.h"
 #include "../History.h"
+#include "IImage.h"
 
 class CImage : public IImage
 {
 public:
-	CImage(CHistory& history,Path path, int width, int height);
+	CImage(CHistory& history, Path path, int width, int height);
 
 	Path GetPath() const override;
 	int GetWidth() const override;

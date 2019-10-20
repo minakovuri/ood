@@ -1,29 +1,35 @@
 #pragma once
+#include <vector>
 #include "History.h"
 #include "IDocument.h"
+#include "ConstDocumentItem.h"
+#include "DocumentItem.h"
 
 class CDocument : public IDocument
 {
 public:
-	shared_ptr<IParagraph> InsertParagraph(const string& text, optional<size_t> position = std::nullopt) final;
-	shared_ptr<IImage> InsertImage(const std::string& path, int width, int height, optional<size_t> position = std::nullopt) final;
+	shared_ptr<IParagraph> InsertParagraph(const string& text, optional<size_t> position = std::nullopt) override;
+	shared_ptr<IImage> InsertImage(const std::string& path, int width, int height, optional<size_t> position = std::nullopt) override;
 
-	size_t GetItemsCount() const final;
+	size_t GetItemsCount() const override;
 
-	CConstDocumentItem GetItem(size_t index) const final;
-	CDocumentItem GetItem(size_t index) final;
+	CConstDocumentItem GetItem(size_t index) const override;
+	CDocumentItem GetItem(size_t index) override;
 
-	void DeleteItem(size_t index) final;
+	void DeleteItem(size_t index) override;
 
-	void SetTitle(const std::string& title) final;
-	std::string GetTitle() const final;
+	void SetTitle(const std::string& title) override;
+	std::string GetTitle() const override;
 
-	bool CanUndo() const final;
-	void Undo() final;
-	bool CanRedo() const final;
-	void Redo() final;
+	bool CanUndo() const override;
+	void Undo() override;
+	bool CanRedo() const override;
+	void Redo() override;
+
+	void Save(const std::string& path) const;
 
 private:
 	std::string m_title;
+	std::vector<CDocumentItem> m_items;
 	CHistory m_history;
 };

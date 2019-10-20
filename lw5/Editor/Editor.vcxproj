@@ -157,6 +157,8 @@
   <ItemGroup>
     <ClCompile Include="command\AbstractCommand.cpp" />
     <ClCompile Include="command\ChangeStringCommand.cpp" />
+    <ClCompile Include="command\InsertImageCommand.cpp" />
+    <ClCompile Include="command\InsertParagraphCommand.cpp" />
     <ClCompile Include="command\ResizeImageCommand.cpp" />
     <ClCompile Include="document\ConstDocumentItem.cpp" />
     <ClCompile Include="document\Document.cpp" />

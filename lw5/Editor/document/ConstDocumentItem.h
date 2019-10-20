@@ -1,16 +1,26 @@
 #pragma once
-#include <memory>
 #include "image/IImage.h"
 #include "paragraph/IParagraph.h"
+#include <memory>
+#include <variant>
 
 class CConstDocumentItem
 {
 public:
-	// Возвращает указатель на константное изображение, либо nullptr,
-	// если элемент не является изображением
-	std::shared_ptr<const IImage> GetImage()const;
-	// Возвращает указатель на константный параграф, либо nullptr, если элемент не является параграфом
-	std::shared_ptr<const IParagraph> GetParagraph()const;
+	CConstDocumentItem() = default; // выпилить
+
+	typedef std::shared_ptr<const IImage> ImagePtr;
+	typedef std::shared_ptr<const IParagraph> ParagraphPtr;
+
+	typedef std::variant<std::shared_ptr<IImage>, std::shared_ptr<IParagraph>> Item;
+
+	CConstDocumentItem(Item item);
+
+	ImagePtr GetImage() const;
+	ParagraphPtr GetParagraph() const;
 
 	virtual ~CConstDocumentItem() = default;
+
+protected:
+	Item m_item;
 };

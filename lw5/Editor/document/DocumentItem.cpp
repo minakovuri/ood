@@ -1,11 +1,30 @@
 #include "DocumentItem.h"
 
-std::shared_ptr<IImage> CDocumentItem::GetImage()
+CDocumentItem::CDocumentItem(CConstDocumentItem::Item item)
+	: CConstDocumentItem(item)
 {
-	return std::shared_ptr<IImage>();
 }
 
-std::shared_ptr<IParagraph> CDocumentItem::GetParagraph()
+CDocumentItem::ImagePtr CDocumentItem::GetImage()
 {
-	return std::shared_ptr<IParagraph>();
+	try
+	{
+		return std::get<std::shared_ptr<IImage>>(m_item);
+	}
+	catch (std::bad_variant_access&)
+	{
+		return nullptr;
+	}
+}
+
+CDocumentItem::ParagraphPtr CDocumentItem::GetParagraph()
+{
+	try
+	{
+		return std::get<std::shared_ptr<IParagraph>>(m_item);
+	}
+	catch (std::bad_variant_access&)
+	{
+		return nullptr;
+	}
 }

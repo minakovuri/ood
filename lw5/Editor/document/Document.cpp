@@ -1,31 +1,47 @@
 #include "Document.h"
+#include "paragraph/Paragraph.h"
+#include "image/Image.h"
 #include "../command/ChangeStringCommand.h"
+#include "../command/InsertParagraphCommand.h"
+#include "../command/InsertImageCommand.h"
 
 using namespace std;
 
 shared_ptr<IParagraph> CDocument::InsertParagraph(const string& text, optional<size_t> position)
 {
-	return shared_ptr<IParagraph>();
+	auto paragraph = make_shared<CParagraph>(m_history);
+	paragraph->SetText(text);
+
+	m_history.AddAndExecuteCommand(make_unique<CInsertParagraphCommand>(paragraph, m_items, position));
+	return paragraph;
 }
 
 shared_ptr<IImage> CDocument::InsertImage(const std::string& path, int width, int height, optional<size_t> position)
 {
-	return shared_ptr<IImage>();
+	m_history.AddAndExecuteCommand(make_unique<CInsertImageCommand>(m_history, path, width, height, "images", m_items, position));
+
+	size_t index = m_items.size() - 1;
+	if (position != nullopt)
+	{
+		index = *position;
+	}
+
+	return m_items[index].GetImage();
 }
 
 size_t CDocument::GetItemsCount() const
 {
-	return size_t();
+	return m_items.size();
 }
 
 CConstDocumentItem CDocument::GetItem(size_t index) const
 {
-	return CConstDocumentItem();
+	return m_items[index];
 }
 
 CDocumentItem CDocument::GetItem(size_t index)
 {
-	return CDocumentItem();
+	return m_items[index];
 }
 
 void CDocument::DeleteItem(size_t index)
@@ -60,4 +76,8 @@ bool CDocument::CanRedo() const
 void CDocument::Redo()
 {
 	m_history.Redo();
+}
+
+void CDocument::Save(const std::string& path) const
+{
 }
