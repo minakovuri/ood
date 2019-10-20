@@ -1,3 +1,5 @@
+#include <fstream>
+#include <boost/format.hpp>
 #include "Document.h"
 #include "paragraph/Paragraph.h"
 #include "image/Image.h"
@@ -6,6 +8,8 @@
 #include "../command/InsertImageCommand.h"
 
 using namespace std;
+
+const string IMAGES_DIR = "images";
 
 shared_ptr<IParagraph> CDocument::InsertParagraph(const string& text, optional<size_t> position)
 {
@@ -18,7 +22,7 @@ shared_ptr<IParagraph> CDocument::InsertParagraph(const string& text, optional<s
 
 shared_ptr<IImage> CDocument::InsertImage(const std::string& path, int width, int height, optional<size_t> position)
 {
-	m_history.AddAndExecuteCommand(make_unique<CInsertImageCommand>(m_history, path, width, height, "images", m_items, position));
+	m_history.AddAndExecuteCommand(make_unique<CInsertImageCommand>(m_history, path, width, height, IMAGES_DIR, m_items, position));
 
 	size_t index = m_items.size() - 1;
 	if (position != nullopt)
@@ -80,4 +84,34 @@ void CDocument::Redo()
 
 void CDocument::Save(const std::string& path) const
 {
+	std::ofstream html(path);
+
+	html << "<html>" << std::endl;
+	html << "<head>" << std::endl;
+	html << "<title>" << m_title << "</title>" << std::endl;
+	html << "</head>" << std::endl;
+	html << "<body>" << std::endl;
+
+	for (size_t i = 0; i < m_items.size(); ++i)
+	{
+		auto item = m_items[i];
+
+		if (auto image = item.GetImage())
+		{
+			auto src = image->GetPath();
+			auto width = image->GetWidth();
+			auto height = image->GetHeight();
+
+			html << boost::format(R"(<img src=%1% width="%2%" height="%3%" />)") % src % width % height << std::endl;
+		}
+		else
+		{
+			auto paragraph = item.GetParagraph();
+			std::string text = paragraph->GetText();
+			html << boost::format(R"(<p>%1%</p>)") % text << std::endl;
+		}
+	}
+
+	html << "</body>" << std::endl;
+	html << "</html>" << std::endl;
 }

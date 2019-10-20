@@ -1,6 +1,9 @@
 #include "../../catch.hpp"
 #include "../Editor/document/Document.h"
 #include <filesystem>
+#include <fstream>
+#include <sstream>
+#include <streambuf>
 
 using namespace std;
 
@@ -131,3 +134,36 @@ TEST_CASE("undo and redo deleting image")
 
 	document.Undo();
 }*/
+
+TEST_CASE("save document with title, paragraph and image to html file")
+{
+	string filePath = "index.html";
+
+	CDocument document;
+
+	document.SetTitle("My Page!");
+	auto paragraph = document.InsertParagraph("My name is Yury!");
+	auto image = document.InsertImage("image.jpg", 200, 250);
+
+	document.Save(filePath);
+
+	ifstream stream(filePath);
+	string str((istreambuf_iterator<char>(stream)), istreambuf_iterator<char>());
+
+	auto imgSrc = image->GetPath();
+	auto width = image->GetWidth();
+	auto height = image->GetHeight();
+
+	std::ostringstream stringStream;
+	stringStream << "<html>" << endl
+				 << "<head>" << endl
+				 << "<title>My Page!</title>" << endl
+				 << "</head>" << endl
+				 << "<body>" << endl
+				 << "<p>My name is Yury!</p>" << endl
+				 << "<img src=" << imgSrc << " width=\"" << width << "\" height=\"" << height << "\" />" << endl
+				 << "</body>" << endl
+				 << "</html>" << endl;
+
+	CHECK(str == stringStream.str());
+}
