@@ -167,3 +167,8 @@ TEST_CASE("save document with title, paragraph and image to html file")
 
 	CHECK(str == stringStream.str());
 }
+
+TEST_CASE("save paragraph with special symbols")
+{
+
+}

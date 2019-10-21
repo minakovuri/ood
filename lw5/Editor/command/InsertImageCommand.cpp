@@ -55,7 +55,6 @@ void CInsertImageCommand::DoExecute()
 void CInsertImageCommand::DoUnexecute()
 {
 	auto filePath = GetFilePath();
-
 	filesystem::remove(filePath);
 
 	if (m_position == nullopt)
@@ -75,12 +74,9 @@ shared_ptr<IImage> CInsertImageCommand::SaveImage()
 		filesystem::create_directory(m_dirPath);
 	}
 
-	char tempFileName[L_tmpnam_s];
-	tmpnam_s(tempFileName, L_tmpnam_s);
-
 	auto filePath = GetFilePath();
-
 	filesystem::copy_file(m_path, filePath);
+
 	return make_shared<CImage>(m_history, filePath, m_width, m_height);
 }
 
