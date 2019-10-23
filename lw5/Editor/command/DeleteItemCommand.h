@@ -8,6 +8,7 @@ class CDeleteItemCommand : public CAbstractCommand
 {
 public:
 	CDeleteItemCommand(vector<CDocumentItem>& items, size_t index);
+	~CDeleteItemCommand();
 
 protected:
 	void DoExecute() override;

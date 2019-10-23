@@ -69,6 +69,9 @@
     <ClCompile Include="..\Editor\command\InsertImageCommand.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\Editor\command\DeleteItemCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Editor\document\History.h">
@@ -102,6 +105,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\Editor\command\InsertImageCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Editor\command\DeleteItemCommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

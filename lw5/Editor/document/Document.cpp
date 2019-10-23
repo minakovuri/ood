@@ -6,6 +6,7 @@
 #include "../command/ChangeStringCommand.h"
 #include "../command/InsertParagraphCommand.h"
 #include "../command/InsertImageCommand.h"
+#include "../command/DeleteItemCommand.h"
 
 using namespace std;
 
@@ -54,6 +55,7 @@ CDocumentItem CDocument::GetItem(size_t index)
 
 void CDocument::DeleteItem(size_t index)
 {
+	m_history.AddAndExecuteCommand(make_unique<CDeleteItemCommand>(m_items, index));
 }
 
 void CDocument::SetTitle(const std::string& title)

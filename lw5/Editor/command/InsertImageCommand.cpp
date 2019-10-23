@@ -1,6 +1,6 @@
-#include <random>
 #include "InsertImageCommand.h"
 #include "../document/image/Image.h"
+#include <random>
 
 std::string GetRandomString(size_t length)
 {
@@ -21,14 +21,19 @@ std::string GetRandomString(size_t length)
 }
 
 CInsertImageCommand::CInsertImageCommand(filesystem::path path, int width, int height, filesystem::path dirPath, vector<CDocumentItem>& items, optional<size_t> position)
-	: m_path(path)
-	, m_width(width)
-	, m_height(height)
-	, m_dirPath(dirPath)
-	, m_items(items)
+	: m_items(items)
 	, m_position(position)
 {
-	m_newFileName = GetRandomString(5);
+	m_image = SaveImage(path, dirPath, width, height);
+}
+
+CInsertImageCommand::~CInsertImageCommand()
+{
+	if (!IsExecuted())
+	{
+		auto filePath = m_image->GetPath();
+		filesystem::remove(filePath);	
+	}
 }
 
 void CInsertImageCommand::DoExecute()
@@ -38,8 +43,7 @@ void CInsertImageCommand::DoExecute()
 		throw logic_error("cannot insert image to the position greater than number of items");
 	}
 
-	auto image = SaveImage();
-	auto imageItem = CDocumentItem(image);
+	auto imageItem = CDocumentItem(m_image);
 
 	if (m_position == nullopt)
 	{
@@ -53,9 +57,6 @@ void CInsertImageCommand::DoExecute()
 
 void CInsertImageCommand::DoUnexecute()
 {
-	auto filePath = GetFilePath();
-	filesystem::remove(filePath);
-
 	if (m_position == nullopt)
 	{
 		m_items.pop_back();
@@ -66,22 +67,18 @@ void CInsertImageCommand::DoUnexecute()
 	}
 }
 
-shared_ptr<IImage> CInsertImageCommand::SaveImage()
+shared_ptr<IImage> CInsertImageCommand::SaveImage(filesystem::path originalFilePath, filesystem::path imagesDirPath, int width, int height)
 {
-	if (!filesystem::exists(m_dirPath) || !filesystem::is_directory(m_dirPath))
+	if (!filesystem::exists(imagesDirPath) || !filesystem::is_directory(imagesDirPath))
 	{
-		filesystem::create_directory(m_dirPath);
+		filesystem::create_directory(imagesDirPath);
 	}
 
-	auto filePath = GetFilePath();
-	filesystem::copy_file(m_path, filePath);
+	auto fileExtension = originalFilePath.extension();
+	auto fileName = GetRandomString(5) + fileExtension.string();
+	auto filePath = imagesDirPath.string() + "/" + fileName;
 
-	return make_shared<CImage>(filePath, m_width, m_height);
-}
+	filesystem::copy_file(originalFilePath, filePath);
 
-filesystem::path CInsertImageCommand::GetFilePath()
-{
-	auto fileExtension = m_path.extension();
-	auto fileName = m_newFileName.string() + fileExtension.string();
-	return m_dirPath.string() + "/" + fileName;
+	return make_shared<CImage>(filePath, width, height);
 }

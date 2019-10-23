@@ -181,6 +181,7 @@
   <ItemGroup>
     <ClCompile Include="..\Editor\command\AbstractCommand.cpp" />
     <ClCompile Include="..\Editor\command\ChangeStringCommand.cpp" />
+    <ClCompile Include="..\Editor\command\DeleteItemCommand.cpp" />
     <ClCompile Include="..\Editor\command\InsertImageCommand.cpp" />
     <ClCompile Include="..\Editor\command\InsertParagraphCommand.cpp" />
     <ClCompile Include="..\Editor\command\ResizeImageCommand.cpp" />
@@ -201,6 +202,7 @@
   <ItemGroup>
     <ClInclude Include="..\Editor\command\AbstractCommand.h" />
     <ClInclude Include="..\Editor\command\ChangeStringCommand.h" />
+    <ClInclude Include="..\Editor\command\DeleteItemCommand.h" />
     <ClInclude Include="..\Editor\command\InsertImageCommand.h" />
     <ClInclude Include="..\Editor\command\InsertParagraphCommand.h" />
     <ClInclude Include="..\Editor\command\ResizeImageCommand.h" />

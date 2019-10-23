@@ -15,7 +15,7 @@ TEST_CASE("insert paragraph to the end of document")
 	CHECK(document.GetItem(0).GetParagraph() == paragraph);
 }
 
-TEST_CASE("insert paragraph that changed document items oreder")
+TEST_CASE("insert paragraph that changed document items order")
 {
 	CDocument document;
 
@@ -44,29 +44,20 @@ TEST_CASE("insert image to the end of document")
 	CHECK(filesystem::exists(imagePath));
 }
 
-TEST_CASE("undo inserting image")
-{
-	CDocument document;
-	auto image = document.InsertImage("image.jpg", 200, 250);
-
-	auto imagePath = image->GetPath();
-	CHECK(filesystem::exists(imagePath));
-
-	document.Undo();
-	CHECK(!filesystem::exists(imagePath));
-}
-
-TEST_CASE("redo inserting image")
+TEST_CASE("undo redo inserting image")
 {
 	CDocument document;
 	auto image = document.InsertImage("image.jpg", 200, 250);
 	auto imagePath = image->GetPath();
 
 	document.Undo();
-	CHECK(!filesystem::exists(imagePath));
+	CHECK(filesystem::exists(imagePath)); // удалили из документа, но не с диска
+	CHECK(document.GetItemsCount() == 0);
 
 	document.Redo();
 	CHECK(filesystem::exists(imagePath));
+	CHECK(document.GetItemsCount() == 1);
+	CHECK(document.GetItem(0).GetImage() == image);
 }
 
 TEST_CASE("insert image that changed document items order")
@@ -93,7 +84,7 @@ TEST_CASE("set title")
 	CHECK(document.GetTitle() == "Title");
 }
 
-/*TEST_CASE("delete paragraph")
+TEST_CASE("delete paragraph")
 {
 	CDocument document;
 	auto paragraph1 = document.InsertParagraph("");
@@ -109,11 +100,13 @@ TEST_CASE("delete image")
 	CDocument document;
 	auto image1 = document.InsertImage("image.jpg", 200, 250);
 	auto image2 = document.InsertImage("image.jpg", 200, 250);
+
 	document.DeleteItem(0);
 
 	CHECK(document.GetItemsCount() == 1);
 	CHECK(document.GetItem(0).GetImage() == image2);
-	CHECK(!filesystem::exists(image1->GetPath()));
+	CHECK(filesystem::exists(image1->GetPath())); // удалили из документа, но не с диска
+	CHECK(filesystem::exists(image2->GetPath()));
 }
 
 TEST_CASE("trying to delete unexisting item")
@@ -121,19 +114,6 @@ TEST_CASE("trying to delete unexisting item")
 	CDocument document;
 	CHECK_THROWS(document.DeleteItem(1));
 }
-
-TEST_CASE("undo and redo deleting image")
-{
-	CDocument document;
-	auto image1 = document.InsertImage("image.jpg", 200, 250);
-	auto image2 = document.InsertImage("image.jpg", 200, 250);
-
-	document.DeleteItem(0);
-	CHECK(!filesystem::exists(image1->GetPath()));
-	CHECK(filesystem::exists(image2->GetPath()));
-
-	document.Undo();
-}*/
 
 TEST_CASE("save document with title, paragraph and image to html file")
 {
@@ -170,5 +150,32 @@ TEST_CASE("save document with title, paragraph and image to html file")
 
 TEST_CASE("save paragraph with special symbols")
 {
+}
+
+TEST_CASE("undo redo history test")
+{
+	CDocument document;
+	
+	auto image1 = document.InsertImage("image.jpg", 200, 250); // 1
+	auto image1Path = image1->GetPath();
+
+	document.SetTitle("Title"); // 2
+	auto par1 = document.InsertParagraph("firsrt paragraph"); // 3
+	auto par2 = document.InsertParagraph("second paragraph"); // 4
+
+	auto image2 = document.InsertImage("image.jpg", 200, 250); // 5
+	auto image2Path = image2->GetPath();
+
+	document.DeleteItem(0); // 6
+
+	document.Undo();
+	CHECK(filesystem::exists(image1Path)); // удалили картинку из документа, но не с диска
+
+	document.Undo();
+	CHECK(filesystem::exists(image2Path)); // отменили вставку картинки из документа, но не с диска 
+
+	document.SetTitle("New Title"); // 5` - команды 5 и 6 должны стереться из истории
+	CHECK(filesystem::exists(image1Path)); // отмена 6 операции (удаления) не привело к удалению файла
+	CHECK(!filesystem::exists(image2Path)); // отмена 5 команды (вставка) привело к удалению файла
 
 }

@@ -11,6 +11,7 @@ CInsertParagraphCommand::CInsertParagraphCommand(const string& text, vector<CDoc
 
 void CInsertParagraphCommand::DoExecute()
 {
+	// возможно вынести эту обработку на уровень выше  - в CDocument
 	if (m_position >= m_items.size())
 	{
 		throw logic_error("cannot insert paragraph to the position greater than number of items");
