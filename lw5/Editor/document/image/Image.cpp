@@ -6,8 +6,7 @@ const std::string JPG = ".jpg";
 const std::string PNG = ".png";
 const std::string GIF = ".gif";
 
-CImage::CImage(CHistory& history, Path path, int width, int height)
-	: m_history(history)
+CImage::CImage(Path path, int width, int height)
 {
 	if (!IsExtensionValid(path))
 	{
@@ -46,7 +45,8 @@ void CImage::Resize(int width, int height)
 		throw std::invalid_argument("image size will be negative after resize");
 	}
 
-	m_history.AddAndExecuteCommand(std::make_unique<CResizeImageCommand>(m_width, m_height, width, height));
+	m_width = width;
+	m_height = height;
 }
 
 bool CImage::IsExtensionValid(Path path) const

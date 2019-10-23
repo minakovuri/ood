@@ -66,60 +66,52 @@ TEST_CASE("resize image with command")
 
 TEST_CASE("insert paragraph at the end of items")
 {
-	auto paragraph = make_shared<CMockParagraph>();
 	vector<CDocumentItem> items;
 
-	CInsertParagraphCommand command(paragraph, items);
+	CInsertParagraphCommand command("paragraph", items);
 	command.Execute();
 
-	CHECK(items[0].GetParagraph() == paragraph);
+	CHECK(items.size() == 1);
+	CHECK(items[0].GetParagraph()->GetText() == "paragraph");
 }
 
 TEST_CASE("insert paragraph that changed items order")
 {
-	auto paragraph1 = make_shared<CMockParagraph>();
-	auto paragraph2 = make_shared<CMockParagraph>();
-	auto paragraph3 = make_shared<CMockParagraph>();
-
 	vector<CDocumentItem> items;
 
-	CInsertParagraphCommand command1(paragraph1, items);
-	CInsertParagraphCommand command2(paragraph2, items);
-	CInsertParagraphCommand command3(paragraph3, items, 1);
+	CInsertParagraphCommand command1("paragraph1", items);
+	CInsertParagraphCommand command2("paragraph2", items);
+	CInsertParagraphCommand command3("paragraph3", items, 1);
 
 	command1.Execute();
 	command2.Execute();
 	command3.Execute();
 
-	CHECK(items[0].GetParagraph() == paragraph1);
-	CHECK(items[1].GetParagraph() == paragraph3);
-	CHECK(items[2].GetParagraph() == paragraph2);
+	CHECK(items[0].GetParagraph()->GetText() == "paragraph1");
+	CHECK(items[1].GetParagraph()->GetText() == "paragraph3");
+	CHECK(items[2].GetParagraph()->GetText() == "paragraph2");
 }
 
 TEST_CASE("trying to insert paragraph to invalid position")
 {
-	auto paragraph = make_shared<CMockParagraph>();
 	vector<CDocumentItem> items;
-	CInsertParagraphCommand command(paragraph, items, 1);
+	CInsertParagraphCommand command("paragraph", items, 1);
 
 	CHECK_THROWS(command.Execute());
 }
 
 TEST_CASE("undo inserting paragraph")
 {
-	auto paragraph1 = make_shared<CMockParagraph>();
-	auto paragraph2 = make_shared<CMockParagraph>();
-
 	vector<CDocumentItem> items;
 
-	CInsertParagraphCommand command1(paragraph1, items);
-	CInsertParagraphCommand command2(paragraph2, items, 0);
+	CInsertParagraphCommand command1("paragraph1", items);
+	CInsertParagraphCommand command2("paragraph2", items, 0);
 
 	command1.Execute();
 	command2.Execute();
 
 	command2.Unexecute();
-	CHECK(items[0].GetParagraph() == paragraph1);
+	CHECK(items[0].GetParagraph()->GetText() == "paragraph1");
 
 	command1.Unexecute();
 	CHECK(items.size() == 0);

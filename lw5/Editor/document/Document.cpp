@@ -13,16 +13,20 @@ const string IMAGES_DIR = "images";
 
 shared_ptr<IParagraph> CDocument::InsertParagraph(const string& text, optional<size_t> position)
 {
-	auto paragraph = make_shared<CParagraph>(m_history);
-	paragraph->SetText(text);
+	m_history.AddAndExecuteCommand(make_unique<CInsertParagraphCommand>(text, m_items, position));
 
-	m_history.AddAndExecuteCommand(make_unique<CInsertParagraphCommand>(paragraph, m_items, position));
-	return paragraph;
+	size_t index = m_items.size() - 1;
+	if (position != nullopt)
+	{
+		index = *position;
+	}
+
+	return m_items[index].GetParagraph();
 }
 
 shared_ptr<IImage> CDocument::InsertImage(const std::string& path, int width, int height, optional<size_t> position)
 {
-	m_history.AddAndExecuteCommand(make_unique<CInsertImageCommand>(m_history, path, width, height, IMAGES_DIR, m_items, position));
+	m_history.AddAndExecuteCommand(make_unique<CInsertImageCommand>(path, width, height, IMAGES_DIR, m_items, position));
 
 	size_t index = m_items.size() - 1;
 	if (position != nullopt)

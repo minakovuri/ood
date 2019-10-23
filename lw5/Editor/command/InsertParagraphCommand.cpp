@@ -1,8 +1,9 @@
 #include <stdexcept>
+#include "../document/paragraph/Paragraph.h"
 #include "InsertParagraphCommand.h"
 
-CInsertParagraphCommand::CInsertParagraphCommand(shared_ptr<IParagraph>&& paragraph, vector<CDocumentItem>& items, optional<size_t> position)
-	: m_paragraph(paragraph)
+CInsertParagraphCommand::CInsertParagraphCommand(const string& text, vector<CDocumentItem>& items, optional<size_t> position)
+	: m_text(text)
 	, m_items(items)
 	, m_position(position)
 {
@@ -15,7 +16,8 @@ void CInsertParagraphCommand::DoExecute()
 		throw logic_error("cannot insert paragraph to the position greater than number of items");
 	}
 
-	auto documentItem = CDocumentItem(m_paragraph);
+	auto paragraph = make_shared<CParagraph>(m_text);
+	auto documentItem = CDocumentItem(paragraph);
 
 	if (m_position == nullopt)
 	{

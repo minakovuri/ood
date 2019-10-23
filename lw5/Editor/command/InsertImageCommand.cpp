@@ -20,9 +20,8 @@ std::string GetRandomString(size_t length)
 	return random_string;
 }
 
-CInsertImageCommand::CInsertImageCommand(CHistory& history, filesystem::path path, int width, int height, filesystem::path dirPath, vector<CDocumentItem>& items, optional<size_t> position)
-	: m_history(history)
-	, m_path(path)
+CInsertImageCommand::CInsertImageCommand(filesystem::path path, int width, int height, filesystem::path dirPath, vector<CDocumentItem>& items, optional<size_t> position)
+	: m_path(path)
 	, m_width(width)
 	, m_height(height)
 	, m_dirPath(dirPath)
@@ -77,7 +76,7 @@ shared_ptr<IImage> CInsertImageCommand::SaveImage()
 	auto filePath = GetFilePath();
 	filesystem::copy_file(m_path, filePath);
 
-	return make_shared<CImage>(m_history, filePath, m_width, m_height);
+	return make_shared<CImage>(filePath, m_width, m_height);
 }
 
 filesystem::path CInsertImageCommand::GetFilePath()

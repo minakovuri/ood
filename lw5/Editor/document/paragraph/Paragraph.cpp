@@ -2,8 +2,8 @@
 #include "../../command/ChangeStringCommand.h"
 #include <memory>
 
-CParagraph::CParagraph(CHistory& history)
-	: m_history(history)
+CParagraph::CParagraph(const std::string& text)
+	: m_text(text)
 {
 }
 
@@ -14,5 +14,5 @@ std::string CParagraph::GetText() const
 
 void CParagraph::SetText(const std::string& text)
 {
-	m_history.AddAndExecuteCommand(std::make_unique<CChangeStringCommand>(m_text, text));
+	m_text = text;
 }

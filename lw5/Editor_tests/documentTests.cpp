@@ -69,7 +69,7 @@ TEST_CASE("redo inserting image")
 	CHECK(filesystem::exists(imagePath));
 }
 
-/*TEST_CASE("insert image that changed document items order")
+TEST_CASE("insert image that changed document items order")
 {
 	CDocument document;
 	auto image1 = document.InsertImage("image.jpg", 200, 250);
@@ -91,7 +91,7 @@ TEST_CASE("set title")
 	CDocument document;
 	document.SetTitle("Title");
 	CHECK(document.GetTitle() == "Title");
-}*/
+}
 
 /*TEST_CASE("delete paragraph")
 {

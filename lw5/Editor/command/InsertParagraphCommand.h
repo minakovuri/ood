@@ -8,14 +8,14 @@ using namespace std;
 class CInsertParagraphCommand : public CAbstractCommand
 {
 public:
-	CInsertParagraphCommand(shared_ptr<IParagraph>&& paragraph, vector<CDocumentItem>& items, optional<size_t> position = nullopt);
+	CInsertParagraphCommand(const string& text, vector<CDocumentItem>& items, optional<size_t> position = nullopt);
 
 protected:
 	void DoExecute() override;
 	void DoUnexecute() override;
 
 private:
-	shared_ptr<IParagraph> m_paragraph;
+	string m_text;
 	vector<CDocumentItem>& m_items;
 	optional<size_t> m_position;
 };

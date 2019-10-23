@@ -5,7 +5,7 @@
 class CImage : public IImage
 {
 public:
-	CImage(CHistory& history, Path path, int width, int height);
+	CImage(Path path, int width, int height);
 
 	Path GetPath() const override;
 	int GetWidth() const override;
@@ -19,5 +19,4 @@ private:
 	Path m_path;
 	int m_width;
 	int m_height;
-	CHistory& m_history;
 };
