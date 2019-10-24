@@ -121,9 +121,10 @@ TEST_CASE("save document with title, paragraph and image to html file")
 
 	CDocument document;
 
-	document.SetTitle("My Page!");
+	document.SetTitle("My Page!<script>console.log('title')</script>");
 	auto paragraph = document.InsertParagraph("My name is Yury!");
 	auto image = document.InsertImage("image.jpg", 200, 250);
+	auto paragraphWithScript = document.InsertParagraph("<script>console.log('paragraph')</script>");
 
 	document.Save(filePath);
 
@@ -131,25 +132,20 @@ TEST_CASE("save document with title, paragraph and image to html file")
 	string str((istreambuf_iterator<char>(stream)), istreambuf_iterator<char>());
 
 	auto imgSrc = image->GetPath();
-	auto width = image->GetWidth();
-	auto height = image->GetHeight();
 
 	std::ostringstream stringStream;
 	stringStream << "<html>" << endl
 				 << "<head>" << endl
-				 << "<title>My Page!</title>" << endl
+				 << "<title>My Page!&lt;script&gt;console.log(&apos;title&apos;)&lt;/script&gt;</title>" << endl
 				 << "</head>" << endl
 				 << "<body>" << endl
 				 << "<p>My name is Yury!</p>" << endl
-				 << "<img src=" << imgSrc << " width=\"" << width << "\" height=\"" << height << "\" />" << endl
+				 << "<img src=" << imgSrc << " width=\"200\" height=\"250\" />" << endl
+				 << "<p>&lt;script&gt;console.log(&apos;paragraph&apos;)&lt;/script&gt;</p>" << endl
 				 << "</body>" << endl
 				 << "</html>" << endl;
 
 	CHECK(str == stringStream.str());
-}
-
-TEST_CASE("save paragraph with special symbols")
-{
 }
 
 TEST_CASE("undo redo history test")

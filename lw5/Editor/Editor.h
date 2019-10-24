@@ -17,10 +17,13 @@ private:
 
 	void AddMenuItem(const string& shortcut, const string& description, MenuHandler handler);
 
+	void InsertParagraph(istream& in);
+	void InsertImage(istream& in);
 	void SetTitle(istream& in);
 	void List(istream&);
 	void Undo(istream&);
 	void Redo(istream&);
+	void Save(istream& in);
 
 	CMenu m_menu;
 	IDocumentPtr m_document;

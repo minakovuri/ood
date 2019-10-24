@@ -191,6 +191,7 @@
     <ClCompile Include="..\Editor\document\History.cpp" />
     <ClCompile Include="..\Editor\document\image\Image.cpp" />
     <ClCompile Include="..\Editor\document\paragraph\Paragraph.cpp" />
+    <ClCompile Include="..\Editor\HtmlSaver.cpp" />
     <ClCompile Include="..\Editor\menu\Menu.cpp" />
     <ClCompile Include="commandTests.cpp" />
     <ClCompile Include="documentItemTests.cpp" />
@@ -214,6 +215,7 @@
     <ClInclude Include="..\Editor\document\History.h" />
     <ClInclude Include="..\Editor\document\image\Image.h" />
     <ClInclude Include="..\Editor\document\paragraph\Paragraph.h" />
+    <ClInclude Include="..\Editor\HtmlSaver.h" />
     <ClInclude Include="..\Editor\menu\Menu.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

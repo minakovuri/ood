@@ -176,6 +176,7 @@
     <ClCompile Include="document\image\Image.cpp" />
     <ClCompile Include="document\paragraph\Paragraph.cpp" />
     <ClCompile Include="Editor.cpp" />
+    <ClCompile Include="HtmlSaver.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="menu\Menu.cpp" />
   </ItemGroup>
@@ -197,6 +198,7 @@
     <ClInclude Include="document\paragraph\IParagraph.h" />
     <ClInclude Include="document\paragraph\Paragraph.h" />
     <ClInclude Include="Editor.h" />
+    <ClInclude Include="HtmlSaver.h" />
     <ClInclude Include="menu\Menu.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

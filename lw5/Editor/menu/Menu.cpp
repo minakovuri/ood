@@ -63,6 +63,7 @@ bool CMenu::ExecuteCommand(const string & command)
 	{
 		it->command(iss);
 	}
+
 	else
 	{
 		m_outStream << "Unknown command\n";

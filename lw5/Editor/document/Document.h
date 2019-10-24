@@ -1,15 +1,23 @@
 #pragma once
 #include <vector>
+#include <functional>
 #include "History.h"
 #include "IDocument.h"
 #include "ConstDocumentItem.h"
 #include "DocumentItem.h"
+#include "../HtmlSaver.h"
+
+using namespace std;
 
 class CDocument : public IDocument
 {
 public:
-	shared_ptr<IParagraph> InsertParagraph(const string& text, optional<size_t> position = std::nullopt) override;
-	shared_ptr<IImage> InsertImage(const std::string& path, int width, int height, optional<size_t> position = std::nullopt) override;
+	typedef function<void(const string& path, const string& title, const vector<CDocumentItem>& items)> SaveFn;
+
+	CDocument(SaveFn saveFn = SaveToHtmlFunction);
+
+	shared_ptr<IParagraph> InsertParagraph(const string& text, optional<size_t> position = nullopt) override;
+	shared_ptr<IImage> InsertImage(const string& path, int width, int height, optional<size_t> position = nullopt) override;
 
 	size_t GetItemsCount() const override;
 
@@ -18,18 +26,19 @@ public:
 
 	void DeleteItem(size_t index) override;
 
-	void SetTitle(const std::string& title) override;
-	std::string GetTitle() const override;
+	void SetTitle(const string& title) override;
+	string GetTitle() const override;
 
 	bool CanUndo() const override;
 	void Undo() override;
 	bool CanRedo() const override;
 	void Redo() override;
 
-	void Save(const std::string& path) const;
+	void Save(const string& path) const;
 
 private:
-	std::string m_title;
-	std::vector<CDocumentItem> m_items;
+	string m_title;
+	vector<CDocumentItem> m_items;
 	CHistory m_history;
+	SaveFn m_saveFn;
 };

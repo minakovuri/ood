@@ -1,5 +1,3 @@
-#include <fstream>
-#include <boost/format.hpp>
 #include "Document.h"
 #include "paragraph/Paragraph.h"
 #include "image/Image.h"
@@ -12,9 +10,14 @@ using namespace std;
 
 const string IMAGES_DIR = "images";
 
+CDocument::CDocument(SaveFn saveFn)
+	: m_saveFn(saveFn)
+{
+}
+
 shared_ptr<IParagraph> CDocument::InsertParagraph(const string& text, optional<size_t> position)
 {
-	m_history.AddAndExecuteCommand(make_unique<CInsertParagraphCommand>(text, m_items, position));
+	m_history.AddAndExecuteCommand(make_unique<CInsertParagraphCommand>(GetHtmlString(text), m_items, position));
 
 	size_t index = m_items.size() - 1;
 	if (position != nullopt)
@@ -60,7 +63,7 @@ void CDocument::DeleteItem(size_t index)
 
 void CDocument::SetTitle(const std::string& title)
 {
-	m_history.AddAndExecuteCommand(make_unique<CChangeStringCommand>(m_title, title));
+	m_history.AddAndExecuteCommand(make_unique<CChangeStringCommand>(m_title, GetHtmlString(title)));
 }
 
 std::string CDocument::GetTitle() const
@@ -90,7 +93,8 @@ void CDocument::Redo()
 
 void CDocument::Save(const std::string& path) const
 {
-	std::ofstream html(path);
+	m_saveFn(path, m_title, m_items);
+	/*std::ofstream html(path);
 
 	html << "<html>" << std::endl;
 	html << "<head>" << std::endl;
@@ -119,5 +123,5 @@ void CDocument::Save(const std::string& path) const
 	}
 
 	html << "</body>" << std::endl;
-	html << "</html>" << std::endl;
+	html << "</html>" << std::endl;*/
 }
