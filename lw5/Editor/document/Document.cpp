@@ -94,34 +94,4 @@ void CDocument::Redo()
 void CDocument::Save(const std::string& path) const
 {
 	m_saveFn(path, m_title, m_items);
-	/*std::ofstream html(path);
-
-	html << "<html>" << std::endl;
-	html << "<head>" << std::endl;
-	html << "<title>" << m_title << "</title>" << std::endl;
-	html << "</head>" << std::endl;
-	html << "<body>" << std::endl;
-
-	for (size_t i = 0; i < m_items.size(); ++i)
-	{
-		auto item = m_items[i];
-
-		if (auto image = item.GetImage())
-		{
-			auto src = image->GetPath();
-			auto width = image->GetWidth();
-			auto height = image->GetHeight();
-
-			html << boost::format(R"(<img src=%1% width="%2%" height="%3%" />)") % src % width % height << std::endl;
-		}
-		else
-		{
-			auto paragraph = item.GetParagraph();
-			std::string text = paragraph->GetText();
-			html << boost::format(R"(<p>%1%</p>)") % text << std::endl;
-		}
-	}
-
-	html << "</body>" << std::endl;
-	html << "</html>" << std::endl;*/
 }
