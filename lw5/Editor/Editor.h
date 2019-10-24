@@ -12,6 +12,16 @@ public:
 	void Start();
 
 private:
+	// Указатель на метод класса CEditor, принимающий istream& и возвращающий void
+	typedef void (CEditor::*MenuHandler)(istream& in);
+
+	void AddMenuItem(const string& shortcut, const string& description, MenuHandler handler);
+
+	void SetTitle(istream& in);
+	void List(istream&);
+	void Undo(istream&);
+	void Redo(istream&);
+
 	CMenu m_menu;
 	IDocumentPtr m_document;
 };
