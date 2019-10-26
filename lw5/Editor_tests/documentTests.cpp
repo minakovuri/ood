@@ -44,16 +44,24 @@ TEST_CASE("insert image to the end of document")
 	CHECK(filesystem::exists(imagePath));
 }
 
+TEST_CASE("trying to insert unexisting image")
+{
+	CDocument document;
+	CHECK_THROWS(document.InsertImage("unexisting.jpg", 200, 300));
+}
+
 TEST_CASE("undo redo inserting image")
 {
 	CDocument document;
 	auto image = document.InsertImage("image.jpg", 200, 250);
 	auto imagePath = image->GetPath();
 
+	CHECK(document.CanUndo());
 	document.Undo();
 	CHECK(filesystem::exists(imagePath)); // удалили из документа, но не с диска
 	CHECK(document.GetItemsCount() == 0);
 
+	CHECK(document.CanRedo());
 	document.Redo();
 	CHECK(filesystem::exists(imagePath));
 	CHECK(document.GetItemsCount() == 1);
@@ -69,6 +77,10 @@ TEST_CASE("insert image that changed document items order")
 	CHECK(document.GetItemsCount() == 2);
 	CHECK(document.GetItem(0).GetImage() == image2);
 	CHECK(document.GetItem(1).GetImage() == image1);
+
+	document.Undo();
+	CHECK(document.GetItemsCount() == 1);
+	CHECK(document.GetItem(0).GetImage() == image1);
 }
 
 TEST_CASE("trying to insert image to invalid position")
@@ -82,6 +94,9 @@ TEST_CASE("set title")
 	CDocument document;
 	document.SetTitle("Title");
 	CHECK(document.GetTitle() == "Title");
+
+	document.Undo();
+	CHECK(document.GetTitle() == "");
 }
 
 TEST_CASE("delete paragraph")
@@ -124,7 +139,7 @@ TEST_CASE("save document with title, paragraph and image to html file")
 	document.SetTitle("My Page!<script>console.log('title')</script>");
 	auto paragraph = document.InsertParagraph("My name is Yury!");
 	auto image = document.InsertImage("image.jpg", 200, 250);
-	auto paragraphWithScript = document.InsertParagraph("<script>console.log('paragraph')</script>");
+	auto paragraphWithScript = document.InsertParagraph("<script>console.log(\"paragraph\")</script>");
 	auto lastParagraph = document.InsertParagraph("last paragraph");
 	document.DeleteItem(3);
 
@@ -143,7 +158,7 @@ TEST_CASE("save document with title, paragraph and image to html file")
 				 << "<body>" << endl
 				 << "<p>My name is Yury!</p>" << endl
 				 << "<img src=" << imgSrc << " width=\"200\" height=\"250\" />" << endl
-				 << "<p>&lt;script&gt;console.log(&apos;paragraph&apos;)&lt;/script&gt;</p>" << endl
+				 << "<p>&lt;script&gt;console.log(&quot;paragraph&quot;)&lt;/script&gt;</p>" << endl
 				 << "</body>" << endl
 				 << "</html>" << endl;
 
@@ -183,6 +198,9 @@ TEST_CASE("replace paragraph text")
 	auto paragraph = document.InsertParagraph("paragraph");
 	document.ReplaceParagraphText(0, "replaced paragraph");
 	CHECK(document.GetItem(0).GetParagraph()->GetText() == "replaced paragraph");
+
+	document.Undo();
+	CHECK(document.GetItem(0).GetParagraph()->GetText() == "paragraph");
 }
 
 TEST_CASE("trying to replace unexisting paragraph text")

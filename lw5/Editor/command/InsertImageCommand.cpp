@@ -8,7 +8,7 @@ std::string GetRandomString(size_t length)
 
 	std::random_device random_device;
 	std::mt19937 generator(random_device());
-	std::uniform_int_distribution<> distribution(0, characters.size() - 1);
+	std::uniform_int_distribution<> distribution(0, (int)(characters.size() - 1));
 
 	std::string random_string;
 
