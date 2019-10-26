@@ -21,6 +21,9 @@ private:
 	void InsertImage(istream& in);
 	void SetTitle(istream& in);
 	void List(istream&);
+	void ReplaceText(istream& in);
+	void ResizeImage(istream& in);
+	void DeleteItem(istream& in);
 	void Undo(istream&);
 	void Redo(istream&);
 	void Save(istream& in);

@@ -164,10 +164,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="command\AbstractCommand.cpp" />
-    <ClCompile Include="command\ChangeStringCommand.cpp" />
+    <ClCompile Include="command\ChangeTitleCommand.cpp" />
     <ClCompile Include="command\DeleteItemCommand.cpp" />
     <ClCompile Include="command\InsertImageCommand.cpp" />
     <ClCompile Include="command\InsertParagraphCommand.cpp" />
+    <ClCompile Include="command\ReplaceParagraphTextCommand.cpp" />
     <ClCompile Include="command\ResizeImageCommand.cpp" />
     <ClCompile Include="document\ConstDocumentItem.cpp" />
     <ClCompile Include="document\Document.cpp" />
@@ -182,11 +183,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="command\AbstractCommand.h" />
-    <ClInclude Include="command\ChangeStringCommand.h" />
+    <ClInclude Include="command\ChangeTitleCommand.h" />
     <ClInclude Include="command\DeleteItemCommand.h" />
     <ClInclude Include="command\ICommand.h" />
     <ClInclude Include="command\InsertImageCommand.h" />
     <ClInclude Include="command\InsertParagraphCommand.h" />
+    <ClInclude Include="command\ReplaceParagraphTextCommand.h" />
     <ClInclude Include="command\ResizeImageCommand.h" />
     <ClInclude Include="document\ConstDocumentItem.h" />
     <ClInclude Include="document\Document.h" />

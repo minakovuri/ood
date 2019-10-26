@@ -1,4 +1,5 @@
 #pragma once
+#include<optional>
 #include "../document/DocumentItem.h"
 #include "AbstractCommand.h"
 
@@ -17,4 +18,5 @@ protected:
 private:
 	vector<CDocumentItem>& m_items;
 	size_t m_index;
+	optional<filesystem::path> m_imageFilePath;
 };

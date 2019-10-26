@@ -32,7 +32,7 @@ CInsertImageCommand::~CInsertImageCommand()
 	if (!IsExecuted())
 	{
 		auto filePath = m_image->GetPath();
-		filesystem::remove(filePath);	
+		filesystem::remove(filePath);
 	}
 }
 
@@ -69,6 +69,11 @@ void CInsertImageCommand::DoUnexecute()
 
 shared_ptr<IImage> CInsertImageCommand::SaveImage(filesystem::path originalFilePath, filesystem::path imagesDirPath, int width, int height)
 {
+	if (!filesystem::exists(originalFilePath))
+	{
+		throw invalid_argument("invalid file path!");
+	}
+
 	if (!filesystem::exists(imagesDirPath) || !filesystem::is_directory(imagesDirPath))
 	{
 		filesystem::create_directory(imagesDirPath);

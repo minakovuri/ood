@@ -1,5 +1,4 @@
 #include "Paragraph.h"
-#include "../../command/ChangeStringCommand.h"
 #include <memory>
 
 CParagraph::CParagraph(const std::string& text)

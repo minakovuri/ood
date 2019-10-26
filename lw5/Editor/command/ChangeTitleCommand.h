@@ -4,10 +4,10 @@
 
 using namespace std;
 
-class CChangeStringCommand : public CAbstractCommand
+class CChangeTitleCommand : public CAbstractCommand
 {
 public:
-	CChangeStringCommand(string& target, string const& newValue);
+	CChangeTitleCommand(string& target, string const& newValue);
 
 protected:
 	void DoExecute() override;

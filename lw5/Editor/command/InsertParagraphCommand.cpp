@@ -7,16 +7,15 @@ CInsertParagraphCommand::CInsertParagraphCommand(const string& text, vector<CDoc
 	, m_items(items)
 	, m_position(position)
 {
-}
-
-void CInsertParagraphCommand::DoExecute()
-{
 	// возможно вынести эту обработку на уровень выше  - в CDocument
 	if (m_position >= m_items.size())
 	{
 		throw logic_error("cannot insert paragraph to the position greater than number of items");
 	}
+}
 
+void CInsertParagraphCommand::DoExecute()
+{
 	auto paragraph = make_shared<CParagraph>(m_text);
 	auto documentItem = CDocumentItem(paragraph);
 

@@ -29,12 +29,17 @@ public:
 	void SetTitle(const string& title) override;
 	string GetTitle() const override;
 
+	void ReplaceParagraphText(size_t position, const std::string& text) override;
+	void ResizeImage(size_t position, int width, int height) override;
+
 	bool CanUndo() const override;
 	void Undo() override;
 	bool CanRedo() const override;
 	void Redo() override;
 
 	void Save(const string& path) const;
+
+	~CDocument();
 
 private:
 	string m_title;

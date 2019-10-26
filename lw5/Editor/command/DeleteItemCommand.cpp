@@ -5,6 +5,21 @@ CDeleteItemCommand::CDeleteItemCommand(vector<CDocumentItem>& items, size_t inde
 	: m_items(items)
 	, m_index(index)
 {
+	if (m_index >= m_items.size())
+	{
+		throw logic_error("cannot delete unexisting item");
+	}
+
+	auto image = CDocumentItem(m_items[m_index]).GetImage();
+
+	if (image)
+	{
+		m_imageFilePath = image->GetPath();
+	}
+	else
+	{
+		m_imageFilePath = nullopt;
+	}
 }
 
 CDeleteItemCommand::~CDeleteItemCommand()
@@ -14,22 +29,14 @@ CDeleteItemCommand::~CDeleteItemCommand()
 		return;
 	}
 
-	auto image = CDocumentItem(m_items[m_index]).GetImage();
-
-	if (image)
+	if (m_imageFilePath)
 	{
-		auto filePath = image->GetPath();
-		filesystem::remove(filePath);
+		filesystem::remove(*m_imageFilePath);
 	}
 }
 
 void CDeleteItemCommand::DoExecute()
 {
-	if (m_index >= m_items.size())
-	{
-		throw logic_error("cannot delete unexisting item");
-	}
-
 	m_items.erase(m_items.begin() + m_index);
 }
 

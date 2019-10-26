@@ -125,6 +125,8 @@ TEST_CASE("save document with title, paragraph and image to html file")
 	auto paragraph = document.InsertParagraph("My name is Yury!");
 	auto image = document.InsertImage("image.jpg", 200, 250);
 	auto paragraphWithScript = document.InsertParagraph("<script>console.log('paragraph')</script>");
+	auto lastParagraph = document.InsertParagraph("last paragraph");
+	document.DeleteItem(3);
 
 	document.Save(filePath);
 
@@ -151,7 +153,7 @@ TEST_CASE("save document with title, paragraph and image to html file")
 TEST_CASE("undo redo history test")
 {
 	CDocument document;
-	
+
 	auto image1 = document.InsertImage("image.jpg", 200, 250); // 1
 	auto image1Path = image1->GetPath();
 
@@ -168,10 +170,42 @@ TEST_CASE("undo redo history test")
 	CHECK(filesystem::exists(image1Path)); // удалили картинку из документа, но не с диска
 
 	document.Undo();
-	CHECK(filesystem::exists(image2Path)); // отменили вставку картинки из документа, но не с диска 
+	CHECK(filesystem::exists(image2Path)); // отменили вставку картинки из документа, но не с диска
 
 	document.SetTitle("New Title"); // 5` - команды 5 и 6 должны стереться из истории
 	CHECK(filesystem::exists(image1Path)); // отмена 6 операции (удаления) не привело к удалению файла
 	CHECK(!filesystem::exists(image2Path)); // отмена 5 команды (вставка) привело к удалению файла
+}
 
+TEST_CASE("replace paragraph text")
+{
+	CDocument document;
+	auto paragraph = document.InsertParagraph("paragraph");
+	document.ReplaceParagraphText(0, "replaced paragraph");
+	CHECK(document.GetItem(0).GetParagraph()->GetText() == "replaced paragraph");
+}
+
+TEST_CASE("trying to replace unexisting paragraph text")
+{
+	CDocument document;
+	auto image = document.InsertImage("image.jpg", 200, 250);
+	CHECK_THROWS(document.ReplaceParagraphText(0, "replaced paragraph"));
+	CHECK_THROWS(document.ReplaceParagraphText(1, "replaced paragraph"));
+}
+
+TEST_CASE("resize image size")
+{
+	CDocument document;
+	auto image = document.InsertImage("image.jpg", 200, 250);
+	document.ResizeImage(0, 300, 400);
+	CHECK(document.GetItem(0).GetImage()->GetWidth() == 300);
+	CHECK(document.GetItem(0).GetImage()->GetHeight() == 400);
+}
+
+TEST_CASE("trying to resize unexisting images")
+{
+	CDocument document;
+	auto paragraph = document.InsertParagraph("");
+	CHECK_THROWS(document.ResizeImage(0, 300, 400));
+	CHECK_THROWS(document.ResizeImage(1, 300, 400));
 }

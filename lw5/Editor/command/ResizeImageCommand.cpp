@@ -1,26 +1,21 @@
 #include "ResizeImageCommand.h"
 #include <algorithm>
 
-CResizeImageCommand::CResizeImageCommand(int& width, int& height, int newWidth, int newHeight)
-	: m_width(width)
-	, m_height(height)
-	, m_newWidth(newWidth)
-	, m_newHeight(newHeight)
+CResizeImageCommand::CResizeImageCommand(shared_ptr<IImage> image, int width, int height)
+	: m_image(image)
+	, m_newWidth(width)
+	, m_newHeight(height)
 {
+	m_width = image->GetWidth();
+	m_height = image->GetHeight();
 }
 
 void CResizeImageCommand::DoExecute()
 {
-	SwapValues();
+	m_image->Resize(m_newWidth, m_newHeight);
 }
 
 void CResizeImageCommand::DoUnexecute()
 {
-	SwapValues();
-}
-
-void CResizeImageCommand::SwapValues()
-{
-	std::swap(m_newWidth, m_width);
-	std::swap(m_newHeight, m_height);
+	m_image->Resize(m_width, m_height);
 }

@@ -33,12 +33,6 @@
     <ClCompile Include="..\Editor\command\AbstractCommand.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Editor\command\ChangeStringCommand.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="commandTests.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="imageTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -81,6 +75,12 @@
     <ClCompile Include="..\Editor\HtmlSaver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\Editor\command\ChangeTitleCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Editor\command\ReplaceParagraphTextCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Editor\document\History.h">
@@ -90,9 +90,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\Editor\command\AbstractCommand.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Editor\command\ChangeStringCommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\Editor\document\image\Image.h">
@@ -123,6 +120,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\Editor\HtmlSaver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Editor\command\ChangeTitleCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Editor\command\ReplaceParagraphTextCommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

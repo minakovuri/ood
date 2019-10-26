@@ -1,6 +1,6 @@
+#include <iostream>
 #include "Editor.h"
 #include "HtmlSaver.h"
-#include <iostream>
 
 using namespace std::placeholders;
 
@@ -12,7 +12,10 @@ CEditor::CEditor()
 	m_menu.AddItem("help", "Help", [this](istream&) { m_menu.ShowInstructions(); });
 	m_menu.AddItem("exit", "Exit", [this](istream&) { m_menu.Exit(); });
 	AddMenuItem("setTitle", "Changes title. Args: <new title>", &CEditor::SetTitle);
-	m_menu.AddItem("list", "Show document", bind(&CEditor::List, this, _1));
+	AddMenuItem("list", "Show document", &CEditor::List);
+	AddMenuItem("replaceText", "Replace paragraph text. Args: <position> <text>", &CEditor::ReplaceText);
+	AddMenuItem("resizeImage", "Resize image. Args: <position> <width> <height>", &CEditor::ResizeImage);
+	AddMenuItem("deleteItem", "Delete item. Args: <position>", &CEditor::DeleteItem);
 	AddMenuItem("undo", "Undo command", &CEditor::Undo);
 	AddMenuItem("redo", "Redo undone command", &CEditor::Redo);
 	AddMenuItem("save", "Save to HTML file. Args: <path>", &CEditor::Save);
@@ -64,7 +67,7 @@ void CEditor::InsertImage(istream& in)
 
 	if (!((in >> positionStr) && (in >> width) && (in >> height) && (in >> path)))
 	{
-		cerr << "invalid arguments for command InsertImage <position>|end <text> <width> <height> <path>" << endl;
+		cerr << "invalid arguments for command InsertImage <position>|end <width> <height> <path>" << endl;
 		return;
 	}
 
@@ -78,7 +81,7 @@ void CEditor::InsertImage(istream& in)
 	{
 		m_document->InsertImage(path, width, height, position);
 	}
-	catch (const std::exception& e)
+	catch (const exception& e)
 	{
 		cerr << e.what() << endl;
 	}
@@ -115,6 +118,69 @@ void CEditor::List(istream&)
 		{
 			cout << "Image: " << image->GetWidth() << " " << image->GetHeight() << " " << image->GetPath() << std::endl;
 		}
+	}
+}
+
+void CEditor::ReplaceText(istream& in)
+{
+	size_t position;
+	string text;
+
+	if (!((in >> position) && getline(in, text)))
+	{
+		cerr << "invalid arguments for command ReplaceText <position> <text>" << endl;
+		return;
+	}
+
+	try
+	{
+		m_document->ReplaceParagraphText(position, text);
+	}
+	catch (const exception& e)
+	{
+		cerr << e.what() << endl;
+	}
+}
+
+void CEditor::ResizeImage(istream& in)
+{
+	size_t position;
+	int width;
+	int height;
+
+	if (!((in >> position) && (in >> width) && (in >> height)))
+	{
+		cerr << "invalid arguments for command ResizeImage <position> <width> <height>" << endl;
+		return;
+	}
+
+	try
+	{
+		m_document->ResizeImage(position, width, height);
+	}
+	catch (const exception& e)
+	{
+		cerr << e.what() << endl;
+	}
+}
+
+void CEditor::DeleteItem(istream& in)
+{
+	size_t position;
+
+	if (!(in >> position))
+	{
+		cerr << "invalid arguments for command DeleteItem <position>" << endl;
+		return;
+	}
+
+	try
+	{
+		m_document->DeleteItem(position);
+	}
+	catch (const exception& e)
+	{
+		cerr << e.what() << endl;
 	}
 }
 

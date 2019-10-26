@@ -1,10 +1,10 @@
 #include "Document.h"
-#include "paragraph/Paragraph.h"
-#include "image/Image.h"
-#include "../command/ChangeStringCommand.h"
-#include "../command/InsertParagraphCommand.h"
-#include "../command/InsertImageCommand.h"
+#include "../command/ChangeTitleCommand.h"
 #include "../command/DeleteItemCommand.h"
+#include "../command/InsertImageCommand.h"
+#include "../command/InsertParagraphCommand.h"
+#include "../command/ReplaceParagraphTextCommand.h"
+#include "../command/ResizeImageCommand.h"
 
 using namespace std;
 
@@ -58,17 +58,56 @@ CDocumentItem CDocument::GetItem(size_t index)
 
 void CDocument::DeleteItem(size_t index)
 {
+	if (index >= GetItemsCount())
+	{
+		throw invalid_argument("requested item index is out of range");
+	}
+
 	m_history.AddAndExecuteCommand(make_unique<CDeleteItemCommand>(m_items, index));
 }
 
 void CDocument::SetTitle(const std::string& title)
 {
-	m_history.AddAndExecuteCommand(make_unique<CChangeStringCommand>(m_title, GetHtmlString(title)));
+	m_history.AddAndExecuteCommand(make_unique<CChangeTitleCommand>(m_title, GetHtmlString(title)));
 }
 
 std::string CDocument::GetTitle() const
 {
 	return m_title;
+}
+
+void CDocument::ReplaceParagraphText(size_t position, const std::string& text)
+{
+	if (position >= GetItemsCount())
+	{
+		throw invalid_argument("requested paragraph position is out of range");
+	}
+
+	auto paragraph = GetItem(position).GetParagraph();
+
+	if (!paragraph)
+	{
+		throw invalid_argument("requested item is not a paragraph");
+	}
+
+	m_history.AddAndExecuteCommand(make_unique<CReplaceParagraphTextCommand>(paragraph, text));
+}
+
+void CDocument::ResizeImage(size_t position, int width, int height)
+{
+	if (position >= GetItemsCount())
+	{
+		throw invalid_argument("requested image position is out of range");
+	}
+
+	auto image = GetItem(position).GetImage();
+
+	if (!image)
+	{
+		throw invalid_argument("requested item is not am image");
+	}
+
+	m_history.AddAndExecuteCommand(make_unique<CResizeImageCommand>(image, width, height));
 }
 
 bool CDocument::CanUndo() const
@@ -94,4 +133,8 @@ void CDocument::Redo()
 void CDocument::Save(const std::string& path) const
 {
 	m_saveFn(path, m_title, m_items);
+}
+
+CDocument::~CDocument()
+{
 }
