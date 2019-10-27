@@ -21,8 +21,7 @@ void app::PaintPictureOnCanvas()
 
 void app::PaintPictureOnModernGraphicsRenderer()
 {
-	modern_graphics_lib::CModernGraphicsRenderer modernGraphicsRenderer(cout);
-	CModernCanvasAdapter modernCanvasAdapter(modernGraphicsRenderer);
+	CModernCanvasAdapter modernCanvasAdapter(cout);
 	shape_drawing_lib::CCanvasPainter painter(modernCanvasAdapter);
 
 	modernCanvasAdapter.BeginDraw();
@@ -30,8 +29,8 @@ void app::PaintPictureOnModernGraphicsRenderer()
 	modernCanvasAdapter.EndDraw();
 }
 
-app::CModernCanvasAdapter::CModernCanvasAdapter(modern_graphics_lib::CModernGraphicsRenderer& modernGraphicsRenderer)
-	: m_modernGraphicsRenderer(modernGraphicsRenderer)
+app::CModernCanvasAdapter::CModernCanvasAdapter(ostream& strm)
+	: CModernGraphicsRenderer(strm)
 	, m_startPoint(0, 0)
 {
 }
@@ -44,15 +43,5 @@ void app::CModernCanvasAdapter::MoveTo(int x, int y)
 void app::CModernCanvasAdapter::LineTo(int x, int y)
 {
 	auto endPoint = modern_graphics_lib::CPoint(x, y);
-	m_modernGraphicsRenderer.DrawLine(m_startPoint, endPoint);
-}
-
-void app::CModernCanvasAdapter::BeginDraw()
-{
-	m_modernGraphicsRenderer.BeginDraw();
-}
-
-void app::CModernCanvasAdapter::EndDraw()
-{
-	m_modernGraphicsRenderer.EndDraw();
+	DrawLine(m_startPoint, endPoint);
 }

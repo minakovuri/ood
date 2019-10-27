@@ -21,30 +21,30 @@
     <ClCompile Include="adapterTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\ObjectAdapter\libs\modern_graphics_lib.cpp">
+    <ClCompile Include="..\ClassAdapter\app.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\ObjectAdapter\app.cpp">
+    <ClCompile Include="..\ClassAdapter\libs\graphics_lib.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\ObjectAdapter\libs\graphics_lib.cpp">
+    <ClCompile Include="..\ClassAdapter\libs\modern_graphics_lib.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\ObjectAdapter\libs\shape_drawing_lib.cpp">
+    <ClCompile Include="..\ClassAdapter\libs\shape_drawing_lib.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\ObjectAdapter\libs\modern_graphics_lib.h">
+    <ClInclude Include="..\ClassAdapter\app.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\ObjectAdapter\app.h">
+    <ClInclude Include="..\ClassAdapter\libs\graphics_lib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\ObjectAdapter\libs\graphics_lib.h">
+    <ClInclude Include="..\ClassAdapter\libs\modern_graphics_lib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\ObjectAdapter\libs\shape_drawing_lib.h">
+    <ClInclude Include="..\ClassAdapter\libs\shape_drawing_lib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

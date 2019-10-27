@@ -1,5 +1,5 @@
 #include "../../catch.hpp"
-#include "../ObjectAdapter/app.h"
+#include "../ClassAdapter/app.h"
 #include <sstream>
 
 using namespace std;
@@ -7,8 +7,7 @@ using namespace std;
 TEST_CASE("render line")
 {
 	stringstream stream;
-	modern_graphics_lib::CModernGraphicsRenderer modernGraphicsRenderer(stream);
-	app::CModernCanvasAdapter adapter(modernGraphicsRenderer);
+	app::CModernCanvasAdapter adapter(stream);
 
 	adapter.BeginDraw();
 	adapter.MoveTo(50, 50);
@@ -25,8 +24,7 @@ TEST_CASE("render line")
 TEST_CASE("trying to render line without begin drawing")
 {
 	stringstream stream;
-	modern_graphics_lib::CModernGraphicsRenderer modernGraphicsRenderer(stream);
-	app::CModernCanvasAdapter adapter(modernGraphicsRenderer);
+	app::CModernCanvasAdapter adapter(stream);
 
 	CHECK_THROWS(adapter.LineTo(100, 100));
 }
@@ -34,8 +32,7 @@ TEST_CASE("trying to render line without begin drawing")
 TEST_CASE("trying to begin drawing multiple times")
 {
 	stringstream stream;
-	modern_graphics_lib::CModernGraphicsRenderer modernGraphicsRenderer(stream);
-	app::CModernCanvasAdapter adapter(modernGraphicsRenderer);
+	app::CModernCanvasAdapter adapter(stream);
 
 	adapter.BeginDraw();
 	CHECK_THROWS(adapter.BeginDraw());
@@ -44,8 +41,7 @@ TEST_CASE("trying to begin drawing multiple times")
 TEST_CASE("trying to end drawing without starting")
 {
 	stringstream stream;
-	modern_graphics_lib::CModernGraphicsRenderer modernGraphicsRenderer(stream);
-	app::CModernCanvasAdapter adapter(modernGraphicsRenderer);
+	app::CModernCanvasAdapter adapter(stream);
 
 	CHECK_THROWS(adapter.EndDraw());
 }

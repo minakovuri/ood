@@ -20,9 +20,9 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{4ED73C43-4648-4BDD-87CF-67060896065A}</ProjectGuid>
+    <ProjectGuid>{77294C4A-2DA8-4CEC-8DCC-AEFA93A7FA89}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>ObjectAdaptertests</RootNamespace>
+    <RootNamespace>ClassAdapter</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -104,9 +104,6 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
-    <PostBuildEvent>
-      <Command>$(TargetPath)</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -122,9 +119,6 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
-    <PostBuildEvent>
-      <Command>$(TargetPath)</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -144,9 +138,6 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
-    <PostBuildEvent>
-      <Command>$(TargetPath)</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -166,23 +157,19 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
-    <PostBuildEvent>
-      <Command>$(TargetPath)</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\ObjectAdapter\app.cpp" />
-    <ClCompile Include="..\ObjectAdapter\libs\graphics_lib.cpp" />
-    <ClCompile Include="..\ObjectAdapter\libs\modern_graphics_lib.cpp" />
-    <ClCompile Include="..\ObjectAdapter\libs\shape_drawing_lib.cpp" />
-    <ClCompile Include="adapterTests.cpp" />
+    <ClCompile Include="app.cpp" />
+    <ClCompile Include="libs\graphics_lib.cpp" />
+    <ClCompile Include="libs\modern_graphics_lib.cpp" />
+    <ClCompile Include="libs\shape_drawing_lib.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\ObjectAdapter\app.h" />
-    <ClInclude Include="..\ObjectAdapter\libs\graphics_lib.h" />
-    <ClInclude Include="..\ObjectAdapter\libs\modern_graphics_lib.h" />
-    <ClInclude Include="..\ObjectAdapter\libs\shape_drawing_lib.h" />
+    <ClInclude Include="app.h" />
+    <ClInclude Include="libs\graphics_lib.h" />
+    <ClInclude Include="libs\modern_graphics_lib.h" />
+    <ClInclude Include="libs\shape_drawing_lib.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
