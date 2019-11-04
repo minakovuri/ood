@@ -1,4 +1,5 @@
 #pragma once
+#include "libs/modern_graphics_lib.h"
 #include "libs/shape_drawing_lib.h"
 
 // Пространство имен приложения (доступно для модификации)
