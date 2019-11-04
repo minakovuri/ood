@@ -11,6 +11,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ClassAdapter", "ClassAdapte
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ClassAdapter_tests", "ClassAdapter_tests\ClassAdapter_tests.vcxproj", "{17031B11-3A8A-43D9-81EF-6D3FE9011B35}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ColorPictures", "ColorPictures\ColorPictures.vcxproj", "{90482BBD-9B2C-40F7-B29A-4DEAA12E9F93}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ColorPictures_tests", "ColorPictures_tests\ColorPictures_tests.vcxproj", "{310D8D18-E50F-4142-974F-FC6C8292E259}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -51,6 +55,22 @@ Global
 		{17031B11-3A8A-43D9-81EF-6D3FE9011B35}.Release|x64.Build.0 = Release|x64
 		{17031B11-3A8A-43D9-81EF-6D3FE9011B35}.Release|x86.ActiveCfg = Release|Win32
 		{17031B11-3A8A-43D9-81EF-6D3FE9011B35}.Release|x86.Build.0 = Release|Win32
+		{90482BBD-9B2C-40F7-B29A-4DEAA12E9F93}.Debug|x64.ActiveCfg = Debug|x64
+		{90482BBD-9B2C-40F7-B29A-4DEAA12E9F93}.Debug|x64.Build.0 = Debug|x64
+		{90482BBD-9B2C-40F7-B29A-4DEAA12E9F93}.Debug|x86.ActiveCfg = Debug|Win32
+		{90482BBD-9B2C-40F7-B29A-4DEAA12E9F93}.Debug|x86.Build.0 = Debug|Win32
+		{90482BBD-9B2C-40F7-B29A-4DEAA12E9F93}.Release|x64.ActiveCfg = Release|x64
+		{90482BBD-9B2C-40F7-B29A-4DEAA12E9F93}.Release|x64.Build.0 = Release|x64
+		{90482BBD-9B2C-40F7-B29A-4DEAA12E9F93}.Release|x86.ActiveCfg = Release|Win32
+		{90482BBD-9B2C-40F7-B29A-4DEAA12E9F93}.Release|x86.Build.0 = Release|Win32
+		{310D8D18-E50F-4142-974F-FC6C8292E259}.Debug|x64.ActiveCfg = Debug|x64
+		{310D8D18-E50F-4142-974F-FC6C8292E259}.Debug|x64.Build.0 = Debug|x64
+		{310D8D18-E50F-4142-974F-FC6C8292E259}.Debug|x86.ActiveCfg = Debug|Win32
+		{310D8D18-E50F-4142-974F-FC6C8292E259}.Debug|x86.Build.0 = Debug|Win32
+		{310D8D18-E50F-4142-974F-FC6C8292E259}.Release|x64.ActiveCfg = Release|x64
+		{310D8D18-E50F-4142-974F-FC6C8292E259}.Release|x64.Build.0 = Release|x64
+		{310D8D18-E50F-4142-974F-FC6C8292E259}.Release|x86.ActiveCfg = Release|Win32
+		{310D8D18-E50F-4142-974F-FC6C8292E259}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
