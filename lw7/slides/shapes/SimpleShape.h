@@ -19,13 +19,13 @@ public:
 	std::shared_ptr<IStyle> GetFillStyle() override;
 	std::shared_ptr<const IStyle> GetFillStyle() const override;
 
-	std::shared_ptr<IShape> GetGroup() override;
-	std::shared_ptr<const IShape> GetGroup() const override;
+	/*std::shared_ptr<IShape> GetGroup() override;
+	std::shared_ptr<const IShape> GetGroup() const override;*/
 
 	/* --- эти методы недоступны --- */
 	size_t GetShapesCount() const final;
-	void InsertShape(const std::shared_ptr<IShape>& shape, size_t position = std::numeric_limits<size_t>::max()) final;
-	std::shared_ptr<IShape> GetShapeAtIndex(size_t index) final;
+	void InsertShape(std::shared_ptr<IShape> shape, size_t position = std::numeric_limits<size_t>::max()) final;
+	std::shared_ptr<IShape> GetShapeAtIndex(size_t index) const final;
 	void RemoveShapeAtIndex(size_t index) final;
 
 private:

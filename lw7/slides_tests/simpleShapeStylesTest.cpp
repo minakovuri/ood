@@ -1,16 +1,9 @@
 #include "../../catch.hpp"
 #include "../slides/shapes/styles/SimpleShapeFillStyle.h"
 #include "../slides/shapes/styles/SimpleShapeOutlineStyle.h"
+#include "Colors.h"
 
-enum Colors : RGBAColor
-{
-	Red = 0xFF0000,
-	Pink = 0xFFC0CB,
-	Yellow = 0xFFFF00,
-	Blue = 0x0000FF,
-	White = 0xFFFFFF,
-	Black = 0x000000,
-};
+using namespace std;
 
 TEST_CASE("create simple shape enabled fill style with color")
 {

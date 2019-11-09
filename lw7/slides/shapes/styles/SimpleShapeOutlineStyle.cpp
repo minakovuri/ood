@@ -18,7 +18,7 @@ CSimpleShapeOutlineStyle::CSimpleShapeOutlineStyle(RGBAColor color, bool isEnabl
 
 std::optional<RGBAColor> CSimpleShapeOutlineStyle::GetColor() const
 {
-	return m_color;
+	return m_color;	
 }
 
 void CSimpleShapeOutlineStyle::SetColor(RGBAColor color)

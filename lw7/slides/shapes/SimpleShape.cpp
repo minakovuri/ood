@@ -6,12 +6,12 @@ size_t CSimpleShape::GetShapesCount() const
 	throw std::runtime_error("GetShapesCount() is unsupported for simple shape");
 }
 
-void CSimpleShape::InsertShape(const std::shared_ptr<IShape>& shape, size_t position)
+void CSimpleShape::InsertShape(std::shared_ptr<IShape> shape, size_t position)
 {
 	throw std::runtime_error("InsertShape() is unsupported for simple shape");
 }
 
-std::shared_ptr<IShape> CSimpleShape::GetShapeAtIndex(size_t index)
+std::shared_ptr<IShape> CSimpleShape::GetShapeAtIndex(size_t index) const
 {
 	throw std::runtime_error("GetShapeAtIndex() is unsupported for simple shape");
 }
@@ -74,14 +74,4 @@ std::shared_ptr<IStyle> CSimpleShape::GetFillStyle()
 std::shared_ptr<const IStyle> CSimpleShape::GetFillStyle() const
 {
 	return std::shared_ptr<const IStyle>();
-}
-
-std::shared_ptr<IShape> CSimpleShape::GetGroup()
-{
-	return std::shared_ptr<IShape>();
-}
-
-std::shared_ptr<const IShape> CSimpleShape::GetGroup() const
-{
-	return std::shared_ptr<const IShape>();
 }
