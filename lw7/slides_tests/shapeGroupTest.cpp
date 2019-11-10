@@ -12,9 +12,18 @@ TEST_CASE("insert shape to group")
 
 	RectD frame{ 10.56, 12.45 };
 	shared_ptr<IShape> shape1 = make_shared<CSimpleShape>(frame);
+	shared_ptr<IShape> shape2 = make_shared<CSimpleShape>(frame);
 
 	shapeGroup.InsertShape(shape1);
+	CHECK(shapeGroup.GetShapesCount() == 1);
 	CHECK(shapeGroup.GetShapeAtIndex(0) == shape1);
+
+	shapeGroup.InsertShape(shape2, 0);
+	CHECK(shapeGroup.GetShapesCount() == 2);
+	CHECK(shapeGroup.GetShapeAtIndex(0) == shape2);
+	CHECK(shapeGroup.GetShapeAtIndex(1) == shape1);
+
+	CHECK_THROWS(shapeGroup.InsertShape(shape1, 3));
 }
 
 TEST_CASE("trying to get shape by invalid index")

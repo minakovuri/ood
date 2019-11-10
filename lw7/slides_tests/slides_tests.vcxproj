@@ -161,6 +161,7 @@
     <ClCompile Include="..\slides\shapes\styles\ShapeGroupOutlineStyle.cpp" />
     <ClCompile Include="..\slides\shapes\styles\SimpleShapeFillStyle.cpp" />
     <ClCompile Include="..\slides\shapes\styles\SimpleShapeOutlineStyle.cpp" />
+    <ClCompile Include="drawableSlideTest.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="shapeGroupStylesTest.cpp" />
     <ClCompile Include="shapeGroupTest.cpp" />

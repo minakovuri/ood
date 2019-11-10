@@ -36,6 +36,9 @@
     <ClCompile Include="shapes\styles\ShapeGroupOutlineStyle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="slide\DrawableSlide.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="canvas\ICanvas.h">
@@ -87,6 +90,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="shapes\styles\Colors.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="slide\DrawableSlide.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="shapes\IDrawableShape.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

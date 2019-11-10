@@ -1,7 +1,7 @@
-#include <stdexcept>
 #include "ShapeGroup.h"
 #include "styles/ShapeGroupFillStyle.h"
 #include "styles/ShapeGroupOutlineStyle.h"
+#include <stdexcept>
 
 CShapeGroup::CShapeGroup()
 {
@@ -19,7 +19,18 @@ size_t CShapeGroup::GetShapesCount() const
 
 void CShapeGroup::InsertShape(std::shared_ptr<IShape> shape, size_t position)
 {
-	m_shapes.push_back(shape);
+	if (position == std::numeric_limits<size_t>::max())
+	{
+		m_shapes.push_back(shape);
+	}
+	else if (position > GetShapesCount() - 1)
+	{
+		throw std::out_of_range("requested index is out of range");
+	}
+	else
+	{
+		m_shapes.insert(m_shapes.begin() + position, shape);
+	}
 }
 
 std::shared_ptr<IShape> CShapeGroup::GetShapeAtIndex(size_t index) const

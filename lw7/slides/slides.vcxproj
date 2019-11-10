@@ -162,12 +162,14 @@
     <ClCompile Include="shapes\styles\ShapeGroupOutlineStyle.cpp" />
     <ClCompile Include="shapes\styles\SimpleShapeFillStyle.cpp" />
     <ClCompile Include="shapes\styles\SimpleShapeOutlineStyle.cpp" />
+    <ClCompile Include="slide\DrawableSlide.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="canvas\ICanvas.h" />
     <ClInclude Include="CommonTypes.h" />
     <ClInclude Include="IDrawable.h" />
     <ClInclude Include="shapes\Ellipse.h" />
+    <ClInclude Include="shapes\IDrawableShape.h" />
     <ClInclude Include="shapes\IShape.h" />
     <ClInclude Include="shapes\Rectangle.h" />
     <ClInclude Include="shapes\ShapeGroup.h" />
@@ -180,6 +182,7 @@
     <ClInclude Include="shapes\styles\IStyle.h" />
     <ClInclude Include="shapes\styles\SimpleShapeOutlineStyle.h" />
     <ClInclude Include="shapes\Triangle.h" />
+    <ClInclude Include="slide\DrawableSlide.h" />
     <ClInclude Include="slide\ISlide.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

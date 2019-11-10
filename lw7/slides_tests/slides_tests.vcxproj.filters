@@ -48,6 +48,9 @@
     <ClCompile Include="..\slides\shapes\ShapeGroup.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="drawableSlideTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\slides\shapes\IShape.h">
