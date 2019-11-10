@@ -172,6 +172,7 @@
     <ClInclude Include="shapes\Rectangle.h" />
     <ClInclude Include="shapes\ShapeGroup.h" />
     <ClInclude Include="shapes\SimpleShape.h" />
+    <ClInclude Include="shapes\styles\Colors.h" />
     <ClInclude Include="shapes\styles\ShapeGroupOutlineStyle.h" />
     <ClInclude Include="shapes\styles\IOutlineStyle.h" />
     <ClInclude Include="shapes\styles\ShapeGroupFillStyle.h" />

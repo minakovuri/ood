@@ -86,5 +86,8 @@
     <ClInclude Include="shapes\styles\ShapeGroupOutlineStyle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="shapes\styles\Colors.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

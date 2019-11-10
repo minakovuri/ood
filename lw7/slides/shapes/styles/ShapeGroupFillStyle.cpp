@@ -1,6 +1,6 @@
 #include "ShapeGroupFillStyle.h"
 
-CShapeGroupFillStyle::CShapeGroupFillStyle(std::shared_ptr<const IShape> shapeGroup)
+CShapeGroupFillStyle::CShapeGroupFillStyle(std::shared_ptr<IShape> shapeGroup)
 	: m_shapeGroup(std::move(shapeGroup))
 {
 }

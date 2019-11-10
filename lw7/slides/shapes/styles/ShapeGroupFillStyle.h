@@ -5,7 +5,7 @@
 class CShapeGroupFillStyle : public IStyle
 {
 public:
-	CShapeGroupFillStyle(std::shared_ptr<const IShape> shapeGroup);
+	CShapeGroupFillStyle(std::shared_ptr<IShape> shapeGroup);
 
 	std::optional<RGBAColor> GetColor() const final;
 	void SetColor(RGBAColor color) final;
@@ -14,5 +14,5 @@ public:
 	void SetEnabled(bool enable) final;
 
 private:
-	std::shared_ptr<const IShape> m_shapeGroup;
+	std::shared_ptr<IShape> m_shapeGroup;
 };

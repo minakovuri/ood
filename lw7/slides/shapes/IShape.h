@@ -16,9 +16,6 @@ public:
 	virtual std::shared_ptr<IStyle> GetFillStyle() = 0;
 	virtual std::shared_ptr<const IStyle> GetFillStyle() const = 0;
 
-	/*virtual std::shared_ptr<IShape> GetGroup() = 0;
-	virtual std::shared_ptr<const IShape> GetGroup() const = 0;*/
-
 	/* ----- методы групп фигур ----- */
 	virtual size_t GetShapesCount() const = 0;
 	virtual void InsertShape(std::shared_ptr<IShape> shape, size_t position = std::numeric_limits<size_t>::max()) = 0;

@@ -1,5 +1,8 @@
 #include <stdexcept>
 #include "SimpleShape.h"
+#include "styles/SimpleShapeFillStyle.h"
+#include "styles/SimpleShapeOutlineStyle.h"
+#include "styles/Colors.h"
 
 size_t CSimpleShape::GetShapesCount() const
 {
@@ -23,55 +26,37 @@ void CSimpleShape::RemoveShapeAtIndex(size_t index)
 
 CSimpleShape::CSimpleShape(const RectD& frame)
 	: m_frame(frame)
+	, m_outlineStyle(std::make_shared<CSimpleShapeOutlineStyle>(true, Colors::Black, 1))
+	, m_fillStyle(std::make_shared<CSimpleShapeFillStyle>(true, Colors::White))
 {
 }
-
-CSimpleShape::CSimpleShape(const RectD& frame, std::shared_ptr<IStyle> outlineStyle)
-	: m_frame(frame)
-	, m_outlineStyle(std::move(outlineStyle))
-{
-}
-
-CSimpleShape::CSimpleShape(const RectD& frame, std::shared_ptr<IStyle> outlineStyle, std::shared_ptr<IStyle> fillStyle)
-	: m_frame(frame)
-	, m_outlineStyle(std::move(outlineStyle))
-	, m_fillStyle(std::move(fillStyle))
-{
-}
-
-/*CSimpleShape::CSimpleShape(const RectD& frame, std::shared_ptr<IStyle> outlineStyle, std::shared_ptr<IStyle> fillStyle, std::shared_ptr<IShape> group)
-	: m_frame(frame)
-	, m_outlineStyle(std::move(outlineStyle))
-	, m_fillStyle(std::move(fillStyle))
-	, m_group(std::move(group))
-{
-}*/
 
 RectD CSimpleShape::GetFrame()
 {
-	return RectD();
+	return m_frame;
 }
 
 void CSimpleShape::SetFrame(const RectD& rect)
 {
+	m_frame = rect;
 }
 
 std::shared_ptr<IOutlineStyle> CSimpleShape::GetOutlineStyle()
 {
-	return std::shared_ptr<IOutlineStyle>();
+	return m_outlineStyle;
 }
 
 std::shared_ptr<const IOutlineStyle> CSimpleShape::GetOutlineStyle() const
 {
-	return std::shared_ptr<const IOutlineStyle>();
+	return m_outlineStyle;
 }
 
 std::shared_ptr<IStyle> CSimpleShape::GetFillStyle()
 {
-	return std::shared_ptr<IStyle>();
+	return m_fillStyle;
 }
 
 std::shared_ptr<const IStyle> CSimpleShape::GetFillStyle() const
 {
-	return std::shared_ptr<const IStyle>();
+	return m_fillStyle;
 }
