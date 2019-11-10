@@ -8,13 +8,13 @@ public:
 	CSimpleShape(const RectD& frame);
 	CSimpleShape(const RectD& frame, std::shared_ptr<IStyle> outlineStyle);
 	CSimpleShape(const RectD& frame, std::shared_ptr<IStyle> outlineStyle, std::shared_ptr<IStyle> fillStyle);
-	CSimpleShape(const RectD& frame, std::shared_ptr<IStyle> outlineStyle, std::shared_ptr<IStyle> fillStyle, std::shared_ptr<IShape> group);
+	//CSimpleShape(const RectD& frame, std::shared_ptr<IStyle> outlineStyle, std::shared_ptr<IStyle> fillStyle, std::shared_ptr<IShape> group);
 
 	RectD GetFrame() override;
 	void SetFrame(const RectD& rect) override;
 
-	std::shared_ptr<IStyle> GetOutlineStyle() override;
-	std::shared_ptr<const IStyle> GetOutlineStyle() const override;
+	std::shared_ptr<IOutlineStyle> GetOutlineStyle() override;
+	std::shared_ptr<const IOutlineStyle> GetOutlineStyle() const override;
 
 	std::shared_ptr<IStyle> GetFillStyle() override;
 	std::shared_ptr<const IStyle> GetFillStyle() const override;
@@ -32,5 +32,5 @@ private:
 	RectD m_frame;
 	std::shared_ptr<IStyle> m_outlineStyle;
 	std::shared_ptr<IStyle> m_fillStyle;
-	std::shared_ptr<IShape> m_group;
+	//std::shared_ptr<IShape> m_group;
 };

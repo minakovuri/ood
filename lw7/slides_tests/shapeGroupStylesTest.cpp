@@ -1,5 +1,6 @@
 #include "../../catch.hpp"
 #include "../slides/shapes/styles/ShapeGroupFillStyle.h"
+#include "../slides/shapes/styles/ShapeGroupOutlineStyle.h"
 #include "../slides/shapes/styles/SimpleShapeFillStyle.h"
 #include "../slides/shapes/styles/SimpleShapeOutlineStyle.h"
 #include "Colors.h"
@@ -24,12 +25,12 @@ public:
 
 	void SetFrame(const RectD& rect) final {}
 
-	std::shared_ptr<IStyle> GetOutlineStyle() final
+	std::shared_ptr<IOutlineStyle> GetOutlineStyle() final
 	{
 		return m_outlineStyle;
 	}
 
-	std::shared_ptr<const IStyle> GetOutlineStyle() const final
+	std::shared_ptr<const IOutlineStyle> GetOutlineStyle() const final
 	{
 		return m_outlineStyle;
 	}
@@ -60,7 +61,7 @@ public:
 	void RemoveShapeAtIndex(size_t index) final {}
 
 private:
-	std::shared_ptr<IStyle> m_outlineStyle;
+	std::shared_ptr<IOutlineStyle> m_outlineStyle;
 	std::shared_ptr<IStyle> m_fillStyle;
 };
 
@@ -99,14 +100,14 @@ public:
 
 	void SetFrame(const RectD& rect) final {}
 
-	std::shared_ptr<IStyle> GetOutlineStyle() final
+	std::shared_ptr<IOutlineStyle> GetOutlineStyle() final
 	{
-		return std::shared_ptr<IStyle>();
+		return std::shared_ptr<IOutlineStyle>();
 	}
 
-	std::shared_ptr<const IStyle> GetOutlineStyle() const final
+	std::shared_ptr<const IOutlineStyle> GetOutlineStyle() const final
 	{
-		return std::shared_ptr<IStyle>();
+		return std::shared_ptr<IOutlineStyle>();
 	}
 
 	std::shared_ptr<IStyle> GetFillStyle() final
@@ -123,6 +124,7 @@ private:
 	vector<std::shared_ptr<IShape>> m_shapes;
 };
 
+/* --- fill style tests --- */
 TEST_CASE("get undefined fill color of shape group")
 {
 	shared_ptr<IShape> shape1 = make_shared<CMockShape>();
@@ -232,4 +234,161 @@ TEST_CASE("set fill style enabled of shape group")
 
 	CHECK(*shape1->GetFillStyle()->IsEnabled());
 	CHECK(*shape2->GetFillStyle()->IsEnabled());
+}
+
+/* --- outline style tests --- */
+TEST_CASE("get undefined outline color of shape group")
+{
+	shared_ptr<IShape> shape1 = make_shared<CMockShape>();
+	shape1->GetOutlineStyle()->SetColor(Colors::Red);
+
+	shared_ptr<IShape> shape2 = make_shared<CMockShape>();
+	shape2->GetOutlineStyle()->SetColor(Colors::Yellow);
+
+	shared_ptr<IShape> shapeGroup = make_shared<CMockShapeGroup>();
+	shapeGroup->InsertShape(shape1);
+	shapeGroup->InsertShape(shape2);
+
+	CShapeGroupOutlineStyle groupOutlineStyle(shapeGroup);
+	CHECK(groupOutlineStyle.GetColor() == nullopt);
+}
+
+TEST_CASE("get shape group outline color")
+{
+	shared_ptr<IShape> shape1 = make_shared<CMockShape>();
+	shape1->GetOutlineStyle()->SetColor(Colors::Red);
+
+	shared_ptr<IShape> shape2 = make_shared<CMockShape>();
+	shape2->GetOutlineStyle()->SetColor(Colors::Red);
+
+	shared_ptr<IShape> shapeGroup = make_shared<CMockShapeGroup>();
+	shapeGroup->InsertShape(shape1);
+	shapeGroup->InsertShape(shape2);
+
+	CShapeGroupOutlineStyle groupOutlineStyle(shapeGroup);
+	CHECK(groupOutlineStyle.GetColor() == Colors::Red);
+}
+
+TEST_CASE("get undefined outline style enabled of shape group")
+{
+	shared_ptr<IShape> shape1 = make_shared<CMockShape>();
+	shape1->GetOutlineStyle()->SetEnabled(false);
+
+	shared_ptr<IShape> shape2 = make_shared<CMockShape>();
+	shape2->GetOutlineStyle()->SetEnabled(true);
+
+	shared_ptr<IShape> shapeGroup = make_shared<CMockShapeGroup>();
+	shapeGroup->InsertShape(shape1);
+	shapeGroup->InsertShape(shape2);
+
+	CShapeGroupOutlineStyle groupOutlineStyle(shapeGroup);
+	CHECK(groupOutlineStyle.IsEnabled() == nullopt);
+}
+
+TEST_CASE("get outline style enabled flag of shape group")
+{
+	shared_ptr<IShape> shape1 = make_shared<CMockShape>();
+	shape1->GetOutlineStyle()->SetEnabled(true);
+
+	shared_ptr<IShape> shape2 = make_shared<CMockShape>();
+	shape2->GetOutlineStyle()->SetEnabled(true);
+
+	shared_ptr<IShape> shapeGroup = make_shared<CMockShapeGroup>();
+	shapeGroup->InsertShape(shape1);
+	shapeGroup->InsertShape(shape2);
+
+	CShapeGroupOutlineStyle groupOutlineStyle(shapeGroup);
+	CHECK(groupOutlineStyle.IsEnabled() == true);
+}
+
+TEST_CASE("get undefined outline style thickness of shape group")
+{
+	shared_ptr<IShape> shape1 = make_shared<CMockShape>();
+	shape1->GetOutlineStyle()->SetThickness(2.0);
+
+	shared_ptr<IShape> shape2 = make_shared<CMockShape>();
+	shape2->GetOutlineStyle()->SetThickness(3.0);
+
+	shared_ptr<IShape> shapeGroup = make_shared<CMockShapeGroup>();
+	shapeGroup->InsertShape(shape1);
+	shapeGroup->InsertShape(shape2);
+
+	CShapeGroupOutlineStyle groupOutlineStyle(shapeGroup);
+	CHECK(groupOutlineStyle.GetThickness() == nullopt);
+}
+
+TEST_CASE("get shape group outline thikness")
+{
+	shared_ptr<IShape> shape1 = make_shared<CMockShape>();
+	shape1->GetOutlineStyle()->SetThickness(5.0);
+
+	shared_ptr<IShape> shape2 = make_shared<CMockShape>();
+	shape2->GetOutlineStyle()->SetThickness(5.0);
+
+	shared_ptr<IShape> shapeGroup = make_shared<CMockShapeGroup>();
+	shapeGroup->InsertShape(shape1);
+	shapeGroup->InsertShape(shape2);
+
+	CShapeGroupOutlineStyle groupOutlineStyle(shapeGroup);
+	CHECK(groupOutlineStyle.GetThickness() == 5.0);
+}
+
+TEST_CASE("get outline styles options of empty group")
+{
+	shared_ptr<IShape> shapeGroup = make_shared<CMockShapeGroup>();
+	CShapeGroupOutlineStyle groupOutlineStyle(shapeGroup);
+	CHECK(groupOutlineStyle.GetColor() == nullopt);
+	CHECK(groupOutlineStyle.IsEnabled() == nullopt);
+	CHECK(groupOutlineStyle.GetThickness() == nullopt);
+}
+
+TEST_CASE("set outline color of shape group")
+{
+	shared_ptr<IShape> shape1 = make_shared<CMockShape>();
+	shared_ptr<IShape> shape2 = make_shared<CMockShape>();
+
+	shared_ptr<IShape> shapeGroup = make_shared<CMockShapeGroup>();
+	shapeGroup->InsertShape(shape1);
+	shapeGroup->InsertShape(shape2);
+
+	CShapeGroupOutlineStyle groupOutlineStyle(shapeGroup);
+	groupOutlineStyle.SetColor(Colors::Pink);
+
+	CHECK(shape1->GetOutlineStyle()->GetColor() == Colors::Pink);
+	CHECK(shape2->GetOutlineStyle()->GetColor() == Colors::Pink);
+}
+
+TEST_CASE("set outline style enabled of shape group")
+{
+	shared_ptr<IShape> shape1 = make_shared<CMockShape>();
+	shape1->GetOutlineStyle()->SetEnabled(false);
+
+	shared_ptr<IShape> shape2 = make_shared<CMockShape>();
+	shape2->GetOutlineStyle()->SetEnabled(false);
+
+	shared_ptr<IShape> shapeGroup = make_shared<CMockShapeGroup>();
+	shapeGroup->InsertShape(shape1);
+	shapeGroup->InsertShape(shape2);
+
+	CShapeGroupOutlineStyle groupOutlineStyle(shapeGroup);
+	groupOutlineStyle.SetEnabled(true);
+
+	CHECK(*shape1->GetOutlineStyle()->IsEnabled());
+	CHECK(*shape2->GetOutlineStyle()->IsEnabled());
+}
+
+TEST_CASE("set outline thickness of shape group")
+{
+	shared_ptr<IShape> shape1 = make_shared<CMockShape>();
+	shared_ptr<IShape> shape2 = make_shared<CMockShape>();
+
+	shared_ptr<IShape> shapeGroup = make_shared<CMockShapeGroup>();
+	shapeGroup->InsertShape(shape1);
+	shapeGroup->InsertShape(shape2);
+
+	CShapeGroupOutlineStyle groupOutlineStyle(shapeGroup);
+	groupOutlineStyle.SetThickness(10.0);
+
+	CHECK(shape1->GetOutlineStyle()->GetThickness() == 10.0);
+	CHECK(shape2->GetOutlineStyle()->GetThickness() == 10.0);
 }

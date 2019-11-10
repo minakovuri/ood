@@ -20,7 +20,7 @@ std::optional<RGBAColor> CShapeGroupFillStyle::GetColor() const
 	{
 		auto currentFillColor = m_shapeGroup->GetShapeAtIndex(i)->GetFillStyle()->GetColor();
 
-		if (*currentFillColor != groupFillColor)
+		if (*currentFillColor != *groupFillColor)
 		{
 			groupFillColor = std::nullopt;
 			break;
@@ -53,7 +53,7 @@ std::optional<bool> CShapeGroupFillStyle::IsEnabled() const
 	{
 		auto isCurrentFillStyleEnabled = m_shapeGroup->GetShapeAtIndex(i)->GetFillStyle()->IsEnabled();
 
-		if (*isCurrentFillStyleEnabled != isGroupFillStyleEnabled)
+		if (*isCurrentFillStyleEnabled != *isGroupFillStyleEnabled)
 		{
 			isGroupFillStyleEnabled = std::nullopt;
 			break;

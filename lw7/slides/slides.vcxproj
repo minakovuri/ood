@@ -156,8 +156,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="shapes\ShapeGroup.cpp" />
     <ClCompile Include="shapes\SimpleShape.cpp" />
     <ClCompile Include="shapes\styles\ShapeGroupFillStyle.cpp" />
+    <ClCompile Include="shapes\styles\ShapeGroupOutlineStyle.cpp" />
     <ClCompile Include="shapes\styles\SimpleShapeFillStyle.cpp" />
     <ClCompile Include="shapes\styles\SimpleShapeOutlineStyle.cpp" />
   </ItemGroup>
@@ -168,7 +170,9 @@
     <ClInclude Include="shapes\Ellipse.h" />
     <ClInclude Include="shapes\IShape.h" />
     <ClInclude Include="shapes\Rectangle.h" />
+    <ClInclude Include="shapes\ShapeGroup.h" />
     <ClInclude Include="shapes\SimpleShape.h" />
+    <ClInclude Include="shapes\styles\ShapeGroupOutlineStyle.h" />
     <ClInclude Include="shapes\styles\IOutlineStyle.h" />
     <ClInclude Include="shapes\styles\ShapeGroupFillStyle.h" />
     <ClInclude Include="shapes\styles\SimpleShapeFillStyle.h" />

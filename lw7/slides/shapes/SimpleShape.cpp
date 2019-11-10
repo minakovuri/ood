@@ -39,13 +39,13 @@ CSimpleShape::CSimpleShape(const RectD& frame, std::shared_ptr<IStyle> outlineSt
 {
 }
 
-CSimpleShape::CSimpleShape(const RectD& frame, std::shared_ptr<IStyle> outlineStyle, std::shared_ptr<IStyle> fillStyle, std::shared_ptr<IShape> group)
+/*CSimpleShape::CSimpleShape(const RectD& frame, std::shared_ptr<IStyle> outlineStyle, std::shared_ptr<IStyle> fillStyle, std::shared_ptr<IShape> group)
 	: m_frame(frame)
 	, m_outlineStyle(std::move(outlineStyle))
 	, m_fillStyle(std::move(fillStyle))
 	, m_group(std::move(group))
 {
-}
+}*/
 
 RectD CSimpleShape::GetFrame()
 {
@@ -56,14 +56,14 @@ void CSimpleShape::SetFrame(const RectD& rect)
 {
 }
 
-std::shared_ptr<IStyle> CSimpleShape::GetOutlineStyle()
+std::shared_ptr<IOutlineStyle> CSimpleShape::GetOutlineStyle()
 {
-	return std::shared_ptr<IStyle>();
+	return std::shared_ptr<IOutlineStyle>();
 }
 
-std::shared_ptr<const IStyle> CSimpleShape::GetOutlineStyle() const
+std::shared_ptr<const IOutlineStyle> CSimpleShape::GetOutlineStyle() const
 {
-	return std::shared_ptr<const IStyle>();
+	return std::shared_ptr<const IOutlineStyle>();
 }
 
 std::shared_ptr<IStyle> CSimpleShape::GetFillStyle()
