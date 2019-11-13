@@ -1,11 +1,12 @@
 #pragma once
-#include "../IShape.h"
 #include "IOutlineStyle.h"
 
-class CShapeGroupOutlineStyle : public IOutlineStyle
+using OutlineStyleEnumerator = std::function<void(OutlineStyleCallback const &)>;
+
+class CGroupOutlineStyle : public IOutlineStyle
 {
 public:
-	CShapeGroupOutlineStyle(std::shared_ptr<const IShape> shapeGroup);
+	CGroupOutlineStyle(OutlineStyleEnumerator& enumerator);
 
 	std::optional<RGBAColor> GetColor() const final;
 	void SetColor(RGBAColor color) final;
@@ -17,5 +18,5 @@ public:
 	void SetThickness(double thikness) final;
 
 private:
-	std::shared_ptr<const IShape> m_shapeGroup;
+	OutlineStyleEnumerator& m_enumerator;
 };

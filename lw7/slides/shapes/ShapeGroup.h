@@ -1,10 +1,11 @@
 #pragma once
+#include "IShapeGroup.h"
 #include "IShape.h"
 #include <vector>
 
 class CShapeGroup 
-	: public IShape
-	, public std::enable_shared_from_this<IShape>
+	: public IShapeGroup
+	, public IShape
 {
 public:
 	CShapeGroup();
@@ -14,14 +15,19 @@ public:
 	std::shared_ptr<IShape> GetShapeAtIndex(size_t index) const override;
 	void RemoveShapeAtIndex(size_t index) override;
 
-	RectD GetFrame() final;
-	void SetFrame(const RectD& rect) final;
+	RectD GetFrame() override;
+	void SetFrame(const RectD& rect) override;
 
-	std::shared_ptr<IOutlineStyle> GetOutlineStyle() final;
-	std::shared_ptr<const IOutlineStyle> GetOutlineStyle() const final;
+	std::shared_ptr<IOutlineStyle> GetOutlineStyle() override;
+	std::shared_ptr<const IOutlineStyle> GetOutlineStyle() const override;
 
-	std::shared_ptr<IStyle> GetFillStyle() final;
-	std::shared_ptr<const IStyle> GetFillStyle() const final;
+	std::shared_ptr<IStyle> GetFillStyle() override;
+	std::shared_ptr<const IStyle> GetFillStyle() const override;
+
+	std::shared_ptr<IShapeGroup> TryGetGroup() override;
+	std::shared_ptr<const IShapeGroup> TryGetGroup() const override;
+
+	void Draw(const ICanvas& canvas) override;
 
 private:
 	std::shared_ptr<IOutlineStyle> m_outlineStyle;

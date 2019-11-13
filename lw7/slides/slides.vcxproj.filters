@@ -21,22 +21,22 @@
     <ClCompile Include="shapes\SimpleShape.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="shapes\styles\SimpleShapeFillStyle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="shapes\styles\SimpleShapeOutlineStyle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="shapes\styles\ShapeGroupFillStyle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="shapes\ShapeGroup.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="shapes\styles\ShapeGroupOutlineStyle.cpp">
+    <ClCompile Include="slide\Slide.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="slide\DrawableSlide.cpp">
+    <ClCompile Include="shapes\styles\GroupFillStyle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="shapes\styles\GroupOutlineStyle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="shapes\styles\FillStyle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="shapes\styles\OutlineStyle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -71,31 +71,31 @@
     <ClInclude Include="slide\ISlide.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="shapes\styles\SimpleShapeFillStyle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="shapes\styles\IOutlineStyle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="shapes\styles\SimpleShapeOutlineStyle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="shapes\styles\ShapeGroupFillStyle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="shapes\ShapeGroup.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="shapes\styles\ShapeGroupOutlineStyle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="shapes\styles\Colors.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="slide\DrawableSlide.h">
+    <ClInclude Include="slide\Slide.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="shapes\IDrawableShape.h">
+    <ClInclude Include="shapes\IShapeGroup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="shapes\styles\GroupFillStyle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="shapes\styles\GroupOutlineStyle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="shapes\styles\FillStyle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="shapes\styles\OutlineStyle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

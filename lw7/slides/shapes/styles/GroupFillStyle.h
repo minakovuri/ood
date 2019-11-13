@@ -1,11 +1,12 @@
 #pragma once
-#include "../IShape.h"
 #include "IStyle.h"
 
-class CShapeGroupFillStyle : public IStyle
+using FillStyleEnumerator = std::function<void(StyleCallback const&)>;
+
+class CGroupFillStyle : public IStyle
 {
 public:
-	CShapeGroupFillStyle(std::shared_ptr<IShape> shapeGroup);
+	CGroupFillStyle(FillStyleEnumerator& enumerator);
 
 	std::optional<RGBAColor> GetColor() const final;
 	void SetColor(RGBAColor color) final;
@@ -14,5 +15,5 @@ public:
 	void SetEnabled(bool enable) final;
 
 private:
-	std::shared_ptr<IShape> m_shapeGroup;
+	FillStyleEnumerator& m_enumerator;
 };

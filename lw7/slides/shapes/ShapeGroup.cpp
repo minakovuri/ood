@@ -1,15 +1,14 @@
 #include "ShapeGroup.h"
-#include "styles/ShapeGroupFillStyle.h"
-#include "styles/ShapeGroupOutlineStyle.h"
+#include "styles/GroupFillStyle.h"
+#include "styles/GroupOutlineStyle.h"
 #include <stdexcept>
 
 CShapeGroup::CShapeGroup()
 {
-	// TODO: прочитать информацию по ссылке
-	auto wptr = std::shared_ptr<CShapeGroup>(this, [](CShapeGroup*) {});
+	/*auto wptr = std::shared_ptr<CShapeGroup>(this, [](CShapeGroup*) {});
 
 	m_fillStyle = std::make_shared<CShapeGroupFillStyle>(shared_from_this());
-	m_outlineStyle = std::make_shared<CShapeGroupOutlineStyle>(shared_from_this());
+	m_outlineStyle = std::make_shared<CShapeGroupOutlineStyle>(shared_from_this());*/
 }
 
 size_t CShapeGroup::GetShapesCount() const
@@ -75,4 +74,18 @@ std::shared_ptr<IStyle> CShapeGroup::GetFillStyle()
 std::shared_ptr<const IStyle> CShapeGroup::GetFillStyle() const
 {
 	return m_fillStyle;
+}
+
+std::shared_ptr<IShapeGroup> CShapeGroup::TryGetGroup()
+{
+	return std::shared_ptr<IShapeGroup>();
+}
+
+std::shared_ptr<const IShapeGroup> CShapeGroup::TryGetGroup() const
+{
+	return std::shared_ptr<const IShapeGroup>();
+}
+
+void CShapeGroup::Draw(const ICanvas& canvas)
+{
 }

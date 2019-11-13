@@ -158,31 +158,31 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="shapes\ShapeGroup.cpp" />
     <ClCompile Include="shapes\SimpleShape.cpp" />
-    <ClCompile Include="shapes\styles\ShapeGroupFillStyle.cpp" />
-    <ClCompile Include="shapes\styles\ShapeGroupOutlineStyle.cpp" />
-    <ClCompile Include="shapes\styles\SimpleShapeFillStyle.cpp" />
-    <ClCompile Include="shapes\styles\SimpleShapeOutlineStyle.cpp" />
-    <ClCompile Include="slide\DrawableSlide.cpp" />
+    <ClCompile Include="shapes\styles\GroupFillStyle.cpp" />
+    <ClCompile Include="shapes\styles\GroupOutlineStyle.cpp" />
+    <ClCompile Include="shapes\styles\FillStyle.cpp" />
+    <ClCompile Include="shapes\styles\OutlineStyle.cpp" />
+    <ClCompile Include="slide\Slide.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="canvas\ICanvas.h" />
     <ClInclude Include="CommonTypes.h" />
     <ClInclude Include="IDrawable.h" />
     <ClInclude Include="shapes\Ellipse.h" />
-    <ClInclude Include="shapes\IDrawableShape.h" />
     <ClInclude Include="shapes\IShape.h" />
+    <ClInclude Include="shapes\IShapeGroup.h" />
     <ClInclude Include="shapes\Rectangle.h" />
     <ClInclude Include="shapes\ShapeGroup.h" />
     <ClInclude Include="shapes\SimpleShape.h" />
     <ClInclude Include="shapes\styles\Colors.h" />
-    <ClInclude Include="shapes\styles\ShapeGroupOutlineStyle.h" />
+    <ClInclude Include="shapes\styles\GroupOutlineStyle.h" />
     <ClInclude Include="shapes\styles\IOutlineStyle.h" />
-    <ClInclude Include="shapes\styles\ShapeGroupFillStyle.h" />
-    <ClInclude Include="shapes\styles\SimpleShapeFillStyle.h" />
+    <ClInclude Include="shapes\styles\GroupFillStyle.h" />
+    <ClInclude Include="shapes\styles\FillStyle.h" />
     <ClInclude Include="shapes\styles\IStyle.h" />
-    <ClInclude Include="shapes\styles\SimpleShapeOutlineStyle.h" />
+    <ClInclude Include="shapes\styles\OutlineStyle.h" />
     <ClInclude Include="shapes\Triangle.h" />
-    <ClInclude Include="slide\DrawableSlide.h" />
+    <ClInclude Include="slide\Slide.h" />
     <ClInclude Include="slide\ISlide.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

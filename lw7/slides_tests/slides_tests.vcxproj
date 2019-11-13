@@ -157,28 +157,31 @@
   <ItemGroup>
     <ClCompile Include="..\slides\shapes\ShapeGroup.cpp" />
     <ClCompile Include="..\slides\shapes\SimpleShape.cpp" />
-    <ClCompile Include="..\slides\shapes\styles\ShapeGroupFillStyle.cpp" />
-    <ClCompile Include="..\slides\shapes\styles\ShapeGroupOutlineStyle.cpp" />
-    <ClCompile Include="..\slides\shapes\styles\SimpleShapeFillStyle.cpp" />
-    <ClCompile Include="..\slides\shapes\styles\SimpleShapeOutlineStyle.cpp" />
-    <ClCompile Include="drawableSlideTest.cpp" />
+    <ClCompile Include="..\slides\shapes\styles\FillStyle.cpp" />
+    <ClCompile Include="..\slides\shapes\styles\GroupFillStyle.cpp" />
+    <ClCompile Include="..\slides\shapes\styles\GroupOutlineStyle.cpp" />
+    <ClCompile Include="..\slides\shapes\styles\OutlineStyle.cpp" />
+    <ClCompile Include="groupOutlineStyleTest.cpp" />
+    <ClCompile Include="mocks\MockStyles.cpp" />
+    <ClCompile Include="slideTest.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="shapeGroupStylesTest.cpp" />
+    <ClCompile Include="groupFillStyleTest.cpp" />
     <ClCompile Include="shapeGroupTest.cpp" />
     <ClCompile Include="simpleShapeTest.cpp" />
-    <ClCompile Include="simpleShapeStylesTest.cpp" />
+    <ClCompile Include="stylesTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\slides\shapes\IShape.h" />
     <ClInclude Include="..\slides\shapes\ShapeGroup.h" />
     <ClInclude Include="..\slides\shapes\SimpleShape.h" />
+    <ClInclude Include="..\slides\shapes\styles\FillStyle.h" />
+    <ClInclude Include="..\slides\shapes\styles\GroupFillStyle.h" />
+    <ClInclude Include="..\slides\shapes\styles\GroupOutlineStyle.h" />
     <ClInclude Include="..\slides\shapes\styles\IOutlineStyle.h" />
     <ClInclude Include="..\slides\shapes\styles\IStyle.h" />
-    <ClInclude Include="..\slides\shapes\styles\ShapeGroupFillStyle.h" />
-    <ClInclude Include="..\slides\shapes\styles\ShapeGroupOutlineStyle.h" />
-    <ClInclude Include="..\slides\shapes\styles\SimpleShapeFillStyle.h" />
-    <ClInclude Include="..\slides\shapes\styles\SimpleShapeOutlineStyle.h" />
+    <ClInclude Include="..\slides\shapes\styles\OutlineStyle.h" />
     <ClInclude Include="Colors.h" />
+    <ClInclude Include="mocks\MockStyles.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

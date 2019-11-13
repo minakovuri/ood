@@ -9,3 +9,5 @@ public:
 
 	virtual ~IOutlineStyle() = default;
 };
+
+using OutlineStyleCallback = std::function<void(IOutlineStyle&)>;

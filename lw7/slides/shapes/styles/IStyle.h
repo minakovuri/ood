@@ -1,4 +1,5 @@
 #pragma once
+#include <functional>
 #include <optional>
 #include "../../CommonTypes.h"
 
@@ -13,3 +14,5 @@ public:
 
 	virtual ~IStyle() = default;
 };
+
+using StyleCallback = std::function<void(IStyle&)>;
