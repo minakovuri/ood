@@ -3,21 +3,10 @@
 #include "styles/FillStyle.h"
 #include "styles/OutlineStyle.h"
 
-CSimpleShape::CSimpleShape(const RectD& frame)
-	: m_frame(frame)
-	, m_outlineStyle(std::make_shared<COutlineStyle>(true, Colors::Black, 1))
+CSimpleShape::CSimpleShape()
+	: m_outlineStyle(std::make_shared<COutlineStyle>(true, Colors::Black, 1))
 	, m_fillStyle(std::make_shared<CFillStyle>(true, Colors::White))
 {
-}
-
-RectD CSimpleShape::GetFrame()
-{
-	return m_frame;
-}
-
-void CSimpleShape::SetFrame(const RectD& rect)
-{
-	m_frame = rect;
 }
 
 std::shared_ptr<IOutlineStyle> CSimpleShape::GetOutlineStyle()
@@ -42,12 +31,12 @@ std::shared_ptr<const IStyle> CSimpleShape::GetFillStyle() const
 
 std::shared_ptr<IShapeGroup> CSimpleShape::TryGetGroup()
 {
-	return std::shared_ptr<IShapeGroup>();
+	return nullptr;
 }
 
 std::shared_ptr<const IShapeGroup> CSimpleShape::TryGetGroup() const
 {
-	return std::shared_ptr<const IShapeGroup>();
+	return nullptr;
 }
 
 void CSimpleShape::Draw(const ICanvas& canvas)

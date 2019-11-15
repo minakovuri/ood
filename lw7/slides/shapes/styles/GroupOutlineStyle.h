@@ -1,12 +1,12 @@
 #pragma once
 #include "IOutlineStyle.h"
 
-using OutlineStyleEnumerator = std::function<void(OutlineStyleCallback const &)>;
+using OutlineStyleEnumerator = std::function<void(OutlineStyleCallback)>;
 
 class CGroupOutlineStyle : public IOutlineStyle
 {
 public:
-	CGroupOutlineStyle(OutlineStyleEnumerator& enumerator);
+	CGroupOutlineStyle(OutlineStyleEnumerator enumerator);
 
 	std::optional<RGBAColor> GetColor() const final;
 	void SetColor(RGBAColor color) final;
@@ -18,5 +18,5 @@ public:
 	void SetThickness(double thikness) final;
 
 private:
-	OutlineStyleEnumerator& m_enumerator;
+	OutlineStyleEnumerator m_enumerator;
 };

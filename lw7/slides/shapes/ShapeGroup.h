@@ -1,11 +1,11 @@
 #pragma once
 #include "IShapeGroup.h"
-#include "IShape.h"
 #include <vector>
 
 class CShapeGroup 
 	: public IShapeGroup
 	, public IShape
+	, public std::enable_shared_from_this<CShapeGroup>
 {
 public:
 	CShapeGroup();

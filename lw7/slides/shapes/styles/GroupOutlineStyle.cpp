@@ -1,7 +1,7 @@
 #include "GroupOutlineStyle.h"
 
-CGroupOutlineStyle::CGroupOutlineStyle(OutlineStyleEnumerator& enumerator)
-	: m_enumerator(enumerator)
+CGroupOutlineStyle::CGroupOutlineStyle(OutlineStyleEnumerator enumerator)
+	: m_enumerator(std::move(enumerator))
 {
 }
 

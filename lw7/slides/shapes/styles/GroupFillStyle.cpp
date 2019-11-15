@@ -1,7 +1,7 @@
 #include "GroupFillStyle.h"
 
-CGroupFillStyle::CGroupFillStyle(FillStyleEnumerator& enumerator)
-	: m_enumerator(enumerator)
+CGroupFillStyle::CGroupFillStyle(FillStyleEnumerator enumerator)
+	: m_enumerator(std::move(enumerator))
 {
 }
 

@@ -21,9 +21,6 @@
     <ClCompile Include="..\slides\shapes\SimpleShape.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="simpleShapeTest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="shapeGroupTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -55,6 +52,30 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="groupOutlineStyleTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\slides\shapes\Rectangle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="rectangleTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\IsRectsEqual.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\slides\shapes\Triangle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="triangleTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\slides\shapes\Ellipse.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ellipseTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mocks\MockSimpleShape.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -90,6 +111,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="mocks\MockStyles.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\slides\shapes\Rectangle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\IsRectsEqual.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\slides\shapes\Triangle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\slides\shapes\Ellipse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mocks\MockSimpleShape.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

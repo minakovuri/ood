@@ -4,25 +4,23 @@
 class CSimpleShape : public IShape
 {
 public:
-	CSimpleShape() = delete;
-	CSimpleShape(const RectD& frame);
+	CSimpleShape();
 
-	RectD GetFrame() override;
-	void SetFrame(const RectD& rect) override;
+	std::shared_ptr<IOutlineStyle> GetOutlineStyle() final;
+	std::shared_ptr<const IOutlineStyle> GetOutlineStyle() const final;
 
-	std::shared_ptr<IOutlineStyle> GetOutlineStyle() override;
-	std::shared_ptr<const IOutlineStyle> GetOutlineStyle() const override;
+	std::shared_ptr<IStyle> GetFillStyle() final;
+	std::shared_ptr<const IStyle> GetFillStyle() const final;
 
-	std::shared_ptr<IStyle> GetFillStyle() override;
-	std::shared_ptr<const IStyle> GetFillStyle() const override;
+	std::shared_ptr<IShapeGroup> TryGetGroup() final;
+	std::shared_ptr<const IShapeGroup> TryGetGroup() const final;
 
-	std::shared_ptr<IShapeGroup> TryGetGroup() override;
-	std::shared_ptr<const IShapeGroup> TryGetGroup() const override;
+	void Draw(const ICanvas& canvas) final;
 
-	void Draw(const ICanvas& canvas) override;
+protected:
+	virtual void DrawBehaviour(const ICanvas& canvas) const = 0;
 
 private:
-	RectD m_frame;
 	std::shared_ptr<IOutlineStyle> m_outlineStyle;
 	std::shared_ptr<IStyle> m_fillStyle;
 };

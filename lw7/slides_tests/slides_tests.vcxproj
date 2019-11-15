@@ -155,23 +155,32 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\slides\shapes\Ellipse.cpp" />
+    <ClCompile Include="..\slides\shapes\Rectangle.cpp" />
     <ClCompile Include="..\slides\shapes\ShapeGroup.cpp" />
     <ClCompile Include="..\slides\shapes\SimpleShape.cpp" />
     <ClCompile Include="..\slides\shapes\styles\FillStyle.cpp" />
     <ClCompile Include="..\slides\shapes\styles\GroupFillStyle.cpp" />
     <ClCompile Include="..\slides\shapes\styles\GroupOutlineStyle.cpp" />
     <ClCompile Include="..\slides\shapes\styles\OutlineStyle.cpp" />
+    <ClCompile Include="..\slides\shapes\Triangle.cpp" />
+    <ClCompile Include="ellipseTest.cpp" />
     <ClCompile Include="groupOutlineStyleTest.cpp" />
+    <ClCompile Include="mocks\MockSimpleShape.cpp" />
     <ClCompile Include="mocks\MockStyles.cpp" />
+    <ClCompile Include="rectangleTest.cpp" />
     <ClCompile Include="slideTest.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="groupFillStyleTest.cpp" />
     <ClCompile Include="shapeGroupTest.cpp" />
-    <ClCompile Include="simpleShapeTest.cpp" />
     <ClCompile Include="stylesTest.cpp" />
+    <ClCompile Include="triangleTest.cpp" />
+    <ClCompile Include="utils\IsRectsEqual.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\slides\shapes\Ellipse.h" />
     <ClInclude Include="..\slides\shapes\IShape.h" />
+    <ClInclude Include="..\slides\shapes\Rectangle.h" />
     <ClInclude Include="..\slides\shapes\ShapeGroup.h" />
     <ClInclude Include="..\slides\shapes\SimpleShape.h" />
     <ClInclude Include="..\slides\shapes\styles\FillStyle.h" />
@@ -180,8 +189,11 @@
     <ClInclude Include="..\slides\shapes\styles\IOutlineStyle.h" />
     <ClInclude Include="..\slides\shapes\styles\IStyle.h" />
     <ClInclude Include="..\slides\shapes\styles\OutlineStyle.h" />
+    <ClInclude Include="..\slides\shapes\Triangle.h" />
     <ClInclude Include="Colors.h" />
+    <ClInclude Include="mocks\MockSimpleShape.h" />
     <ClInclude Include="mocks\MockStyles.h" />
+    <ClInclude Include="utils\IsRectsEqual.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

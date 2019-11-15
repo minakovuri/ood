@@ -1,14 +1,28 @@
 #include "ShapeGroup.h"
 #include "styles/GroupFillStyle.h"
 #include "styles/GroupOutlineStyle.h"
+#include <algorithm>
 #include <stdexcept>
 
 CShapeGroup::CShapeGroup()
 {
-	/*auto wptr = std::shared_ptr<CShapeGroup>(this, [](CShapeGroup*) {});
+	FillStyleEnumerator fsEnumerator = [this](StyleCallback func) {
+		for (auto&& shape : m_shapes)
+		{
+			func(*shape->GetFillStyle());
+		}
+	};
+	m_fillStyle = std::make_shared<CGroupFillStyle>(fsEnumerator);
 
-	m_fillStyle = std::make_shared<CShapeGroupFillStyle>(shared_from_this());
-	m_outlineStyle = std::make_shared<CShapeGroupOutlineStyle>(shared_from_this());*/
+	OutlineStyleEnumerator osEnumerator = [this](OutlineStyleCallback func) {
+		for (auto&& shape : m_shapes)
+		{
+			func(*shape->GetOutlineStyle());
+		}
+	};
+	m_outlineStyle = std::make_shared<CGroupOutlineStyle>(osEnumerator);
+
+	const auto _ = std::shared_ptr<CShapeGroup>(this, [](CShapeGroup*) {});
 }
 
 size_t CShapeGroup::GetShapesCount() const
@@ -49,7 +63,30 @@ void CShapeGroup::RemoveShapeAtIndex(size_t index)
 
 RectD CShapeGroup::GetFrame()
 {
-	return RectD();
+	if (m_shapes.empty())
+	{
+		return RectD{ 0, 0, 0, 0 };
+	}
+
+	auto firstShapeFrame = m_shapes[0]->GetFrame();
+
+	double minX = firstShapeFrame.left;
+	double minY = firstShapeFrame.top;
+	double maxX = firstShapeFrame.left + firstShapeFrame.width;
+	double maxY = firstShapeFrame.top + firstShapeFrame.height;
+
+	for (size_t i = 0; i < GetShapesCount(); i++)
+	{
+		auto shapeFrame = m_shapes[i]->GetFrame();
+
+		minX = std::min(minX, shapeFrame.left);
+		minY = std::min(minY, shapeFrame.top);
+
+		maxX = std::max(maxX, shapeFrame.left + shapeFrame.width);
+		maxY = std::max(maxY, shapeFrame.top + shapeFrame.height);
+	}
+
+	return RectD{ minX, minY, maxX - minX, maxY - minY };
 }
 
 void CShapeGroup::SetFrame(const RectD& rect)
@@ -78,12 +115,12 @@ std::shared_ptr<const IStyle> CShapeGroup::GetFillStyle() const
 
 std::shared_ptr<IShapeGroup> CShapeGroup::TryGetGroup()
 {
-	return std::shared_ptr<IShapeGroup>();
+	return shared_from_this();
 }
 
 std::shared_ptr<const IShapeGroup> CShapeGroup::TryGetGroup() const
 {
-	return std::shared_ptr<const IShapeGroup>();
+	return shared_from_this();
 }
 
 void CShapeGroup::Draw(const ICanvas& canvas)

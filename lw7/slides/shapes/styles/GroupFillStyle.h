@@ -1,12 +1,12 @@
 #pragma once
 #include "IStyle.h"
 
-using FillStyleEnumerator = std::function<void(StyleCallback const&)>;
+using FillStyleEnumerator = std::function<void(StyleCallback)>;
 
 class CGroupFillStyle : public IStyle
 {
 public:
-	CGroupFillStyle(FillStyleEnumerator& enumerator);
+	CGroupFillStyle(FillStyleEnumerator enumerator);
 
 	std::optional<RGBAColor> GetColor() const final;
 	void SetColor(RGBAColor color) final;
@@ -15,5 +15,5 @@ public:
 	void SetEnabled(bool enable) final;
 
 private:
-	FillStyleEnumerator& m_enumerator;
+	FillStyleEnumerator m_enumerator;
 };

@@ -39,6 +39,15 @@
     <ClCompile Include="shapes\styles\OutlineStyle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="shapes\Rectangle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="shapes\Triangle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="shapes\Ellipse.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="canvas\ICanvas.h">
@@ -96,6 +105,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="shapes\styles\OutlineStyle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="shapes\Point.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
