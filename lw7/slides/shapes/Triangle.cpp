@@ -37,7 +37,15 @@ void CTriangle::SetFrame(const RectD& rect)
 
 void CTriangle::DrawBehaviour(ICanvas& canvas) const
 {
-	canvas.DrawLine(m_vertex1, m_vertex2);
-	canvas.DrawLine(m_vertex2, m_vertex3);
-	canvas.DrawLine(m_vertex3, m_vertex1);
+	if (*GetOutlineStyle()->IsEnabled())
+	{
+		canvas.DrawLine(m_vertex1, m_vertex2);
+		canvas.DrawLine(m_vertex2, m_vertex3);
+		canvas.DrawLine(m_vertex3, m_vertex1);
+	}
+
+	if (*GetFillStyle()->IsEnabled())
+	{
+		canvas.FillPolygon(std::vector<PointD>{ m_vertex1, m_vertex2, m_vertex3 });
+	}
 }

@@ -39,8 +39,7 @@ TEST_CASE("draw ellipse")
 	ellipse.Draw(canvas);
 
 	stringstream expectedResultStream;
-	expectedResultStream << "Set fill color #" << Colors::Red << endl
-						 << "Draw #" << Colors::Red << " ellipse with " << Colors::Blue << " outline color and 1.5 thickness "
+	expectedResultStream << "Draw #" << Colors::Red << " ellipse with " << Colors::Blue << " outline color and 1.5 thickness "
 						 << "with left top at {30;40}, width 40 and height 20"
 						 << endl;
 

@@ -1,8 +1,8 @@
 #include "../../catch.hpp"
-#include "../slides/shapes/Triangle.h"
 #include "../slides/canvas/StreamCanvas.h"
-#include "utils/IsRectsEqual.h"
+#include "../slides/shapes/Triangle.h"
 #include "Colors.h"
+#include "utils/IsRectsEqual.h"
 #include <sstream>
 
 using namespace std;
@@ -39,10 +39,13 @@ TEST_CASE("draw triangle")
 	triangle.Draw(canvas);
 
 	stringstream expectedResultStream;
-	expectedResultStream << "Set fill color #" << Colors::Red << std::endl
-						 << "Draw #" << Colors::Blue << " line with 1.5 thickness from {30;20} to {20;40}" << std::endl
+	expectedResultStream << "Draw #" << Colors::Blue << " line with 1.5 thickness from {30;20} to {20;40}" << std::endl
 						 << "Draw #" << Colors::Blue << " line with 1.5 thickness from {20;40} to {40;50}" << std::endl
-						 << "Draw #" << Colors::Blue << " line with 1.5 thickness from {40;50} to {30;20}" << std::endl;
+						 << "Draw #" << Colors::Blue << " line with 1.5 thickness from {40;50} to {30;20}" << std::endl
+						 << "Fill polygon with color #" << Colors::Red << std::endl
+						 << "Vertex {30;20}" << std::endl
+						 << "Vertex {20;40}" << std::endl
+						 << "Vertex {40;50}" << std::endl;
 
 	CHECK(outputStream.str() == expectedResultStream.str());
 }

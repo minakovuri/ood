@@ -42,13 +42,13 @@ std::shared_ptr<const IShapeGroup> CSimpleShape::TryGetGroup() const
 void CSimpleShape::Draw(ICanvas& canvas)
 {
 	auto fillStyle = GetFillStyle();
-	if (fillStyle->IsEnabled())
+	if (*fillStyle->IsEnabled())
 	{
 		canvas.SetFillColor(*fillStyle->GetColor());
 	}
 
 	auto outlineStyle = GetOutlineStyle();
-	if (outlineStyle->IsEnabled())
+	if (*outlineStyle->IsEnabled())
 	{
 		canvas.SetLineColor(*outlineStyle->GetColor());
 		canvas.SetLineThikness(*outlineStyle->GetThickness());

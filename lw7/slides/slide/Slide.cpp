@@ -1,13 +1,20 @@
 #include "Slide.h"
+#include <stdexcept>
+
+CSlide::CSlide(double width, double height)
+	: m_width(width)
+	, m_height(height)
+{
+}
 
 double CSlide::GetWidth() const
 {
-	return 0.0;
+	return m_width;
 }
 
 double CSlide::GetHeight() const
 {
-	return 0.0;
+	return m_height;
 }
 
 size_t CSlide::GetShapesCount() const
@@ -17,26 +24,39 @@ size_t CSlide::GetShapesCount() const
 
 void CSlide::InsertShape(std::shared_ptr<IShape> shape, size_t position)
 {
+	if (position == std::numeric_limits<size_t>::max())
+	{
+		m_shapes.push_back(shape);
+	}
+	else if (position > GetShapesCount() - 1)
+	{
+		throw std::out_of_range("requested index is out of range");
+	}
+	else
+	{
+		m_shapes.insert(m_shapes.begin() + position, shape);
+	}
 }
 
 std::shared_ptr<IShape> CSlide::GetShapeAtIndex(size_t index) const
 {
-	return std::shared_ptr<IShape>();
+	return m_shapes.at(index);
 }
 
 void CSlide::RemoveShapeAtIndex(size_t index)
 {
+	if (index > GetShapesCount() - 1)
+	{
+		throw std::out_of_range("requested index is out of range");
+	}
+
+	m_shapes.erase(m_shapes.begin() + index);
 }
 
 void CSlide::Draw(ICanvas& canvas)
 {
-	for (size_t i = 0; i < GetShapesCount(); i++)
+	for (auto&& shape : m_shapes)
 	{
-		auto shape = GetShapeAtIndex(i);
 		shape->Draw(canvas);
 	}
-}
-
-CSlide::~CSlide()
-{
 }

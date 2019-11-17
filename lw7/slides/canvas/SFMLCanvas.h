@@ -1,11 +1,11 @@
 #pragma once
 #include "ICanvas.h"
-#include <ostream>
+#include <SFML/Graphics.hpp>
 
-class CStreamCanvas : public ICanvas
+class CSFMLCanvas : public ICanvas
 {
 public:
-	CStreamCanvas(std::ostream& stream);
+	CSFMLCanvas(sf::RenderWindow& renderWindow);
 
 	void DrawLine(const PointD& startPoint, const PointD& endPoint) override;
 	void DrawEllipse(const PointD& leftTop, double width, double height) override;
@@ -16,9 +16,9 @@ public:
 	void SetLineThikness(double thickness) override;
 
 private:
-	std::ostream& m_stream;
+	sf::RenderWindow& m_renderWindow;
 
-	RGBAColor m_fillColor;
-	RGBAColor m_lineColor;
-	double m_lineThikness;
+	sf::Color m_fillColor;
+	sf::Color m_outlineColor;
+	float m_lineThickness = 0;
 };

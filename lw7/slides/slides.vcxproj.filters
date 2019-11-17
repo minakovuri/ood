@@ -51,6 +51,9 @@
     <ClCompile Include="canvas\StreamCanvas.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="canvas\SFMLCanvas.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="canvas\ICanvas.h">
@@ -111,6 +114,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Colors.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="canvas\SFMLCanvas.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

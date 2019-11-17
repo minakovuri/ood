@@ -24,10 +24,19 @@ void CStreamCanvas::DrawEllipse(const PointD& leftTop, double width, double heig
 			 << std::endl;
 }
 
+void CStreamCanvas::FillPolygon(const std::vector<PointD>& vertices)
+{
+	m_stream << "Fill polygon with color #" << m_fillColor << std::endl;
+
+	for (auto vertex : vertices)
+	{
+		m_stream << "Vertex {" << vertex.x << ";" << vertex.y << "}" << std::endl;
+	}
+}
+
 void CStreamCanvas::SetFillColor(RGBAColor color)
 {
 	m_fillColor = color;
-	m_stream << "Set fill color #" << color << std::endl;
 }
 
 void CStreamCanvas::SetLineColor(RGBAColor color)

@@ -1,8 +1,10 @@
 #include "../../catch.hpp"
-#include "../slides/shapes/ShapeGroup.h"
 #include "../slides/Colors.h"
+#include "../slides/shapes/ShapeGroup.h"
+#include "../slides/canvas/StreamCanvas.h"
 #include "mocks/MockSimpleShape.h"
 #include "utils/IsRectsEqual.h"
+#include <sstream>
 
 using namespace std;
 
@@ -200,4 +202,34 @@ TEST_CASE("set shape group frame")
 
 	CHECK(IsRectsEqual(shape1->GetFrame(), RectD{ 20, 20, 15, 20 }));
 	CHECK(IsRectsEqual(shape2->GetFrame(), RectD{ 35, 40, 15, 20 }));
+}
+
+TEST_CASE("draw shape group")
+{
+	shared_ptr<IShape> shape1 = make_shared<CMockSimpleShape>(RectD{ 10, 10, 10, 10 });
+	shared_ptr<IShape> shape2 = make_shared<CMockSimpleShape>(RectD{ 20, 20, 10, 10 });
+
+	shape1->GetFillStyle()->SetColor(Colors::Red);
+	shape2->GetFillStyle()->SetColor(Colors::Pink);
+
+	CShapeGroup shapeGroup;
+	shapeGroup.InsertShape(shape1);
+	shapeGroup.InsertShape(shape2);
+
+	shapeGroup.GetFillStyle()->SetEnabled(true);
+
+	shapeGroup.GetOutlineStyle()->SetEnabled(true);
+	shapeGroup.GetOutlineStyle()->SetColor(Colors::Blue);
+	shapeGroup.GetOutlineStyle()->SetThickness(1.5);
+
+	stringstream outputStream;
+	CStreamCanvas canvas(outputStream);
+
+	shapeGroup.Draw(canvas);
+
+	stringstream expectedResultStream;
+	expectedResultStream << "Draw #" << Colors::Blue << " line with 1.5 thickness from {10;10} to {20;20}" << std::endl
+						 << "Draw #" << Colors::Blue << " line with 1.5 thickness from {20;20} to {30;30}" << std::endl;
+
+	CHECK(outputStream.str() == expectedResultStream.str());
 }

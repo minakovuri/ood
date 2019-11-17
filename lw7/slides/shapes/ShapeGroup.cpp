@@ -139,4 +139,8 @@ std::shared_ptr<const IShapeGroup> CShapeGroup::TryGetGroup() const
 
 void CShapeGroup::Draw(ICanvas& canvas)
 {
+	for (auto&& shape : m_shapes)
+	{
+		shape->Draw(canvas);
+	}
 }

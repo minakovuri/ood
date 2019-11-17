@@ -17,4 +17,8 @@ void CMockSimpleShape::SetFrame(const RectD& rect)
 
 void CMockSimpleShape::DrawBehaviour(ICanvas& canvas) const
 {
+	auto leftTop = PointD{ m_frame.left, m_frame.top };
+	auto rightBottom = PointD{ m_frame.left + m_frame.width, m_frame.top + m_frame.height };
+
+	canvas.DrawLine(leftTop, rightBottom);
 }

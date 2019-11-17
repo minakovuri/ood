@@ -27,8 +27,16 @@ void CRectangle::DrawBehaviour(ICanvas& canvas) const
 	PointD rightTop{ m_rightBottom.x, m_leftTop.y };
 	PointD leftBottom{ m_leftTop.x, m_rightBottom.y };
 
-	canvas.DrawLine(m_leftTop, rightTop);
-	canvas.DrawLine(rightTop, m_rightBottom);
-	canvas.DrawLine(m_rightBottom, leftBottom);
-	canvas.DrawLine(leftBottom, m_leftTop);
+	if (*GetOutlineStyle()->IsEnabled())
+	{
+		canvas.DrawLine(m_leftTop, rightTop);
+		canvas.DrawLine(rightTop, m_rightBottom);
+		canvas.DrawLine(m_rightBottom, leftBottom);
+		canvas.DrawLine(leftBottom, m_leftTop);
+	}
+
+	if (*GetFillStyle()->IsEnabled())
+	{
+		canvas.FillPolygon(std::vector<PointD>{ m_leftTop, rightTop, m_rightBottom, leftBottom });
+	}
 }

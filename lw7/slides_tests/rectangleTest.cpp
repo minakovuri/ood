@@ -39,11 +39,15 @@ TEST_CASE("draw rectangle")
 	rectangle.Draw(canvas);
 
 	stringstream expectedResultStream;
-	expectedResultStream << "Set fill color #" << Colors::Red << std::endl
-						 << "Draw #" << Colors::Blue << " line with 1.5 thickness from {10;10} to {60;10}" << std::endl
+	expectedResultStream << "Draw #" << Colors::Blue << " line with 1.5 thickness from {10;10} to {60;10}" << std::endl
 						 << "Draw #" << Colors::Blue << " line with 1.5 thickness from {60;10} to {60;50}" << std::endl
 						 << "Draw #" << Colors::Blue << " line with 1.5 thickness from {60;50} to {10;50}" << std::endl
-						 << "Draw #" << Colors::Blue << " line with 1.5 thickness from {10;50} to {10;10}" << std::endl;
+						 << "Draw #" << Colors::Blue << " line with 1.5 thickness from {10;50} to {10;10}" << std::endl
+						 << "Fill polygon with color #" << Colors::Red << std::endl
+						 << "Vertex {10;10}" << std::endl
+						 << "Vertex {60;10}" << std::endl
+						 << "Vertex {60;50}" << std::endl
+						 << "Vertex {10;50}" << std::endl;
 
 	CHECK(outputStream.str() == expectedResultStream.str());
 }
