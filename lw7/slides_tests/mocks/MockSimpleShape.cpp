@@ -15,6 +15,6 @@ void CMockSimpleShape::SetFrame(const RectD& rect)
 	m_frame = rect;
 }
 
-void CMockSimpleShape::DrawBehaviour(const ICanvas& canvas) const
+void CMockSimpleShape::DrawBehaviour(ICanvas& canvas) const
 {
 }

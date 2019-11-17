@@ -1,6 +1,6 @@
 #include "../../catch.hpp"
 #include "../slides/shapes/ShapeGroup.h"
-#include "Colors.h"
+#include "../slides/Colors.h"
 #include "mocks/MockSimpleShape.h"
 #include "utils/IsRectsEqual.h"
 
@@ -189,5 +189,15 @@ TEST_CASE("get shape group frame")
 
 TEST_CASE("set shape group frame")
 {
+	shared_ptr<IShape> shape1 = make_shared<CMockSimpleShape>(RectD{ 10, 10, 10, 10 });
+	shared_ptr<IShape> shape2 = make_shared<CMockSimpleShape>(RectD{ 20, 20, 10, 10 });
 
+	CShapeGroup shapeGroup;
+	shapeGroup.InsertShape(shape1);
+	shapeGroup.InsertShape(shape2);
+
+	shapeGroup.SetFrame(RectD{ 20, 20, 30, 40 });
+
+	CHECK(IsRectsEqual(shape1->GetFrame(), RectD{ 20, 20, 15, 20 }));
+	CHECK(IsRectsEqual(shape2->GetFrame(), RectD{ 35, 40, 15, 20 }));
 }

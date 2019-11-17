@@ -75,9 +75,9 @@ RectD CShapeGroup::GetFrame()
 	double maxX = firstShapeFrame.left + firstShapeFrame.width;
 	double maxY = firstShapeFrame.top + firstShapeFrame.height;
 
-	for (size_t i = 0; i < GetShapesCount(); i++)
+	for (auto&& shape : m_shapes)
 	{
-		auto shapeFrame = m_shapes[i]->GetFrame();
+		auto shapeFrame = shape->GetFrame();
 
 		minX = std::min(minX, shapeFrame.left);
 		minY = std::min(minY, shapeFrame.top);
@@ -91,6 +91,20 @@ RectD CShapeGroup::GetFrame()
 
 void CShapeGroup::SetFrame(const RectD& rect)
 {
+	auto currentGroupFrame = GetFrame();
+
+	for (auto&& shape : m_shapes)
+	{
+		auto shapeFrame = shape->GetFrame();
+
+		double newShapeLeft = rect.left + (shapeFrame.left - currentGroupFrame.left) / currentGroupFrame.width * rect.width;
+		double newShapeTop = rect.top + (shapeFrame.top - currentGroupFrame.top) / currentGroupFrame.height * rect.height;
+		double newShapeWidth = shapeFrame.width / currentGroupFrame.width * rect.width;
+		double newShapeHeight = shapeFrame.height / currentGroupFrame.height * rect.height;
+
+		auto newShapeFrame = RectD{ newShapeLeft, newShapeTop, newShapeWidth, newShapeHeight };
+		shape->SetFrame(newShapeFrame);
+	}
 }
 
 std::shared_ptr<IOutlineStyle> CShapeGroup::GetOutlineStyle()
@@ -123,6 +137,6 @@ std::shared_ptr<const IShapeGroup> CShapeGroup::TryGetGroup() const
 	return shared_from_this();
 }
 
-void CShapeGroup::Draw(const ICanvas& canvas)
+void CShapeGroup::Draw(ICanvas& canvas)
 {
 }

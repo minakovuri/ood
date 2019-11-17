@@ -1,7 +1,7 @@
 #include "Triangle.h"
 #include <algorithm>
 
-CTriangle::CTriangle(const SPoint& vertex1, const SPoint& vertex2, const SPoint& vertex3)
+CTriangle::CTriangle(const PointD& vertex1, const PointD& vertex2, const PointD& vertex3)
 	: m_vertex1(vertex1)
 	, m_vertex2(vertex2)
 	, m_vertex3(vertex3)
@@ -23,11 +23,11 @@ void CTriangle::SetFrame(const RectD& rect)
 {
 	const auto currentFrame = GetFrame();
 
-	std::function updateVertexFn = [&](SPoint& vertex) {
+	std::function updateVertexFn = [&](PointD& vertex) {
 		const auto scaleX = (vertex.x - currentFrame.left) / currentFrame.width;
 		const auto scaleY = (vertex.y - currentFrame.top) / currentFrame.height;
 
-		vertex = SPoint{ rect.left + rect.width * scaleX, rect.top + rect.height * scaleY };
+		vertex = PointD{ rect.left + rect.width * scaleX, rect.top + rect.height * scaleY };
 	};
 
 	updateVertexFn(m_vertex1);
@@ -35,6 +35,9 @@ void CTriangle::SetFrame(const RectD& rect)
 	updateVertexFn(m_vertex3);
 }
 
-void CTriangle::DrawBehaviour(const ICanvas& canvas) const
+void CTriangle::DrawBehaviour(ICanvas& canvas) const
 {
+	canvas.DrawLine(m_vertex1, m_vertex2);
+	canvas.DrawLine(m_vertex2, m_vertex3);
+	canvas.DrawLine(m_vertex3, m_vertex1);
 }

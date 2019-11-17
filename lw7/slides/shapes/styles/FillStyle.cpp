@@ -1,9 +1,8 @@
 #include "FillStyle.h"
-
-const RGBAColor DEFAULT_COLOR = 0xFFFFFF;
+#include "../..//Colors.h"
 
 CFillStyle::CFillStyle()
-	: m_color(DEFAULT_COLOR)
+	: m_color(Colors::White)
 	, m_isEnabled(false)
 {
 }

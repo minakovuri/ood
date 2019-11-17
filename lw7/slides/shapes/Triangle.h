@@ -1,20 +1,20 @@
 #pragma once
-#include "Point.h"
+#include "../CommonTypes.h"
 #include "SimpleShape.h"
 
 class CTriangle : public CSimpleShape
 {
 public:
-	CTriangle(const SPoint& vertex1, const SPoint& vertex2, const SPoint& vertex3);
+	CTriangle(const PointD& vertex1, const PointD& vertex2, const PointD& vertex3);
 
 	RectD GetFrame() override;
 	void SetFrame(const RectD& rect) override;
 
 protected:
-	void DrawBehaviour(const ICanvas& canvas) const override;
+	void DrawBehaviour(ICanvas& canvas) const override;
 
 private:
-	SPoint m_vertex1;
-	SPoint m_vertex2;
-	SPoint m_vertex3;
+	PointD m_vertex1;
+	PointD m_vertex2;
+	PointD m_vertex3;
 };

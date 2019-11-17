@@ -28,7 +28,7 @@ void CSlide::RemoveShapeAtIndex(size_t index)
 {
 }
 
-void CSlide::Draw(const ICanvas& canvas)
+void CSlide::Draw(ICanvas& canvas)
 {
 	for (size_t i = 0; i < GetShapesCount(); i++)
 	{

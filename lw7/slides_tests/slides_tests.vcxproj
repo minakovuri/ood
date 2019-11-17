@@ -155,6 +155,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\slides\canvas\StreamCanvas.cpp" />
     <ClCompile Include="..\slides\shapes\Ellipse.cpp" />
     <ClCompile Include="..\slides\shapes\Rectangle.cpp" />
     <ClCompile Include="..\slides\shapes\ShapeGroup.cpp" />
@@ -178,6 +179,9 @@
     <ClCompile Include="utils\IsRectsEqual.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\slides\canvas\ICanvas.h" />
+    <ClInclude Include="..\slides\canvas\StreamCanvas.h" />
+    <ClInclude Include="..\slides\Colors.h" />
     <ClInclude Include="..\slides\shapes\Ellipse.h" />
     <ClInclude Include="..\slides\shapes\IShape.h" />
     <ClInclude Include="..\slides\shapes\Rectangle.h" />
@@ -190,7 +194,6 @@
     <ClInclude Include="..\slides\shapes\styles\IStyle.h" />
     <ClInclude Include="..\slides\shapes\styles\OutlineStyle.h" />
     <ClInclude Include="..\slides\shapes\Triangle.h" />
-    <ClInclude Include="Colors.h" />
     <ClInclude Include="mocks\MockSimpleShape.h" />
     <ClInclude Include="mocks\MockStyles.h" />
     <ClInclude Include="utils\IsRectsEqual.h" />

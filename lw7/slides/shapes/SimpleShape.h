@@ -15,10 +15,10 @@ public:
 	std::shared_ptr<IShapeGroup> TryGetGroup() final;
 	std::shared_ptr<const IShapeGroup> TryGetGroup() const final;
 
-	void Draw(const ICanvas& canvas) final;
+	void Draw(ICanvas& canvas) final;
 
 protected:
-	virtual void DrawBehaviour(const ICanvas& canvas) const = 0;
+	virtual void DrawBehaviour(ICanvas& canvas) const = 0;
 
 private:
 	std::shared_ptr<IOutlineStyle> m_outlineStyle;

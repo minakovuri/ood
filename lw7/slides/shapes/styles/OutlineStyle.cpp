@@ -1,9 +1,8 @@
 #include "OutlineStyle.h"
-
-const RGBAColor DEFAULT_COLOR = 0x000000;
+#include "../../Colors.h"
 
 COutlineStyle::COutlineStyle()
-	: m_color(DEFAULT_COLOR)
+	: m_color(Colors::Black)
 	, m_isEnabled(true)
 	, m_thickness(1.0)
 {

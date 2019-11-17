@@ -155,6 +155,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="canvas\StreamCanvas.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="shapes\Ellipse.cpp" />
     <ClCompile Include="shapes\Rectangle.cpp" />
@@ -169,16 +170,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="canvas\ICanvas.h" />
+    <ClInclude Include="canvas\StreamCanvas.h" />
+    <ClInclude Include="Colors.h" />
     <ClInclude Include="CommonTypes.h" />
     <ClInclude Include="IDrawable.h" />
     <ClInclude Include="shapes\Ellipse.h" />
     <ClInclude Include="shapes\IShape.h" />
     <ClInclude Include="shapes\IShapeGroup.h" />
-    <ClInclude Include="shapes\Point.h" />
     <ClInclude Include="shapes\Rectangle.h" />
     <ClInclude Include="shapes\ShapeGroup.h" />
     <ClInclude Include="shapes\SimpleShape.h" />
-    <ClInclude Include="shapes\styles\Colors.h" />
     <ClInclude Include="shapes\styles\GroupOutlineStyle.h" />
     <ClInclude Include="shapes\styles\IOutlineStyle.h" />
     <ClInclude Include="shapes\styles\GroupFillStyle.h" />

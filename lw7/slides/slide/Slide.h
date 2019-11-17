@@ -13,7 +13,7 @@ public:
 	std::shared_ptr<IShape> GetShapeAtIndex(size_t index) const override;
 	void RemoveShapeAtIndex(size_t index) override;
 
-	void Draw(const ICanvas& canvas) override;
+	void Draw(ICanvas& canvas) override;
 
 	~CSlide();
 

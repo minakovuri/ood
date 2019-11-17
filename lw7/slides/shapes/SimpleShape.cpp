@@ -1,5 +1,5 @@
 #include "SimpleShape.h"
-#include "styles/Colors.h"
+#include "../Colors.h"
 #include "styles/FillStyle.h"
 #include "styles/OutlineStyle.h"
 
@@ -39,6 +39,20 @@ std::shared_ptr<const IShapeGroup> CSimpleShape::TryGetGroup() const
 	return nullptr;
 }
 
-void CSimpleShape::Draw(const ICanvas& canvas)
+void CSimpleShape::Draw(ICanvas& canvas)
 {
+	auto fillStyle = GetFillStyle();
+	if (fillStyle->IsEnabled())
+	{
+		canvas.SetFillColor(*fillStyle->GetColor());
+	}
+
+	auto outlineStyle = GetOutlineStyle();
+	if (outlineStyle->IsEnabled())
+	{
+		canvas.SetLineColor(*outlineStyle->GetColor());
+		canvas.SetLineThikness(*outlineStyle->GetThickness());
+	}
+
+	DrawBehaviour(canvas);
 }

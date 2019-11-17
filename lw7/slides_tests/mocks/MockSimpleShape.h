@@ -10,7 +10,7 @@ public:
 	void SetFrame(const RectD& rect) final;
 
 protected:
-	void DrawBehaviour(const ICanvas& canvas) const final;
+	void DrawBehaviour(ICanvas& canvas) const final;
 
 private:
 	RectD m_frame;

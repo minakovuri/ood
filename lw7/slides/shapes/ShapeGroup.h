@@ -27,7 +27,7 @@ public:
 	std::shared_ptr<IShapeGroup> TryGetGroup() override;
 	std::shared_ptr<const IShapeGroup> TryGetGroup() const override;
 
-	void Draw(const ICanvas& canvas) override;
+	void Draw(ICanvas& canvas) override;
 
 private:
 	std::shared_ptr<IOutlineStyle> m_outlineStyle;
