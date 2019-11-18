@@ -1,8 +1,7 @@
 #pragma once
-#include "../IDrawable.h"
 #include "IShape.h"
 
-class IShapeGroup : public IDrawable
+class IShapeGroup : public IShape
 {
 public:
 	virtual size_t GetShapesCount() const = 0;

@@ -4,7 +4,6 @@
 
 class CShapeGroup 
 	: public IShapeGroup
-	, public IShape
 	, public std::enable_shared_from_this<CShapeGroup>
 {
 public:

@@ -85,14 +85,6 @@ void DrawWithGraphicApi(std::shared_ptr<ISlide> slide)
 
 		renderWindow.clear(sf::Color::Black);
 		slide->Draw(sfmlCanvas);
-
-		/*sf::Vertex line[2] = {
-			sf::Vertex(sf::Vector2f(100, 100), sf::Color(HousePalette::WindowFrameColor)),
-			sf::Vertex(sf::Vector2f(200, 200), sf::Color(HousePalette::WindowFrameColor)),
-		};
-
-		renderWindow.draw(line, 100, sf::Lines);*/
-
 		renderWindow.display();
 	}
 }

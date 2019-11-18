@@ -7,12 +7,14 @@ CGroupOutlineStyle::CGroupOutlineStyle(OutlineStyleEnumerator enumerator)
 
 std::optional<RGBAColor> CGroupOutlineStyle::GetColor() const
 {
-	std::optional<RGBAColor> color;
+	std::optional<RGBAColor> color = std::nullopt;
+	bool isInit = false;
 
 	m_enumerator([&](IOutlineStyle& style) {
-		if (!color)
+		if (!isInit)
 		{
 			color = style.GetColor();
+			isInit = true;
 		}
 		else if (color != style.GetColor())
 		{
@@ -32,12 +34,14 @@ void CGroupOutlineStyle::SetColor(RGBAColor color)
 
 std::optional<bool> CGroupOutlineStyle::IsEnabled() const
 {
-	std::optional<bool> isEnabled;
+	std::optional<bool> isEnabled = std::nullopt;
+	bool isInit = false;
 
 	m_enumerator([&](IOutlineStyle& style) {
-		if (!isEnabled)
+		if (!isInit)
 		{
 			isEnabled = style.IsEnabled();
+			isInit = true;
 		}
 		else if (isEnabled != style.IsEnabled())
 		{
@@ -57,12 +61,14 @@ void CGroupOutlineStyle::SetEnabled(bool enable)
 
 std::optional<double> CGroupOutlineStyle::GetThickness() const
 {
-	std::optional<double> thickness;
+	std::optional<double> thickness = std::nullopt;
+	bool isInit = false;
 
 	m_enumerator([&](IOutlineStyle& style) {
-		if (!thickness)
+		if (!isInit)
 		{
 			thickness = style.GetThickness();
+			isInit = true;
 		}
 		else if (thickness != style.GetThickness())
 		{

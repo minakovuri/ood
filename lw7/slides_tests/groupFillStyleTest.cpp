@@ -8,10 +8,12 @@ TEST_CASE("get undefined fill group color")
 {
 	shared_ptr<IStyle> style1 = make_shared<CMockStyle>(Colors::Red, false);
 	shared_ptr<IStyle> style2 = make_shared<CMockStyle>(Colors::Yellow, false);
+	shared_ptr<IStyle> style3 = make_shared<CMockStyle>(Colors::Blue, false);
 
-	FillStyleEnumerator enumerator = [style1, style2](function<void(IStyle&)> func) {
+	FillStyleEnumerator enumerator = [style1, style2, style3](function<void(IStyle&)> func) {
 		func(*style1);
 		func(*style2);
+		func(*style3);
 	};
 
 	CGroupFillStyle groupStyle(enumerator);
@@ -36,10 +38,12 @@ TEST_CASE("get undefined fill group style enabled value")
 {
 	shared_ptr<IStyle> style1 = make_shared<CMockStyle>(Colors::Red, false);
 	shared_ptr<IStyle> style2 = make_shared<CMockStyle>(Colors::Red, true);
+	shared_ptr<IStyle> style3 = make_shared<CMockStyle>(Colors::Red, false);
 
-	FillStyleEnumerator enumerator = [style1, style2](function<void(IStyle&)> func) {
+	FillStyleEnumerator enumerator = [style1, style2, style3](function<void(IStyle&)> func) {
 		func(*style1);
 		func(*style2);
+		func(*style3);
 	};
 
 	CGroupFillStyle groupStyle(enumerator);

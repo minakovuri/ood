@@ -8,10 +8,12 @@ TEST_CASE("get undefined outline group color")
 {
 	shared_ptr<IOutlineStyle> style1 = make_shared<CMockOutlineStyle>(Colors::Red, false, 1.0);
 	shared_ptr<IOutlineStyle> style2 = make_shared<CMockOutlineStyle>(Colors::Yellow, false, 1.0);
+	shared_ptr<IOutlineStyle> style3 = make_shared<CMockOutlineStyle>(Colors::Blue, false, 1.0);
 
-	OutlineStyleEnumerator enumerator = [style1, style2](function<void(IOutlineStyle&)> func) {
+	OutlineStyleEnumerator enumerator = [style1, style2, style3](function<void(IOutlineStyle&)> func) {
 		func(*style1);
 		func(*style2);
+		func(*style3);
 	};
 
 	CGroupOutlineStyle groupStyle(enumerator);
@@ -36,10 +38,12 @@ TEST_CASE("get undefined outline group style enabled value")
 {
 	shared_ptr<IOutlineStyle> style1 = make_shared<CMockOutlineStyle>(Colors::Red, false, 1.0);
 	shared_ptr<IOutlineStyle> style2 = make_shared<CMockOutlineStyle>(Colors::Red, true, 1.0);
+	shared_ptr<IOutlineStyle> style3 = make_shared<CMockOutlineStyle>(Colors::Red, false, 1.0);
 
-	OutlineStyleEnumerator enumerator = [style1, style2](function<void(IOutlineStyle&)> func) {
+	OutlineStyleEnumerator enumerator = [style1, style2, style3](function<void(IOutlineStyle&)> func) {
 		func(*style1);
 		func(*style2);
+		func(*style3);
 	};
 
 	CGroupOutlineStyle groupStyle(enumerator);
@@ -64,10 +68,12 @@ TEST_CASE("get undefined outline group style thickness")
 {
 	shared_ptr<IOutlineStyle> style1 = make_shared<CMockOutlineStyle>(Colors::Red, true, 5.0);
 	shared_ptr<IOutlineStyle> style2 = make_shared<CMockOutlineStyle>(Colors::Red, true, 7.5);
+	shared_ptr<IOutlineStyle> style3 = make_shared<CMockOutlineStyle>(Colors::Red, true, 15.0);
 
-	OutlineStyleEnumerator enumerator = [style1, style2](function<void(IOutlineStyle&)> func) {
+	OutlineStyleEnumerator enumerator = [style1, style2, style3](function<void(IOutlineStyle&)> func) {
 		func(*style1);
 		func(*style2);
+		func(*style3);
 	};
 
 	CGroupOutlineStyle groupStyle(enumerator);

@@ -7,12 +7,14 @@ CGroupFillStyle::CGroupFillStyle(FillStyleEnumerator enumerator)
 
 std::optional<RGBAColor> CGroupFillStyle::GetColor() const
 {
-	std::optional<RGBAColor> color;
+	std::optional<RGBAColor> color = std::nullopt;
+	bool isInit = false;
 
 	m_enumerator([&](IStyle& style) {
-		if (!color)
+		if (!isInit)
 		{
 			color = style.GetColor();
+			isInit = true;
 		}
 		else if (color != style.GetColor())
 		{
@@ -32,12 +34,14 @@ void CGroupFillStyle::SetColor(RGBAColor color)
 
 std::optional<bool> CGroupFillStyle::IsEnabled() const
 {
-	std::optional<bool> isEnabled;
+	std::optional<bool> isEnabled = std::nullopt;
+	bool isInit = false;
 
 	m_enumerator([&](IStyle& style) {
-		if (!isEnabled)
+		if (!isInit)
 		{
 			isEnabled = style.IsEnabled();
+			isInit = true;
 		}
 		else if (isEnabled != style.IsEnabled())
 		{
