@@ -8,7 +8,7 @@ CTriangle::CTriangle(const PointD& vertex1, const PointD& vertex2, const PointD&
 {
 }
 
-RectD CTriangle::GetFrame()
+std::optional<RectD> CTriangle::GetFrame()
 {
 	double minX = std::min({ m_vertex1.x, m_vertex2.x, m_vertex3.x });
 	double minY = std::min({ m_vertex1.y, m_vertex2.y, m_vertex3.y });
@@ -21,7 +21,7 @@ RectD CTriangle::GetFrame()
 
 void CTriangle::SetFrame(const RectD& rect)
 {
-	const auto currentFrame = GetFrame();
+	const auto currentFrame = *GetFrame();
 
 	std::function updateVertexFn = [&](PointD& vertex) {
 		const auto scaleX = (vertex.x - currentFrame.left) / currentFrame.width;

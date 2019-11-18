@@ -22,12 +22,20 @@ enum HousePalette : RGBAColor
 	DoorColor = 0x663300FF,
 };
 
+enum WorldPalette : RGBAColor
+{
+	SunColor = 0xF0DA6AFF,
+	SunRayColor = 0xDFBD16FF,
+};
+
 std::shared_ptr<IShape> CreateHouse()
 {
 	std::shared_ptr<IShape> roof = std::make_shared<CTriangle>(PointD{ 400, 100 }, PointD{ 100, 200 }, PointD{ 700, 200 });
 	roof->GetFillStyle()->SetEnabled(true);
 	roof->GetFillStyle()->SetColor(HousePalette::RoofColor);
-	roof->GetOutlineStyle()->SetEnabled(false);
+	roof->GetOutlineStyle()->SetEnabled(true);
+	roof->GetOutlineStyle()->SetColor(HousePalette::FacadeColor);
+	roof->GetOutlineStyle()->SetThickness(10.0);
 
 	std::shared_ptr<IShape> facade = std::make_shared<CRectangle>(PointD{ 150, 200 }, PointD{ 650, 500 });
 	facade->GetFillStyle()->SetEnabled(true);
@@ -53,6 +61,25 @@ std::shared_ptr<IShape> CreateHouse()
 	house->TryGetGroup()->InsertShape(door);
 
 	return house;
+}
+
+std::shared_ptr<IShape> CreateWorld()
+{
+	std::shared_ptr<IShape> sun = std::make_shared<CEllipse>(PointD{ 50, 50 }, 20, 20);
+	sun->GetFillStyle()->SetEnabled(true);
+	sun->GetFillStyle()->SetColor(WorldPalette::SunColor);
+	sun->GetOutlineStyle()->SetEnabled(true);
+	sun->GetOutlineStyle()->SetColor(WorldPalette::SunRayColor);
+	sun->GetOutlineStyle()->SetThickness(20.0);
+
+	auto house = CreateHouse();
+
+	std::shared_ptr<IShape> world = std::make_shared<CShapeGroup>();
+
+	world->TryGetGroup()->InsertShape(sun);
+	world->TryGetGroup()->InsertShape(house);
+
+	return world;
 }
 
 std::shared_ptr<ISlide> CreateSlide()
@@ -91,10 +118,10 @@ void DrawWithGraphicApi(std::shared_ptr<ISlide> slide)
 
 int main()
 {
-	auto house = CreateHouse();
+	auto world = CreateWorld();
 
 	auto slide = CreateSlide();
-	slide->InsertShape(house);
+	slide->InsertShape(world);
 
 	char displayMode = GRAPHICAL_MODE;
 

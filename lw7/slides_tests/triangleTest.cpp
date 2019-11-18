@@ -10,7 +10,7 @@ using namespace std;
 TEST_CASE("get triangle frame")
 {
 	CTriangle triangle(PointD{ 30, 20 }, PointD{ 20, 40 }, PointD{ 40, 50 });
-	CHECK(IsRectsEqual(triangle.GetFrame(), RectD{ 20, 20, 20, 30 }));
+	CHECK(IsRectsEqual(*triangle.GetFrame(), RectD{ 20, 20, 20, 30 }));
 }
 
 TEST_CASE("set triangle frame")
@@ -19,7 +19,7 @@ TEST_CASE("set triangle frame")
 	RectD newFrame = RectD{ 15, 20, 10, 15 };
 
 	triangle.SetFrame(newFrame);
-	CHECK(IsRectsEqual(triangle.GetFrame(), newFrame));
+	CHECK(IsRectsEqual(*triangle.GetFrame(), newFrame));
 }
 
 TEST_CASE("draw triangle")

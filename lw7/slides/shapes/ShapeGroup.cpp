@@ -61,14 +61,14 @@ void CShapeGroup::RemoveShapeAtIndex(size_t index)
 	m_shapes.erase(m_shapes.begin() + index);
 }
 
-RectD CShapeGroup::GetFrame()
+std::optional<RectD> CShapeGroup::GetFrame()
 {
 	if (m_shapes.empty())
 	{
-		return RectD{ 0, 0, 0, 0 };
+		return std::nullopt;
 	}
 
-	auto firstShapeFrame = m_shapes[0]->GetFrame();
+	auto firstShapeFrame = *m_shapes[0]->GetFrame();
 
 	double minX = firstShapeFrame.left;
 	double minY = firstShapeFrame.top;
@@ -77,7 +77,7 @@ RectD CShapeGroup::GetFrame()
 
 	for (auto&& shape : m_shapes)
 	{
-		auto shapeFrame = shape->GetFrame();
+		auto shapeFrame = *shape->GetFrame();
 
 		minX = std::min(minX, shapeFrame.left);
 		minY = std::min(minY, shapeFrame.top);
@@ -91,11 +91,11 @@ RectD CShapeGroup::GetFrame()
 
 void CShapeGroup::SetFrame(const RectD& rect)
 {
-	auto currentGroupFrame = GetFrame();
+	auto currentGroupFrame = *GetFrame();
 
 	for (auto&& shape : m_shapes)
 	{
-		auto shapeFrame = shape->GetFrame();
+		auto shapeFrame = *shape->GetFrame();
 
 		double newShapeLeft = rect.left + (shapeFrame.left - currentGroupFrame.left) / currentGroupFrame.width * rect.width;
 		double newShapeTop = rect.top + (shapeFrame.top - currentGroupFrame.top) / currentGroupFrame.height * rect.height;

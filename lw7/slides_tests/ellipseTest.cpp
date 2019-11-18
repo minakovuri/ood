@@ -10,7 +10,7 @@ using namespace std;
 TEST_CASE("get ellipse frame")
 {
 	CEllipse ellipse(PointD{ 50, 50 }, 20, 10);
-	CHECK(IsRectsEqual(ellipse.GetFrame(), RectD{ 30, 40, 40, 20 }));
+	CHECK(IsRectsEqual(*ellipse.GetFrame(), RectD{ 30, 40, 40, 20 }));
 }
 
 TEST_CASE("set ellipse frame")
@@ -19,7 +19,7 @@ TEST_CASE("set ellipse frame")
 	RectD newFrame = RectD{ 40, 80, 20, 30 };
 
 	ellipse.SetFrame(newFrame);
-	CHECK(IsRectsEqual(ellipse.GetFrame(), newFrame));
+	CHECK(IsRectsEqual(*ellipse.GetFrame(), newFrame));
 }
 
 TEST_CASE("draw ellipse")

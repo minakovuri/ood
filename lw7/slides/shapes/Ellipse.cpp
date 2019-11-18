@@ -7,7 +7,7 @@ CEllipse::CEllipse(const PointD& center, double horizontalRadius, double vertica
 {
 }
 
-RectD CEllipse::GetFrame()
+std::optional<RectD> CEllipse::GetFrame()
 {
 	return RectD{
 		m_center.x - m_horizontalRadius,

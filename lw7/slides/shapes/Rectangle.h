@@ -6,7 +6,7 @@ class CRectangle : public CSimpleShape
 public:
 	CRectangle(const PointD& leftTop, const PointD& rightBottom);
 
-	RectD GetFrame() override;
+	std::optional<RectD> GetFrame() override;
 	void SetFrame(const RectD& rect) override;
 
 protected:

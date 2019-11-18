@@ -7,7 +7,7 @@ class CTriangle : public CSimpleShape
 public:
 	CTriangle(const PointD& vertex1, const PointD& vertex2, const PointD& vertex3);
 
-	RectD GetFrame() override;
+	std::optional<RectD> GetFrame() override;
 	void SetFrame(const RectD& rect) override;
 
 protected:

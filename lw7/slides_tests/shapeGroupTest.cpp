@@ -178,7 +178,7 @@ TEST_CASE("get shape group frame")
 {
 	CShapeGroup shapeGroup;
 
-	CHECK(IsRectsEqual(shapeGroup.GetFrame(), RectD{ 0, 0, 0, 0 }));
+	CHECK(shapeGroup.GetFrame() == nullopt);
 
 	shared_ptr<IShape> shape1 = make_shared<CMockSimpleShape>(RectD{ 10, 10, 30, 20 });
 	shared_ptr<IShape> shape2 = make_shared<CMockSimpleShape>(RectD{ 30, 20, 30, 20 });
@@ -186,7 +186,7 @@ TEST_CASE("get shape group frame")
 	shapeGroup.InsertShape(shape1);
 	shapeGroup.InsertShape(shape2);
 
-	CHECK(IsRectsEqual(shapeGroup.GetFrame(), RectD{ 10, 10, 50, 30 }));
+	CHECK(IsRectsEqual(*shapeGroup.GetFrame(), RectD{ 10, 10, 50, 30 }));
 }
 
 TEST_CASE("set shape group frame")
@@ -200,8 +200,8 @@ TEST_CASE("set shape group frame")
 
 	shapeGroup.SetFrame(RectD{ 20, 20, 30, 40 });
 
-	CHECK(IsRectsEqual(shape1->GetFrame(), RectD{ 20, 20, 15, 20 }));
-	CHECK(IsRectsEqual(shape2->GetFrame(), RectD{ 35, 40, 15, 20 }));
+	CHECK(IsRectsEqual(*shape1->GetFrame(), RectD{ 20, 20, 15, 20 }));
+	CHECK(IsRectsEqual(*shape2->GetFrame(), RectD{ 35, 40, 15, 20 }));
 }
 
 TEST_CASE("draw shape group")

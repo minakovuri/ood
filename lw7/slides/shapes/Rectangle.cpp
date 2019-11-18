@@ -8,7 +8,7 @@ CRectangle::CRectangle(const PointD& leftTop, const PointD& rightBottom)
 {
 }
 
-RectD CRectangle::GetFrame()
+std::optional<RectD> CRectangle::GetFrame()
 {
 	double width = std::abs(m_rightBottom.x - m_leftTop.x);
 	double height = std::abs(m_rightBottom.y - m_leftTop.y);

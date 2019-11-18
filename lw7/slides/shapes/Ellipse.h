@@ -6,7 +6,7 @@ class CEllipse : public CSimpleShape
 public:
 	CEllipse(const PointD& center, double horizontalRadius, double verticalRadius);
 
-	RectD GetFrame() override;
+	std::optional<RectD> GetFrame() override;
 	void SetFrame(const RectD& rect) override;
 
 protected:

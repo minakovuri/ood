@@ -14,7 +14,7 @@ public:
 	std::shared_ptr<IShape> GetShapeAtIndex(size_t index) const override;
 	void RemoveShapeAtIndex(size_t index) override;
 
-	RectD GetFrame() override;
+	std::optional<RectD> GetFrame() override;
 	void SetFrame(const RectD& rect) override;
 
 	std::shared_ptr<IOutlineStyle> GetOutlineStyle() override;

@@ -10,7 +10,7 @@ using namespace std;
 TEST_CASE("get rectangle frame")
 {
 	CRectangle rectangle(PointD{ 10, 10 }, PointD{ 100, 50 });
-	CHECK(IsRectsEqual(rectangle.GetFrame(), RectD{ 10, 10, 90, 40 }));
+	CHECK(IsRectsEqual(*rectangle.GetFrame(), RectD{ 10, 10, 90, 40 }));
 }
 
 TEST_CASE("set rectangle frame")
@@ -19,7 +19,7 @@ TEST_CASE("set rectangle frame")
 	RectD newFrame = RectD{ 20, 20, 50, 50 };
 
 	rectangle.SetFrame(newFrame);
-	CHECK(IsRectsEqual(rectangle.GetFrame(), newFrame));
+	CHECK(IsRectsEqual(*rectangle.GetFrame(), newFrame));
 }
 
 TEST_CASE("draw rectangle")

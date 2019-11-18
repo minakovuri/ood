@@ -6,7 +6,7 @@ class CMockSimpleShape : public CSimpleShape
 public:
 	CMockSimpleShape(const RectD& frame);
 
-	RectD GetFrame() final;
+	std::optional<RectD> GetFrame() final;
 	void SetFrame(const RectD& rect) final;
 
 protected:

@@ -5,7 +5,7 @@ CMockSimpleShape::CMockSimpleShape(const RectD& frame)
 {
 }
 
-RectD CMockSimpleShape::GetFrame()
+std::optional<RectD> CMockSimpleShape::GetFrame()
 {
 	return m_frame;
 }
