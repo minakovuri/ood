@@ -28,6 +28,11 @@ public class NoQuarterState implements State {
         System.out.println("You need to pay first");
     }
 
+    @Override
+    public void refill(int gumBallsCount) {
+        gumballMachine.refillImpl(gumBallsCount);
+    }
+
     public String toStrings() {
         return "waiting for quarter";
     }

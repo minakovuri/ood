@@ -42,6 +42,10 @@ public class MultiGumballMachine {
         state.dispense();
     }
 
+    public void refill(int gumBallsCount) {
+        state.refill(gumBallsCount);
+    }
+
     public String toString() {
         StringBuilder result = new StringBuilder();
         result.append("\nMighty Gumball, Inc.");
@@ -66,24 +70,16 @@ public class MultiGumballMachine {
         }
     }
 
-    private void returnQuarter() {
-        quartersCount--;
-        System.out.println("Quarter returned");
-    }
-
     void releaseBall() {
         gumBallsCount--;
         quartersCount--;
         System.out.println("A gumball comes rolling out the slot...");
     }
 
-    /*int getQuartersCount() {
-        return quartersCount;
+    void refillImpl(int gumBallsCount) {
+        this.gumBallsCount = gumBallsCount;
+        System.out.println("Refill gumballs: " + gumBallsCount);
     }
-
-    int getGumBallsCount() {
-        return gumBallsCount;
-    }*/
 
     void setState(State state) {
         this.state = state;
@@ -107,5 +103,10 @@ public class MultiGumballMachine {
 
     State getMaxQuartersState() {
         return maxQuartersState;
+    }
+
+    private void returnQuarter() {
+        quartersCount--;
+        System.out.println("Quarter returned");
     }
 }

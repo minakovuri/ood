@@ -34,6 +34,11 @@ public class SoldState implements State {
         }
     }
 
+    @Override
+    public void refill(int gumBallsCount) {
+        System.out.println("cannot refill while giving a gumball");
+    }
+
     public String toString() {
         return "delivering a gumball";
     }

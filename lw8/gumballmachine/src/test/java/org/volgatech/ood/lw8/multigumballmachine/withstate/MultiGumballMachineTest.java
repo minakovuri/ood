@@ -51,6 +51,14 @@ class MultiGumballMachineTest {
                     "You need to pay first\n";
             assertEquals(expectedStr, outputStream.toString());
         }
+
+        @Test
+        void refill() {
+            int quartersCount = gumballMachine.quartersCount;
+            gumballMachine.refill(4);
+            assertEquals("Refill gumballs: 4\n", outputStream.toString());
+            assertEquals(quartersCount, gumballMachine.quartersCount);
+        }
     }
 
     @Nested
@@ -80,6 +88,14 @@ class MultiGumballMachineTest {
             String expectedString = "You turned...\n" +
                     "A gumball comes rolling out the slot...\n";
             assertEquals(expectedString, outputStream.toString());
+        }
+
+        @Test
+        void refill() {
+            int quartersCount = gumballMachine.quartersCount;
+            gumballMachine.refill(4);
+            assertEquals("Refill gumballs: 4\n", outputStream.toString());
+            assertEquals(quartersCount, gumballMachine.quartersCount);
         }
     }
 
@@ -127,6 +143,14 @@ class MultiGumballMachineTest {
                                 "No gumball dispensed\n";
             assertEquals(expectedStr, outputStream.toString());;
         }
+
+        @Test
+        void refill() {
+            int quartersCount = gumballMachine.quartersCount;
+            gumballMachine.refill(4);
+            assertEquals("Refill gumballs: 4\n", outputStream.toString());
+            assertEquals(quartersCount, gumballMachine.quartersCount);
+        }
     }
 
     @Nested
@@ -154,7 +178,6 @@ class MultiGumballMachineTest {
             for (int i = 0; i < 5; i++) {
                 expectedStr.append("Quarter returned\n");
             }
-
             assertEquals(expectedStr.toString(), outputStream.toString());
         }
 
@@ -166,11 +189,13 @@ class MultiGumballMachineTest {
                     "A gumball comes rolling out the slot...\n";
             assertEquals(expectedString, outputStream.toString());
         }
-    }
 
-//    @Test
-//    void refill() {
-//        gumballMachine.refill(2);
-//        assertEquals("Refill gum balls with 2 count\n", outputStream.toString());
-//    }
+        @Test
+        void refill() {
+            int quartersCount = gumballMachine.quartersCount;
+            gumballMachine.refill(4);
+            assertEquals("Refill gumballs: 4\n", outputStream.toString());
+            assertEquals(quartersCount, gumballMachine.quartersCount);
+        }
+    }
 }
