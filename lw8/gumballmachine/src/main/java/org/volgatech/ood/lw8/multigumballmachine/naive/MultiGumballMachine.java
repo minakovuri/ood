@@ -8,7 +8,7 @@ public class MultiGumballMachine {
     private final static int HAS_QUARTER = 2;
     private final static int SOLD = 3;
 
-    private int state = SOLD_OUT;
+    private int state;
     private int gumBallsCount;
     private int quartersCount = 0;
 
@@ -16,6 +16,8 @@ public class MultiGumballMachine {
         this.gumBallsCount = gumballsCount;
         if (gumballsCount > 0) {
             state = NO_QUARTER;
+        } else {
+            state = SOLD_OUT;
         }
     }
 
@@ -37,7 +39,7 @@ public class MultiGumballMachine {
         }
     }
 
-    public void ejectQuarter() {
+    public void ejectQuarters() {
         switch (state) {
             case HAS_QUARTER:
                 returnQuarters();
@@ -114,9 +116,8 @@ public class MultiGumballMachine {
     private void dispense() {
         switch (state) {
             case SOLD:
-                System.out.println("A gumball comes rolling out the slot...");
                 quartersCount--;
-                returnGumBall();
+                releaseBall();
                 break;
             case NO_QUARTER:
                 System.out.println("You need to pay first");
@@ -149,7 +150,8 @@ public class MultiGumballMachine {
         System.out.println("Quarter returned");
     }
 
-    private void returnGumBall() {
+    private void releaseBall() {
+        System.out.println("A gumball comes rolling out the slot...");
         gumBallsCount--;
 
         if (gumBallsCount == 0) {

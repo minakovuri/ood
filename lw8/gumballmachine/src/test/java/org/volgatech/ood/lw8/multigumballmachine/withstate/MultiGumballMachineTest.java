@@ -1,4 +1,4 @@
-package org.volgatech.ood.lw8.multigumballmachine.naive;
+package org.volgatech.ood.lw8.multigumballmachine.withstate;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -46,7 +46,10 @@ class MultiGumballMachineTest {
         @Test
         void turnCrank() {
             gumballMachine.turnCrank();
-            assertEquals("You turned, but there's no quarter\n", outputStream.toString());
+
+            String expectedStr = "You turned, but there's no quarter\n" +
+                    "You need to pay first\n";
+            assertEquals(expectedStr, outputStream.toString());
         }
     }
 
@@ -65,24 +68,9 @@ class MultiGumballMachineTest {
         }
 
         @Test
-        void tryingToInsertQuarter() {
-            for (int i = 0; i < 4; i++) {
-                gumballMachine.insertQuarter();
-            }
-            outputStream.reset();
-
-            gumballMachine.insertQuarter();
-            assertEquals("Max number of quarters\n", outputStream.toString());
-        }
-
-        @Test
         void ejectQuarters() {
-            gumballMachine.insertQuarter();
-            outputStream.reset();
-
             gumballMachine.ejectQuarters();
-            String expectedStr = "Quarter returned\n" + "Quarter returned\n";
-            assertEquals(expectedStr, outputStream.toString());
+            assertEquals("Quarter returned\n", outputStream.toString());
         }
 
         @Test
@@ -134,13 +122,55 @@ class MultiGumballMachineTest {
         @Test
         void turnCrank() {
             gumballMachine.turnCrank();
-            assertEquals("You turned, but there are no gumballs\n", outputStream.toString());;
+
+            String expectedStr = "You turned, but there are no gumballs\n" +
+                                "No gumball dispensed\n";
+            assertEquals(expectedStr, outputStream.toString());;
         }
     }
 
-    @Test
-    void refill() {
-        gumballMachine.refill(2);
-        assertEquals("Refill gum balls with 2 count\n", outputStream.toString());
+    @Nested
+    class MaxQuartersStateTests {
+        @BeforeEach
+        void setUp() {
+            gumballMachine = new MultiGumballMachine(5);
+            for (int i = 0; i < 5; i++) {
+                gumballMachine.insertQuarter();
+            }
+            outputStream.reset();
+        }
+
+        @Test
+        void insertQuarter() {
+            gumballMachine.insertQuarter();
+            assertEquals("Max number of quarters\n", outputStream.toString());
+        }
+
+        @Test
+        void ejectQuarters() {
+            gumballMachine.ejectQuarters();
+
+            StringBuilder expectedStr = new StringBuilder();
+            for (int i = 0; i < 5; i++) {
+                expectedStr.append("Quarter returned\n");
+            }
+
+            assertEquals(expectedStr.toString(), outputStream.toString());
+        }
+
+        @Test
+        void turnCrank() {
+            gumballMachine.turnCrank();
+
+            String expectedString = "You turned...\n" +
+                    "A gumball comes rolling out the slot...\n";
+            assertEquals(expectedString, outputStream.toString());
+        }
     }
+
+//    @Test
+//    void refill() {
+//        gumballMachine.refill(2);
+//        assertEquals("Refill gum balls with 2 count\n", outputStream.toString());
+//    }
 }

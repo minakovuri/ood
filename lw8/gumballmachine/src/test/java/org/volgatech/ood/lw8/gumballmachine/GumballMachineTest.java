@@ -114,33 +114,4 @@ class GumballMachineTest {
             assertEquals(expectedString, outputStream.toString());;
         }
     }
-
-    @Nested
-    class InitialSoldOutStateTests {
-        @BeforeEach
-        void setUp() {
-            gumballMachine = new GumballMachine(0);
-        }
-
-        @Test
-        void insertQuarter() {
-            gumballMachine.insertQuarter();
-            assertEquals("You can't insert a quarter, the machine is sold out\n", outputStream.toString());
-        }
-
-        @Test
-        void ejectQuarter() {
-            gumballMachine.ejectQuarter();
-            assertEquals("You can't eject, you haven't inserted a quarter yet\n", outputStream.toString());
-        }
-
-        @Test
-        void turnCrank() {
-            gumballMachine.turnCrank();
-
-            String expectedString = "You turned, but there are no gumballs\n" +
-                    "No gumball dispensed\n";
-            assertEquals(expectedString, outputStream.toString());;
-        }
-    }
 }

@@ -1,22 +1,28 @@
-package org.volgatech.ood.lw8.gumballmachine;
+package org.volgatech.ood.lw8.multigumballmachine.withstate;
 
-public class GumballMachine {
+public class MultiGumballMachine {
+    static final int MAX_QUARTERS_COUNT = 5;
+
     private State soldOutState;
     private State noQuarterState;
     private State hasQuarterState;
     private State soldState;
+    private State maxQuartersState;
 
     private State state;
-    private int count = 0;
+    int gumBallsCount;
+    int quartersCount = 0;
 
-    public GumballMachine(int numberGumballs) {
+    public MultiGumballMachine(int gumballsCount) {
         soldOutState = new SoldOutState(this);
         noQuarterState = new NoQuarterState(this);
         hasQuarterState = new HasQuarterState(this);
         soldState = new SoldState(this);
-        this.count = numberGumballs;
+        maxQuartersState = new MaxQuartersState(this);
 
-        if (numberGumballs > 0) {
+        this.gumBallsCount = gumballsCount;
+
+        if (gumballsCount > 0) {
             state = noQuarterState;
         } else {
             state = soldOutState;
@@ -27,7 +33,7 @@ public class GumballMachine {
         state.insertQuarter();
     }
 
-    public void ejectQuarter() {
+    public void ejectQuarters() {
         state.ejectQuarter();
     }
 
@@ -39,24 +45,45 @@ public class GumballMachine {
     public String toString() {
         StringBuilder result = new StringBuilder();
         result.append("\nMighty Gumball, Inc.");
-        result.append("\nJava-enabled Standing Gumball Model #2004");
-        result.append("\nInventory: ").append(count).append(" gumball");
-        if (count != 1) {
+        result.append("\nJava-enabled Standing Gumball Model #2004\n");
+        result.append("Inventory: ").append(gumBallsCount).append(" gumball");
+        if (gumBallsCount != 1) {
             result.append("s");
         }
-        result.append("\n");
+        result.append("Quarters count: ").append(quartersCount);
         result.append("Machine is ").append(state).append("\n");
         return result.toString();
     }
 
-    void releaseBall() {
-        System.out.println("A gumball comes rolling out the slot...");
-        count--;
+    void addQuarter() {
+        quartersCount++;
+        System.out.println("Inserting #" + quartersCount + " quarter");
     }
 
-    int getCount() {
-        return count;
+    void returnQuarters() {
+        while (quartersCount > 0) {
+            returnQuarter();
+        }
     }
+
+    private void returnQuarter() {
+        quartersCount--;
+        System.out.println("Quarter returned");
+    }
+
+    void releaseBall() {
+        gumBallsCount--;
+        quartersCount--;
+        System.out.println("A gumball comes rolling out the slot...");
+    }
+
+    /*int getQuartersCount() {
+        return quartersCount;
+    }
+
+    int getGumBallsCount() {
+        return gumBallsCount;
+    }*/
 
     void setState(State state) {
         this.state = state;
@@ -76,5 +103,9 @@ public class GumballMachine {
 
     State getSoldState() {
         return soldState;
+    }
+
+    State getMaxQuartersState() {
+        return maxQuartersState;
     }
 }
