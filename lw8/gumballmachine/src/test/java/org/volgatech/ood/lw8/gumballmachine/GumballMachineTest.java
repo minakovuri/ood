@@ -51,6 +51,20 @@ class GumballMachineTest {
                     "You need to pay first\n";
             assertEquals(expectedString, outputStream.toString());
         }
+
+        @Test
+        void insertAndEjectQuarter() {
+            gumballMachine = new GumballMachine(1);
+            gumballMachine.insertQuarter();
+            gumballMachine.ejectQuarter();
+            outputStream.reset();
+
+            gumballMachine.turnCrank();
+
+            String expectedString = "You turned, but there's no quarter\n" +
+                    "You need to pay first\n";
+            assertEquals(expectedString, outputStream.toString());
+        }
     }
 
     @Nested

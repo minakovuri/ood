@@ -19,8 +19,6 @@ class MultiGumballMachineTest {
     void setUp() {
         PrintStream printStream = new PrintStream(outputStream);
         System.setOut(printStream);
-
-        gumballMachine = new MultiGumballMachine(5);
     }
 
     @AfterEach
@@ -33,18 +31,21 @@ class MultiGumballMachineTest {
     class NoQuarterStateTests {
         @Test
         void insertQuarter() {
+            gumballMachine = new MultiGumballMachine(3);
             gumballMachine.insertQuarter();
             assertEquals("Inserting #1 quarter\n", outputStream.toString());
         }
 
         @Test
         void ejectQuarter() {
+            gumballMachine = new MultiGumballMachine(3);
             gumballMachine.ejectQuarters();
             assertEquals("You haven't inserted a quarter\n", outputStream.toString());
         }
 
         @Test
         void turnCrank() {
+            gumballMachine = new MultiGumballMachine(3);
             gumballMachine.turnCrank();
 
             String expectedStr = "You turned, but there's no quarter\n" +
@@ -54,6 +55,7 @@ class MultiGumballMachineTest {
 
         @Test
         void refill() {
+            gumballMachine = new MultiGumballMachine(3);
             int quartersCount = gumballMachine.quartersCount;
             gumballMachine.refill(4);
             assertEquals("Refill gumballs: 4\n", outputStream.toString());
@@ -63,28 +65,33 @@ class MultiGumballMachineTest {
 
     @Nested
     class HasQuarterStateTests {
-        @BeforeEach
-        void setUp() {
-            gumballMachine.insertQuarter();
-            outputStream.reset();
-        }
-
         @Test
         void insertQuarter() {
+            gumballMachine = new MultiGumballMachine(3);
+            gumballMachine.insertQuarter();
+            outputStream.reset();
+
             gumballMachine.insertQuarter();
             assertEquals("Inserting #2 quarter\n", outputStream.toString());
         }
 
         @Test
         void ejectQuarters() {
+            gumballMachine = new MultiGumballMachine(3);
+            gumballMachine.insertQuarter();
+            outputStream.reset();
+
             gumballMachine.ejectQuarters();
             assertEquals("Quarter returned\n", outputStream.toString());
         }
 
         @Test
         void turnCrank() {
-            gumballMachine.turnCrank();
+            gumballMachine = new MultiGumballMachine(3);
+            gumballMachine.insertQuarter();
+            outputStream.reset();
 
+            gumballMachine.turnCrank();
             String expectedString = "You turned...\n" +
                     "A gumball comes rolling out the slot...\n";
             assertEquals(expectedString, outputStream.toString());
@@ -92,6 +99,10 @@ class MultiGumballMachineTest {
 
         @Test
         void refill() {
+            gumballMachine = new MultiGumballMachine(3);
+            gumballMachine.insertQuarter();
+            outputStream.reset();
+
             int quartersCount = gumballMachine.quartersCount;
             gumballMachine.refill(4);
             assertEquals("Refill gumballs: 4\n", outputStream.toString());
@@ -101,22 +112,24 @@ class MultiGumballMachineTest {
 
     @Nested
     class SoldOutStateTests {
-        @BeforeEach
-        void setUp() {
+        @Test
+        void insertQuarter() {
             gumballMachine = new MultiGumballMachine(1);
             gumballMachine.insertQuarter();
             gumballMachine.turnCrank();
             outputStream.reset();
-        }
 
-        @Test
-        void insertQuarter() {
             gumballMachine.insertQuarter();
             assertEquals("You can't insert a quarter, the machine is sold out\n", outputStream.toString());
         }
 
         @Test
         void ejectQuarter() {
+            gumballMachine = new MultiGumballMachine(1);
+            gumballMachine.insertQuarter();
+            gumballMachine.turnCrank();
+            outputStream.reset();
+
             gumballMachine.ejectQuarters();
             assertEquals("You can't eject, you haven't inserted a quarter yet\n", outputStream.toString());
         }
@@ -137,8 +150,12 @@ class MultiGumballMachineTest {
 
         @Test
         void turnCrank() {
+            gumballMachine = new MultiGumballMachine(1);
+            gumballMachine.insertQuarter();
             gumballMachine.turnCrank();
+            outputStream.reset();
 
+            gumballMachine.turnCrank();
             String expectedStr = "You turned, but there are no gumballs\n" +
                                 "No gumball dispensed\n";
             assertEquals(expectedStr, outputStream.toString());;
@@ -146,6 +163,11 @@ class MultiGumballMachineTest {
 
         @Test
         void refill() {
+            gumballMachine = new MultiGumballMachine(1);
+            gumballMachine.insertQuarter();
+            gumballMachine.turnCrank();
+            outputStream.reset();
+
             int quartersCount = gumballMachine.quartersCount;
             gumballMachine.refill(4);
             assertEquals("Refill gumballs: 4\n", outputStream.toString());
@@ -155,25 +177,27 @@ class MultiGumballMachineTest {
 
     @Nested
     class MaxQuartersStateTests {
-        @BeforeEach
-        void setUp() {
+        @Test
+        void insertQuarter() {
             gumballMachine = new MultiGumballMachine(5);
             for (int i = 0; i < 5; i++) {
                 gumballMachine.insertQuarter();
             }
             outputStream.reset();
-        }
 
-        @Test
-        void insertQuarter() {
             gumballMachine.insertQuarter();
             assertEquals("Max number of quarters\n", outputStream.toString());
         }
 
         @Test
         void ejectQuarters() {
-            gumballMachine.ejectQuarters();
+            gumballMachine = new MultiGumballMachine(5);
+            for (int i = 0; i < 5; i++) {
+                gumballMachine.insertQuarter();
+            }
+            outputStream.reset();
 
+            gumballMachine.ejectQuarters();
             StringBuilder expectedStr = new StringBuilder();
             for (int i = 0; i < 5; i++) {
                 expectedStr.append("Quarter returned\n");
@@ -183,6 +207,12 @@ class MultiGumballMachineTest {
 
         @Test
         void turnCrank() {
+            gumballMachine = new MultiGumballMachine(5);
+            for (int i = 0; i < 5; i++) {
+                gumballMachine.insertQuarter();
+            }
+            outputStream.reset();
+
             gumballMachine.turnCrank();
 
             String expectedString = "You turned...\n" +
@@ -192,6 +222,12 @@ class MultiGumballMachineTest {
 
         @Test
         void refill() {
+            gumballMachine = new MultiGumballMachine(5);
+            for (int i = 0; i < 5; i++) {
+                gumballMachine.insertQuarter();
+            }
+            outputStream.reset();
+
             int quartersCount = gumballMachine.quartersCount;
             gumballMachine.refill(4);
             assertEquals("Refill gumballs: 4\n", outputStream.toString());
