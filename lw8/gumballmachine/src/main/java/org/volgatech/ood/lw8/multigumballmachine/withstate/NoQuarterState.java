@@ -33,7 +33,7 @@ public class NoQuarterState implements State {
         gumballMachine.refillImpl(gumBallsCount);
     }
 
-    public String toStrings() {
+    public String toString() {
         return "waiting for quarter";
     }
 }

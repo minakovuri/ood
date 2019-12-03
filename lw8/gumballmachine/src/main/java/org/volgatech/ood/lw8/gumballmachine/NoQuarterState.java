@@ -28,7 +28,7 @@ public class NoQuarterState implements State {
         System.out.println("You need to pay first");
     }
 
-    public String toStrings() {
+    public String toString() {
         return "waiting for quarter";
     }
 }
