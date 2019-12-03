@@ -1,0 +1,27 @@
+{
+  "name": "lw9",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "nyc mocha --require @babel/register"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.7.4",
+    "@babel/core": "^7.7.4",
+    "@babel/node": "^7.7.4",
+    "@babel/preset-env": "^7.7.4",
+    "@babel/register": "^7.7.4",
+    "chai": "^4.2.0",
+    "mocha": "^6.2.2",
+    "nodemon": "^2.0.1"
+  },
+  "dependencies": {
+    "nyc": "^14.1.1"
+  }
+}
