@@ -35,4 +35,11 @@ describe('dispatcher test', () => {
         dispatcher.removeListener(event, callback)
         expect(i).equal(1)
     })
+
+    it('dispatch event with no listeners', () => {
+        const dispatcher = new Dispatcher()
+        const event = 'inc'
+
+        dispatcher.dispatch(event)
+    })
 })

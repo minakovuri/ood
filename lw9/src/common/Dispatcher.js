@@ -30,7 +30,9 @@ class Dispatcher {
      * @param {string} event
      */
     dispatch(event) {
-        this._events[event].forEach((listener) => listener())
+        if (this._events[event] && this._events[event].length) {
+            this._events[event].forEach((listener) => listener())
+        }
     }
 }
 

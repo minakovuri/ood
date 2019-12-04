@@ -2,11 +2,12 @@
   "name": "lw9",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "private": true,
   "directories": {
     "test": "test"
   },
   "scripts": {
+    "build": "npx webpack",
     "test": "nyc mocha --require @babel/register"
   },
   "author": "",
@@ -19,9 +20,12 @@
     "@babel/register": "^7.7.4",
     "chai": "^4.2.0",
     "mocha": "^6.2.2",
-    "nodemon": "^2.0.1"
+    "nodemon": "^2.0.1",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
   },
   "dependencies": {
+    "hyperhtml": "^2.31.5",
     "nyc": "^14.1.1"
   }
 }

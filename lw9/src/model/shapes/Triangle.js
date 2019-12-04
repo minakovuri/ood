@@ -15,6 +15,9 @@ class Triangle extends Shape {
         this._vertex3 = vertex3
     }
 
+    /**
+     * @private
+     */
     _getFrameImpl() {
         const minX = Math.min(this._vertex1.x, this._vertex2.x, this._vertex3.x)
         const minY = Math.min(this._vertex1.y, this._vertex2.y, this._vertex3.y)
@@ -30,6 +33,9 @@ class Triangle extends Shape {
         }
     }
 
+    /**
+     * @private
+     */
     _setFrameImpl(rect) {
         const currentFrame = this._getFrameImpl()
 
