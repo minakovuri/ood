@@ -1,0 +1,10 @@
+.insert-view {
+    display: flex;
+}
+
+.add-shape-button {
+    border: 1px solid;
+    padding: 5px;
+    margin-right: 5px;
+    cursor: pointer;
+}

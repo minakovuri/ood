@@ -1,15 +1,22 @@
 import {MenuView} from "./menu/MenuView.js"
 import {hyper} from "hyperhtml"
 
-class AppView {
-    /**
-     * @param {Element} menuElement
-     */
-    static render(menuElement) {
-        const menu = new MenuView()
+class AppView extends hyper.Component {
+    constructor() {
+        super()
+        this._menuView = new MenuView()
+    }
 
-        hyper.bind(menuElement)`
-${ menu.render() }`
+    getMenu() {
+        return this._menuView
+    }
+
+    render() {
+        return this.html`
+<div class="menu">
+    ${this._menuView}
+</div>
+<div class="document"></div>`
     }
 }
 

@@ -1,11 +1,14 @@
 import {AppView} from "./view/AppView.js"
-
-const DOM_DOCUMENT_ELEMENT_ID = 'document'
-const DOM_MENU_ELEMENT_ID = 'menu'
+import {hyper} from "hyperhtml"
+import {Presenter} from "./presenter/Presenter.js"
 
 window.onload = () => {
-    const domDocumentElement = document.getElementById(DOM_DOCUMENT_ELEMENT_ID)
-    const domMenuElement = document.getElementById(DOM_MENU_ELEMENT_ID)
+    const rootElement = document.getElementById('root')
 
-    AppView.render(domMenuElement)
+    const view = new AppView()
+
+    hyper(rootElement)
+        `${view}`
+
+    new Presenter(view)
 }
