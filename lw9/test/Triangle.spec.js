@@ -3,20 +3,27 @@ import {expect} from "chai"
 
 describe("triangle test", () => {
     it("create triangle and get frame", () => {
-        const triangle = new Triangle({ x: 30, y: 20 }, { x: 20, y: 40 }, { x: 40, y: 50 })
-
-        const expectedRect = {
+        const frame = {
             left: 20,
             top: 20,
             width: 20,
             height: 30,
         }
 
-        expect(triangle.getFrame()).to.eql(expectedRect)
+        const triangle = new Triangle(frame)
+
+        expect(triangle.getFrame()).to.eql(frame)
     })
 
     it('create triangle and set frame', () => {
-        const triangle = new Triangle({ x: 30, y: 20 }, { x: 20, y: 40 }, { x: 40, y: 50 })
+        const frame = {
+            left: 20,
+            top: 20,
+            width: 20,
+            height: 30,
+        }
+
+        const triangle = new Triangle(frame)
 
         const newFrame = {
             left: 15,

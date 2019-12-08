@@ -2,10 +2,12 @@ const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
+    mode: 'development',
     entry: {
         'index.css': [
             path.resolve(__dirname, 'src/view/menu/InsertView.css'),
             path.resolve(__dirname, 'src/view/menu/MenuView.css'),
+            path.resolve(__dirname, 'src/view/shapes/ShapeView.css'),
         ],
         'index.js': [
             path.resolve(__dirname, 'src/index.js')

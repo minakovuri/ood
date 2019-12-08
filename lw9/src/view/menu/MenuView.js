@@ -7,14 +7,23 @@ class MenuView extends hyper.Component {
         this._insertView = new InsertView()
     }
 
+    /**
+     * @param {function():void} handler
+     */
     doOnAddTriangle(handler) {
         this._insertView.doOnAddTriangle(handler)
     }
 
+    /**
+     * @param {function():void} handler
+     */
     doOnAddRectangle(handler) {
         this._insertView.doOnAddRectangle(handler)
     }
 
+    /**
+     * @param {function():void} handler
+     */
     doOnAddEllipse(handler) {
         this._insertView.doOnAddEllipse(handler)
     }

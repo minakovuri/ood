@@ -1,21 +1,43 @@
 import {Shape} from "./Shape"
 import {Point} from "../../common/Types"
+import {Rect} from "../../common/Types"
 
 class Triangle extends Shape {
     /**
-     * @param {Point} vertex1
-     * @param {Point} vertex2
-     * @param {Point} vertex3
+     * @param {Rect} rect
      */
-    constructor(vertex1, vertex2, vertex3) {
+    constructor(rect) {
         super()
 
-        this._vertex1 = vertex1
-        this._vertex2 = vertex2
-        this._vertex3 = vertex3
+        /**
+         * @type {Point}
+         * @private
+         */
+        this._vertex1 = { x: rect.left, y: rect.top + rect.height }
+
+        /**
+         * @type {Point}
+         * @private
+         */
+        this._vertex2 = { x: rect.left + rect.width / 2, y: rect.top }
+
+        /**
+         * @type {Point}
+         * @private
+         */
+        this._vertex3 = { x: rect.left + rect.width, y: rect.top + rect.height }
     }
 
     /**
+     * @override
+     * @private
+     */
+    _getTypeImpl() {
+        return 'triangle'
+    }
+
+    /**
+     * @override
      * @private
      */
     _getFrameImpl() {
@@ -34,6 +56,7 @@ class Triangle extends Shape {
     }
 
     /**
+     * @override
      * @private
      */
     _setFrameImpl(rect) {

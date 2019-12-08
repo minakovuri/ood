@@ -28,10 +28,11 @@ class Dispatcher {
 
     /**
      * @param {string} event
+     * @param {Object=} details
      */
-    dispatch(event) {
+    dispatch(event, details) {
         if (this._events[event] && this._events[event].length) {
-            this._events[event].forEach((listener) => listener())
+            this._events[event].forEach((listener) => listener(details))
         }
     }
 }

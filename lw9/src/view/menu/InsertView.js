@@ -34,14 +34,23 @@ class InsertView extends hyper.Component {
         this._eventDispatcher = new Dispatcher()
     }
 
+    /**
+     * @param {function():void} handler
+     */
     doOnAddTriangle(handler) {
         this._eventDispatcher.addListener(InsertViewEvents.ADD_TRIANGLE, handler)
     }
 
+    /**
+     * @param {function():void} handler
+     */
     doOnAddRectangle(handler) {
         this._eventDispatcher.addListener(InsertViewEvents.ADD_RECTANGLE, handler)
     }
 
+    /**
+     * @param {function():void} handler
+     */
     doOnAddEllipse(handler) {
         this._eventDispatcher.addListener(InsertViewEvents.ADD_ELLIPSE, handler)
     }
