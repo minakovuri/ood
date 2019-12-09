@@ -42,21 +42,21 @@ class Shape extends Dispatcher {
     /**
      * @abstract
      * @return {string}
-     * @private
+     * @protected
      */
     _getTypeImpl() {}
 
     /**
      * @abstract
      * @param {Rect} rect
-     * @private
+     * @protected
      */
     _setFrameImpl(rect) {}
 
     /**
      * @abstract
      * @return {Rect}
-     * @private
+     * @protected
      */
     _getFrameImpl() {}
 }

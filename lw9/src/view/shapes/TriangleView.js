@@ -1,5 +1,4 @@
 import {ShapeView} from "./ShapeView.js"
-import hyper from "hyperhtml"
 
 class TriangleView extends ShapeView {
     constructor(frame, id) {
@@ -19,21 +18,13 @@ class TriangleView extends ShapeView {
         const vertex2 = { x: frame.left + frame.width / 2, y: frame.top }
         const vertex3 = { x: frame.left + frame.width, y: frame.top + frame.height }
 
-        /**
-         * @param {Event} e
-         */
-        function onFocusIn(e) {
-            e.preventDefault()
+        function onFocusIn() {
             this.setState({
                 isFocused: true,
             })
         }
 
-        /**
-         * @param {Event} e
-         */
-        function onFocusOut(e) {
-            e.preventDefault()
+        function onFocusOut() {
             this.setState({
                 isFocused: false,
             })

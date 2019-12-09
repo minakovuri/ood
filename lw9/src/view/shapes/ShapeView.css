@@ -1,5 +1,6 @@
 .shape-frame {
     outline: none;
+    cursor: pointer;
 }
 
 .shape {
@@ -14,10 +15,14 @@
     stroke-dasharray: 10;
 }
 
-.horizontal-resize:hover {
-    cursor: ew-resize;
+.resize-handler {
+    fill: dodgerblue;
 }
 
-.vertical-resize:hover {
+.left-diagonal-resize-handler {
+    cursor: nwse-resize;
+}
+
+.vertical-resize-handler {
     cursor: ns-resize;
 }
