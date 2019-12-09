@@ -1,5 +1,23 @@
+.shape-frame {
+    outline: none;
+}
+
 .shape {
     fill: yellow;
     stroke: red;
     stroke-width: 2;
+}
+
+.rect-border {
+    stroke: dodgerblue;
+    stroke-width: 1;
+    stroke-dasharray: 10;
+}
+
+.horizontal-resize:hover {
+    cursor: ew-resize;
+}
+
+.vertical-resize:hover {
+    cursor: ns-resize;
 }

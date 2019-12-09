@@ -19,14 +19,15 @@ class DocumentView extends hyper.Component{
 
     /**
      * @param {Rect} frame
+     * @param {string} id
      * @param {ShapeType} type
      */
-    addShape(frame, type) {
+    addShape(frame, id, type) {
         let shape
 
         switch(type) {
             case "triangle":
-                shape = new TriangleView(frame)
+                shape = new TriangleView(frame, id)
                 break
             case "rectangle":
                 break
@@ -42,7 +43,7 @@ class DocumentView extends hyper.Component{
         return this.html`
 <svg width="1200" height="600">
     ${this._shapes.map(shape => shape.render())}
-</svg>`
+</svg >`
     }
 }
 

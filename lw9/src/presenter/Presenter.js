@@ -40,7 +40,7 @@ class Presenter {
         const shapeFrame = shape.getFrame()
 
         const documentView = this._view.getDocument()
-        documentView.addShape(shapeFrame, shapeType)
+        documentView.addShape(shapeFrame, shapeId, shapeType)
     }
 }
 
