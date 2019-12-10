@@ -14,7 +14,7 @@ class Dispatcher {
     addListener(event, callback) {
         if (!this._events[event]) {
             this._events[event] = []
-        }
+        }``
         this._events[event].push(callback)
     }
 

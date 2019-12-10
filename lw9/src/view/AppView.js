@@ -20,12 +20,9 @@ class AppView extends hyper.Component {
 
     render() {
         return this.html`
-<div class="menu">
-    ${this._menuView}
-</div>
-<div class="document">
-    ${this._documentView}
-</div>`
+${this._menuView}
+${this._documentView}
+`
     }
 }
 

@@ -30,7 +30,7 @@ class MenuView extends hyper.Component {
 
     render() {
         return this.html`
-<div class="menu-view">
+<div class="menu">
     <div class="tabs"></div>
     <div class="content">
         ${this._insertView}

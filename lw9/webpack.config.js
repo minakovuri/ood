@@ -7,7 +7,9 @@ module.exports = {
         'index.css': [
             path.resolve(__dirname, 'src/view/menu/InsertView.css'),
             path.resolve(__dirname, 'src/view/menu/MenuView.css'),
-            path.resolve(__dirname, 'src/view/shapes/ShapeView.css'),
+            path.resolve(__dirname, 'src/view/document/shapes/ShapeView.css'),
+            path.resolve(__dirname, 'src/view/document/DocumentView.css'),
+            path.resolve(__dirname, 'src/view/document/frame/Frame.css'),
         ],
         'index.js': [
             path.resolve(__dirname, 'src/index.js')
