@@ -1,11 +1,12 @@
-import {hyper} from "hyperhtml"
 import {ShapeView, ShapeType} from "./shapes/ShapeView.js"
 import {Frame} from "./frame/Frame.js"
 import {Rect} from "../../common/Types.js"
 import {Events} from "./shapes/Events.js"
+import {DocumentEvents} from "./Events.js"
 import {ShapesFactory} from "./shapes/ShapesFactory.js"
+import {DispatcherComponent} from "../common/DispatcherComponent.js"
 
-class DocumentView extends hyper.Component{
+class DocumentView extends DispatcherComponent {
     constructor() {
         super();
 
@@ -19,10 +20,7 @@ class DocumentView extends hyper.Component{
          */
         this.state.frames = []
 
-        /**
-         * @param {Event} e
-         */
-        window.onclick = (e) => {
+        window.onmousedown = (e) => {
             if (e.defaultPrevented) {
                 return
             }
@@ -39,22 +37,78 @@ class DocumentView extends hyper.Component{
      * @param {ShapeType} type
      */
     addShape(rect, id, type) {
-        const shapes = this.state.shapes
-        const frames = this.state.frames
-
         const frame = new Frame(id, rect)
         const shape = ShapesFactory.createShape(rect, id, type)
 
         shape.addListener(Events.ONCLICK, () => {
+            for (const currFrame of this.state.frames) {
+                currFrame.getEnabled() && currFrame.setEnabled(false)
+            }
+
             !frame.getEnabled() && frame.setEnabled(true)
+
+            /**
+             * @type {Array<ShapeView>}
+             */
+            let shapes = this.state.shapes
+            shapes = shapes.filter(currShape => currShape !== shape)
+            shapes.push(shape)
+
+            this.setState({
+                shapes,
+                frames: this.state.frames,
+            })
         })
 
-        shapes.push(shape)
-        frames.push(frame)
+        shape.addListener(Events.DRAGGED, ({ top, left }) => {
+            const currentRect = shape.getRect()
+            const shapeId = shape.getId()
+
+            /**
+             * @type {Rect}
+             */
+            const newRect = {
+                top,
+                left,
+                width: currentRect.width,
+                height: currentRect.height,
+            }
+
+            this.dispatchEvent(DocumentEvents.CHANGE_RECT, {
+                shapeId,
+                newRect,
+            })
+        })
 
         this.setState({
-            shapes: shapes,
-            frames: frames,
+            shapes: this.state.shapes.concat(shape),
+            frames: this.state.frames.concat(frame),
+        })
+    }
+
+    /**
+     * @param {string} shapeId
+     * @param {Rect} rect
+     */
+    updateShape(shapeId, rect) {
+        const frames = this.state.frames
+        const shapes = this.state.shapes
+
+        const frameIndex = frames.findIndex(frame => frame.getShapeId() == shapeId)
+        if (frameIndex == -1) {
+            throw new Error(`cannot find frame for shape with id : ${shapeId}`)
+        }
+        frames[frameIndex].setRect(rect)
+
+        const shapeIndex = shapes.findIndex(shape => shape.getId() == shapeId)
+        if (shapeIndex == -1) {
+            throw new Error(`cannot find shape with id : ${shapeId}`)
+        }
+        shapes[shapeIndex].setRect(rect)
+
+        this.setState({
+            shapes,
+            frames,
         })
     }
 

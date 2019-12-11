@@ -1,6 +1,9 @@
 import {DocumentEvents} from "./Events.js"
 import {Dispatcher} from "../../common/Dispatcher.js"
 import {Shape} from "../shapes/Shape.js"
+import {Rect} from "../../common/Types.js"
+import {ShapeFactory} from "../ShapeFactory.js"
+import {ShapeEvents} from "../shapes/Events.js"
 
 class Document {
     constructor() {
@@ -26,21 +29,33 @@ class Document {
     }
 
     /**
-     * @param {Shape} shape
+     * @param {Rect} rect
      */
-    insertShape(shape) {
+    insertShape(rect) {
+        const shape = ShapeFactory.createTriangle(rect)
+
         const shapeId = shape.getId()
 
-        if (this._shapes.has(shapeId))
-        {
-            throw new Error(`shape with id ${shapeId} is already has in document`)
-        }
+        shape.addListener(ShapeEvents.CHANGE_RECT, () => {
+            this._dispatcher.dispatch(DocumentEvents.CHANGE_SHAPE_RECT, {
+                shapeId,
+            })
+        })
 
         this._shapes.set(shapeId, shape)
 
         this._dispatcher.dispatch(DocumentEvents.ADD_SHAPE, {
-            'id': shapeId,
+            shapeId,
         })
+    }
+
+    /**
+     * @param {string} shapeId
+     * @param {Rect} rect
+     */
+    changeShapeRect(shapeId, rect) {
+        const shape = this.getShape(shapeId)
+        shape.setFrame(rect)
     }
 
     removeShape(shapeId) {
@@ -51,6 +66,13 @@ class Document {
      */
     onInsertShape(handler) {
         this._dispatcher.addListener(DocumentEvents.ADD_SHAPE, handler)
+    }
+
+    /**
+     * @param {function():void} handler
+     */
+    onChangeShapeRect(handler) {
+        this._dispatcher.addListener(DocumentEvents.CHANGE_SHAPE_RECT, handler)
     }
 }
 

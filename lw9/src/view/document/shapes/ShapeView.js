@@ -1,5 +1,6 @@
 import {DispatcherComponent} from "../../common/DispatcherComponent.js"
 import {Rect} from "../../../common/Types.js"
+import {Events} from "./Events.js"
 
 /** @typedef {'triangle'|'rectangle'|'ellipse'}*/
 let ShapeType
@@ -18,6 +19,9 @@ class ShapeView extends DispatcherComponent {
          */
         this._id = id
 
+        /**
+         * @type {Rect}
+         */
         this.state.rect = rect
     }
 
@@ -48,6 +52,41 @@ class ShapeView extends DispatcherComponent {
      * @abstract
      */
     render() {}
+
+    /**
+     * @param {MouseEvent} e
+     * @protected
+     */
+    onmousedown(e) {
+        e.preventDefault()
+        this.dispatchEvent(Events.ONCLICK)
+
+        const shape = e.target
+
+        const rect = this.getRect()
+
+        const innerOffsetX = e.pageX - rect.left
+        const innerOffsetY = e.pageY -rect.top
+
+        shape.ondragstart = () => {
+            return false
+        }
+
+        document.onmousemove = (e) => {
+            const newLeft = e.pageX - innerOffsetX
+            const newTop = e.pageY - innerOffsetY
+
+            this.dispatchEvent(Events.DRAGGED, {
+                top: newTop,
+                left: newLeft,
+            })
+        }
+
+        shape.onmouseup = () => {
+            document.onmousemove = null
+            shape.onmouseup = null
+        }
+    }
 }
 
 export {

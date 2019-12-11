@@ -36,7 +36,7 @@ class Shape extends Dispatcher {
      */
     setFrame(rect) {
         this._setFrameImpl(rect)
-        this.dispatch(ShapeEvents.RESIZE)
+        this.dispatch(ShapeEvents.CHANGE_RECT)
     }
 
     /**

@@ -2,7 +2,7 @@
  * @enum {string}
  */
 const ShapeEvents = {
-    RESIZE: 'resize'
+    CHANGE_RECT: 'changeRect'
 }
 
 export {

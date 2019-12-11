@@ -1,5 +1,6 @@
 import {Document} from "./document/Document.js"
 import {Shape} from "./shapes/Shape.js"
+import {Rect} from "../common/Types.js"
 
 class AppModel {
     constructor() {
@@ -7,10 +8,18 @@ class AppModel {
     }
 
     /**
-     * @param {Shape} shape
+     * @param {Rect} rect
      */
-    insertShape(shape) {
-        this._document.insertShape(shape)
+    insertShape(rect) {
+        this._document.insertShape(rect)
+    }
+
+    /**
+     * @param {string} shapeId
+     * @param {Rect} rect
+     */
+    changeShapeRect(shapeId, rect) {
+        this._document.changeShapeRect(shapeId, rect)
     }
 
     /**
@@ -33,6 +42,13 @@ class AppModel {
      */
     onInsertShape(handler) {
         this._document.onInsertShape(handler)
+    }
+
+    /**
+     * @param {function():void} handler
+     */
+    onChangeShapeRect(handler) {
+        this._document.onChangeShapeRect(handler)
     }
 }
 

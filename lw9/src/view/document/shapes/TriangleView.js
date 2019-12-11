@@ -1,5 +1,4 @@
 import {ShapeView} from "./ShapeView.js"
-import {Events} from "./Events.js"
 
 class TriangleView extends ShapeView {
     constructor(frame, id) {
@@ -16,16 +15,8 @@ class TriangleView extends ShapeView {
         const vertex2 = { x: rect.left + rect.width / 2, y: rect.top }
         const vertex3 = { x: rect.left + rect.width, y: rect.top + rect.height }
 
-        /**
-         * @param {Event} e
-         */
-        function onClick(e) {
-            e.preventDefault()
-            this.dispatchEvent(Events.ONCLICK)
-        }
-
         return this.html`
-<svg class="shape-wrapper" onclick=${onClick.bind(this)}>
+<svg class="shape-wrapper" onmousedown=${this}>
     <polygon class="shape" points="${vertex1.x},${vertex1.y} ${vertex2.x},${vertex2.y} ${vertex3.x},${vertex3.y}"></polygon>
 </svg>`
     }

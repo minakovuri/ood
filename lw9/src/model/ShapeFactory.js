@@ -1,8 +1,8 @@
-import {Triangle} from "../model/shapes/Triangle.js"
-import {Rectangle} from "../model/shapes/Rectangle.js"
-import {Ellipse} from "../model/shapes/Ellipse.js"
+import {Triangle} from "./shapes/Triangle.js"
+import {Rectangle} from "./shapes/Rectangle.js"
+import {Ellipse} from "./shapes/Ellipse.js"
 import {Rect} from "../common/Types.js"
-import {Shape} from "../model/shapes/Shape.js"
+import {Shape} from "./shapes/Shape.js"
 
 class ShapeFactory {
     /**

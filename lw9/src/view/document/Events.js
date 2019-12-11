@@ -2,8 +2,7 @@
  * @enum {string}
  */
 const DocumentEvents = {
-    ADD_SHAPE: 'addShape',
-    CHANGE_SHAPE_RECT: 'changeShapeRect',
+    CHANGE_RECT: 'changeRect',
 }
 
 export {
