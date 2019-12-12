@@ -5,6 +5,7 @@ import {Events} from "./shapes/Events.js"
 import {DocumentEvents} from "./Events.js"
 import {ShapesFactory} from "./shapes/ShapesFactory.js"
 import {DispatcherComponent} from "../common/DispatcherComponent.js"
+import {FrameEvents} from "./frame/Events.js"
 
 class DocumentView extends DispatcherComponent {
     constructor() {
@@ -40,6 +41,15 @@ class DocumentView extends DispatcherComponent {
         const frame = new Frame(id, rect)
         const shape = ShapesFactory.createShape(rect, id, type)
 
+        const shapeId = shape.getId()
+
+        frame.addListener(FrameEvents.RESIZE, (newRect) => {
+            this.dispatchEvent(DocumentEvents.CHANGE_RECT, {
+                shapeId,
+                newRect,
+            })
+        })
+
         shape.addListener(Events.ONCLICK, () => {
             for (const currFrame of this.state.frames) {
                 currFrame.getEnabled() && currFrame.setEnabled(false)
@@ -62,7 +72,6 @@ class DocumentView extends DispatcherComponent {
 
         shape.addListener(Events.DRAGGED, ({ top, left }) => {
             const currentRect = shape.getRect()
-            const shapeId = shape.getId()
 
             /**
              * @type {Rect}

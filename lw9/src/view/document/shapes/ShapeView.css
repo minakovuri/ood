@@ -14,15 +14,3 @@
     stroke-width: 1;
     stroke-dasharray: 10;
 }
-
-.resize-handler {
-    fill: dodgerblue;
-}
-
-.left-diagonal-resize-handler {
-    cursor: nwse-resize;
-}
-
-.vertical-resize-handler {
-    cursor: ns-resize;
-}

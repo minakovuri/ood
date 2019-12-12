@@ -10,6 +10,7 @@ module.exports = {
             path.resolve(__dirname, 'src/view/document/shapes/ShapeView.css'),
             path.resolve(__dirname, 'src/view/document/DocumentView.css'),
             path.resolve(__dirname, 'src/view/document/frame/Frame.css'),
+            path.resolve(__dirname, 'src/view/document/frame/ResizeHandler.css'),
         ],
         'index.js': [
             path.resolve(__dirname, 'src/index.js')
