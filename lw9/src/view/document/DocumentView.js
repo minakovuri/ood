@@ -3,14 +3,14 @@ import {Frame} from "./frame/Frame.js"
 import {Rect} from "../../common/Types.js"
 import {Events} from "./shapes/Events.js"
 import {DocumentEvents} from "./Events.js"
-import {ShapesFactory} from "./shapes/ShapesFactory.js"
+import {ShapesFactory} from "./ShapesFactory.js"
 import {DispatcherComponent} from "../common/DispatcherComponent.js"
 import {FrameEvents} from "./frame/Events.js"
 import {KeyCodes} from "../common/KeyCodes.js"
 
 const DocumentOptions = {
     WIDTH: 1500,
-    HEIGHT: 750,
+    HEIGHT: 800,
 }
 
 class DocumentView extends DispatcherComponent {

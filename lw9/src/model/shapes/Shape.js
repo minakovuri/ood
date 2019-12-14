@@ -3,6 +3,11 @@ import {Rect} from "../../common/Types"
 import {ShapeEvents} from "./Events"
 import {generateUUID} from "../../common/generateUUID.js"
 
+/**
+ * @typedef {'triangle'|'rectangle'|'ellipse'}
+ */
+let ShapeType
+
 class Shape extends Dispatcher {
     constructor() {
         super();
@@ -18,7 +23,7 @@ class Shape extends Dispatcher {
     }
 
     /**
-     * @return {string}
+     * @return {ShapeType}
      */
     getType() {
         return this._getTypeImpl()
@@ -63,4 +68,5 @@ class Shape extends Dispatcher {
 
 export {
     Shape,
+    ShapeType,
 }

@@ -2,23 +2,32 @@ import {Triangle} from "./shapes/Triangle.js"
 import {Rectangle} from "./shapes/Rectangle.js"
 import {Ellipse} from "./shapes/Ellipse.js"
 import {Rect} from "../common/Types.js"
-import {Shape} from "./shapes/Shape.js"
+import {Shape, ShapeType} from "./shapes/Shape.js"
 
 class ShapeFactory {
     /**
-     * @param {Rect} frame
+     * @param {Rect} rect
+     * @param {ShapeType} type
      * @return {Shape}
      */
-    static createTriangle(frame) {
-        return new Triangle(frame)
-    }
+    static createShape(rect, type) {
+        let shape
 
-    static createRectangle(frame) {
+        switch (type) {
+            case "triangle":
+                shape = new Triangle(rect)
+                break
+            case "ellipse":
+                shape = new Ellipse(rect)
+                break
+            case "rectangle":
+                shape = new Rectangle(rect)
+                break
+            default:
+                break
+        }
 
-    }
-
-    static createEllipse(frame) {
-
+        return shape
     }
 }
 

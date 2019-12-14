@@ -1,5 +1,5 @@
 import {Document} from "./document/Document.js"
-import {Shape} from "./shapes/Shape.js"
+import {Shape, ShapeType} from "./shapes/Shape.js"
 import {Rect} from "../common/Types.js"
 
 class AppModel {
@@ -9,9 +9,10 @@ class AppModel {
 
     /**
      * @param {Rect} rect
+     * @param {ShapeType} type
      */
-    insertShape(rect) {
-        this._document.insertShape(rect)
+    insertShape(rect, type) {
+        this._document.insertShape(rect, type)
     }
 
     /**

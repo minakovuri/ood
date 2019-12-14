@@ -1,6 +1,6 @@
 import {DocumentEvents} from "./Events.js"
 import {Dispatcher} from "../../common/Dispatcher.js"
-import {Shape} from "../shapes/Shape.js"
+import {Shape, ShapeType} from "../shapes/Shape.js"
 import {Rect} from "../../common/Types.js"
 import {ShapeFactory} from "../ShapeFactory.js"
 import {ShapeEvents} from "../shapes/Events.js"
@@ -30,9 +30,10 @@ class Document {
 
     /**
      * @param {Rect} rect
+     * @param {ShapeType} type
      */
-    insertShape(rect) {
-        const shape = ShapeFactory.createTriangle(rect)
+    insertShape(rect, type) {
+        const shape = ShapeFactory.createShape(rect, type)
 
         const shapeId = shape.getId()
 

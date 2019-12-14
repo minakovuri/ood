@@ -1,17 +1,61 @@
 import {Shape} from "./Shape"
 import {Point} from "../../common/Types"
+import {Rect} from "../../common/Types"
 
 class Rectangle extends Shape {
     /**
-     * @param {Point} leftTop
-     * @param {Point} rightBottom
+     * @param {Rect} rect
      */
-    constructor(leftTop, rightBottom) {
+    constructor(rect) {
         super()
+
+        /**
+         * @type {Point}
+         * @private
+         */
+        this._leftTop = { x: rect.left, y: rect.top }
+
+        /**
+         * @type {Point}
+         * @private
+         */
+        this._rightBottom = { x: rect.left + rect.width, y: rect.top + rect.height }
     }
 
-    _setFrameImpl(rect) {
+    /**
+     * @override
+     * @private
+     */
+    _getTypeImpl() {
+        return 'rectangle'
+    }
 
+    /**
+     * @override
+     * @private
+     */
+    _getFrameImpl() {
+        const left = this._leftTop.x
+        const top = this._leftTop.y
+
+        const width = Math.abs(this._rightBottom.x - this._leftTop.x)
+        const height = Math.abs(this._rightBottom.y - this._leftTop.y)
+
+        return {
+            left,
+            top,
+            width,
+            height,
+        }
+    }
+
+    /**
+     * @override
+     * @private
+     */
+    _setFrameImpl(rect) {
+        this._leftTop = { x: rect.left, y: rect.top}
+        this._rightBottom = { x: rect.left + rect.width, y: rect.top + rect.height }
     }
 }
 

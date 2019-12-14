@@ -5,7 +5,7 @@ import {AppView} from "../view/AppView.js"
 /**
  * @type {Rect}
  */
-const defaultShapeRect = { left: 100, top: 100, width: 300, height: 400 }
+const defaultShapeRect = { left: 450, top: 250, width: 400, height: 300 }
 
 class Presenter {
     /**
@@ -22,9 +22,9 @@ class Presenter {
     _initView() {
         const menuView = this._view.getMenu()
 
-        menuView.doOnAddTriangle(() => this._model.insertShape(defaultShapeRect))
-        //menuView.doOnAddRectangle(() => console.log('Add rectangle'))
-        //menuView.doOnAddEllipse(() => console.log('Add ellipse'))
+        menuView.doOnAddTriangle(() => this._model.insertShape(defaultShapeRect, 'triangle'))
+        menuView.doOnAddRectangle(() => this._model.insertShape(defaultShapeRect, 'rectangle'))
+        menuView.doOnAddEllipse(() => this._model.insertShape(defaultShapeRect, 'ellipse'))
 
         this._view.onChangeShapeRect(({ shapeId, newRect }) => {
             this._model.changeShapeRect(shapeId, newRect)
