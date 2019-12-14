@@ -16,10 +16,6 @@ class AppView extends hyper.Component {
         return this._menuView
     }
 
-    getDocument() {
-        return this._documentView
-    }
-
     /**
      * @param {function():void} handler
      */
@@ -28,11 +24,41 @@ class AppView extends hyper.Component {
     }
 
     /**
+     * @param {function():void} handler
+     */
+    onDeleteShape(handler) {
+        this._documentView.addListener(DocumentEvents.DELETE_SHAPE, handler)
+    }
+
+    /**
+     * @param {string} shapeId
+     * @param {Rect} rect
+     * @param {string} shapeType
+     */
+    insertShape(shapeId, rect, shapeType) {
+        this._documentView.addShape(shapeId, rect, shapeType)
+    }
+
+    /**
      * @param {string} shapeId
      * @param {Rect} rect
      */
     updateShape(shapeId, rect) {
         this._documentView.updateShape(shapeId, rect)
+    }
+
+    /**
+     * @param {string} shapeId
+     */
+    removeShape(shapeId) {
+        this._documentView.removeShape(shapeId)
+    }
+
+    /**
+     * @return {?string}
+     */
+    getSelectedShapeId() {
+        return this._documentView.getSelectedShapeId()
     }
 
     render() {

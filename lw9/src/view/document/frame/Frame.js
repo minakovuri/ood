@@ -218,9 +218,12 @@ class Frame extends DispatcherComponent {
         this._bottomMiddleResizeHandler.update(bottomMiddle)
         this._bottomRightResizeHandler.update(bottomRight)
 
+        const style = {
+            display: this.state.enable ? 'block' : 'none'
+        }
+
         return this.html`
-            ${ !this.state.enable ? null : hyper.wire()`
-<svg class="frame">
+<svg class="frame" style=${ style }>
     <line x1="${topLeft.x}" y1="${topLeft.y}" x2="${bottomLeft.x}" y2="${bottomLeft.y}" class="rect-border"></line>
     <line x1="${topLeft.x}" y1="${topLeft.y}" x2="${topRight.x}" y2="${topRight.y}" class="rect-border"></line>
     <line x1="${topRight.x}" y1="${topRight.y}" x2="${bottomRight.x}" y2="${bottomRight.y}" class="rect-border"></line>
@@ -233,8 +236,7 @@ class Frame extends DispatcherComponent {
     ${ this._bottomMiddleResizeHandler }
     ${ this._bottomLeftResizeHandler }
     ${ this._leftMiddleResizeHandler }
-    )}
-</svg>`}`
+</svg>`
     }
 }
 

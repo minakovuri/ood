@@ -58,7 +58,15 @@ class Document {
         shape.setFrame(rect)
     }
 
+    /**
+     * @param {string} shapeId
+     */
     removeShape(shapeId) {
+        if (this._shapes.delete(shapeId)) {
+            this._dispatcher.dispatch(DocumentEvents.REMOVE_SHAPE, {
+                shapeId,
+            })
+        }
     }
 
     /**
@@ -73,6 +81,13 @@ class Document {
      */
     onChangeShapeRect(handler) {
         this._dispatcher.addListener(DocumentEvents.CHANGE_SHAPE_RECT, handler)
+    }
+
+    /**
+     * @param {function():void} handler
+     */
+    onRemoveShape(handler) {
+        this._dispatcher.addListener(DocumentEvents.REMOVE_SHAPE, handler)
     }
 }
 

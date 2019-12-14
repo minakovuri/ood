@@ -6,6 +6,7 @@ import {DocumentEvents} from "./Events.js"
 import {ShapesFactory} from "./shapes/ShapesFactory.js"
 import {DispatcherComponent} from "../common/DispatcherComponent.js"
 import {FrameEvents} from "./frame/Events.js"
+import {KeyCodes} from "../common/KeyCodes.js"
 
 const DocumentOptions = {
     WIDTH: 1500,
@@ -26,10 +27,24 @@ class DocumentView extends DispatcherComponent {
          */
         this.state.frames = []
 
-        window.onmousedown = (e) => {
+        /**
+         * @type {?string}
+         * @private
+         */
+        this._selectedShapeId = null
+
+        document.onkeydown = (e) => {
+            if (e.keyCode == KeyCodes.BACK_SPACE && this._selectedShapeId) {
+                this.dispatchEvent(DocumentEvents.DELETE_SHAPE)
+            }
+        }
+
+        document.onmousedown = (e) => {
             if (e.defaultPrevented) {
                 return
             }
+
+            this._selectedShapeId = null
 
             for (const frame of this.state.frames) {
                 frame.getEnabled() && frame.setEnabled(false)
@@ -38,11 +53,11 @@ class DocumentView extends DispatcherComponent {
     }
 
     /**
-     * @param {Rect} rect
      * @param {string} id
+     * @param {Rect} rect
      * @param {ShapeType} type
      */
-    addShape(rect, id, type) {
+    addShape(id, rect, type) {
         const frame = new Frame(id, rect)
         const shape = ShapesFactory.createShape(rect, id, type)
 
@@ -82,6 +97,8 @@ class DocumentView extends DispatcherComponent {
         })
 
         shape.addListener(Events.ONCLICK, () => {
+            this._selectedShapeId = shapeId
+
             for (const currFrame of this.state.frames) {
                 currFrame.getEnabled() && currFrame.setEnabled(false)
             }
@@ -165,6 +182,38 @@ class DocumentView extends DispatcherComponent {
             shapes,
             frames,
         })
+    }
+
+    /**
+     * @param {string} shapeId
+     */
+    removeShape(shapeId) {
+        const frames = this.state.frames
+        const shapes = this.state.shapes
+
+        const frameIndex = frames.findIndex(frame => frame.getShapeId() == shapeId)
+        if (frameIndex == -1) {
+            throw new Error(`cannot find frame for shape with id : ${shapeId}`)
+        }
+        frames.splice(frameIndex, 1)
+
+        const shapeIndex = shapes.findIndex(shape => shape.getId() == shapeId)
+        if (shapeIndex == -1) {
+            throw new Error(`cannot find shape with id : ${shapeId}`)
+        }
+        shapes.splice(shapeIndex, 1)
+
+        this.setState({
+            shapes,
+            frames,
+        })
+    }
+
+    /**
+     * @return {?string}
+     */
+    getSelectedShapeId() {
+        return this._selectedShapeId
     }
 
     render() {

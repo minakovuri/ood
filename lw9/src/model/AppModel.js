@@ -34,7 +34,7 @@ class AppModel {
      * @param {string} shapeId
      */
     removeShape(shapeId) {
-        this._document.removeShape()
+        this._document.removeShape(shapeId)
     }
 
     /**
@@ -49,6 +49,13 @@ class AppModel {
      */
     onChangeShapeRect(handler) {
         this._document.onChangeShapeRect(handler)
+    }
+
+    /**
+     * @param {function():void} handler
+     */
+    onRemoveShape(handler) {
+        this._document.onRemoveShape(handler)
     }
 }
 

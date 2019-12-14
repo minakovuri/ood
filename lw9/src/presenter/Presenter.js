@@ -29,6 +29,11 @@ class Presenter {
         this._view.onChangeShapeRect(({ shapeId, newRect }) => {
             this._model.changeShapeRect(shapeId, newRect)
         })
+
+        this._view.onDeleteShape(() => {
+            const selectedShapeId = this._view.getSelectedShapeId()
+            this._model.removeShape(selectedShapeId)
+        })
     }
 
     _initModel() {
@@ -38,8 +43,7 @@ class Presenter {
             const shapeType = shape.getType()
             const shapeFrame = shape.getFrame()
 
-            const documentView = this._view.getDocument()
-            documentView.addShape(shapeFrame, shapeId, shapeType)
+            this._view.insertShape(shapeId, shapeFrame, shapeType)
         }
 
         function changeShapeRectHandler({ shapeId }) {
@@ -49,8 +53,13 @@ class Presenter {
             this._view.updateShape(shapeId, rect)
         }
 
+        function removeShapeHandler({ shapeId }) {
+            this._view.removeShape(shapeId)
+        }
+
         this._model.onInsertShape(insertShapeHandler.bind(this))
         this._model.onChangeShapeRect(changeShapeRectHandler.bind(this))
+        this._model.onRemoveShape(removeShapeHandler.bind(this))
     }
 }
 
