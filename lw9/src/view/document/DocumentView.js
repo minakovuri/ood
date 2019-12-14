@@ -7,6 +7,11 @@ import {ShapesFactory} from "./shapes/ShapesFactory.js"
 import {DispatcherComponent} from "../common/DispatcherComponent.js"
 import {FrameEvents} from "./frame/Events.js"
 
+const DocumentOptions = {
+    WIDTH: 1500,
+    HEIGHT: 750,
+}
+
 class DocumentView extends DispatcherComponent {
     constructor() {
         super();
@@ -43,7 +48,33 @@ class DocumentView extends DispatcherComponent {
 
         const shapeId = shape.getId()
 
-        frame.addListener(FrameEvents.RESIZE, (newRect) => {
+        frame.addListener(FrameEvents.RESIZE, ({ left, top, width, height }) => {
+            const currentRect = shape.getRect()
+
+            const bottom = top + height
+            const right = left + width
+
+            if (top <= 0) {
+                top = 1
+                height = currentRect.height
+            } else if (bottom >= DocumentOptions.HEIGHT) {
+                height = DocumentOptions.HEIGHT - 1 - top
+            }
+
+            if (left <= 0) {
+                left = 1
+                width = currentRect.width
+            } else if (right >= DocumentOptions.WIDTH) {
+                width = DocumentOptions.WIDTH - 1 - left
+            }
+
+            const newRect = {
+                top,
+                left,
+                width,
+                height,
+            }
+
             this.dispatchEvent(DocumentEvents.CHANGE_RECT, {
                 shapeId,
                 newRect,
@@ -72,6 +103,21 @@ class DocumentView extends DispatcherComponent {
 
         shape.addListener(Events.DRAGGED, ({ top, left }) => {
             const currentRect = shape.getRect()
+
+            const bottom = top + currentRect.height
+            const right = left + currentRect.width
+
+            if (top <= 0) {
+                top = 1
+            } else if (bottom >= DocumentOptions.HEIGHT) {
+                top = DocumentOptions.HEIGHT - currentRect.height - 1
+            }
+
+            if (left <= 0) {
+                left = 1
+            } else if (right >= DocumentOptions.WIDTH) {
+                left = DocumentOptions.WIDTH - currentRect.width - 1
+            }
 
             /**
              * @type {Rect}
@@ -123,11 +169,11 @@ class DocumentView extends DispatcherComponent {
 
     render() {
         return this.html`
-<div class="document">
+<div class="document" style=${{ width: DocumentOptions.WIDTH, height: DocumentOptions.HEIGHT }}>
     <div class="frames-layer">
         ${this.state.frames.map(frame => frame.render())}
     </div>
-    <svg class="shapes-layer" width="1200" height="600">
+    <svg class="shapes-layer">
         ${this.state.shapes.map(shape => shape.render())}
     </svg>
 </div>`

@@ -82,7 +82,7 @@ class ShapeView extends DispatcherComponent {
             })
         }
 
-        shape.onmouseup = () => {
+        document.onmouseup = () => {
             document.onmousemove = null
             shape.onmouseup = null
         }

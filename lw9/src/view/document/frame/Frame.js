@@ -32,18 +32,8 @@ class Frame extends DispatcherComponent {
             const width = currentRect.width + widthDiff
             const height = currentRect.height + heightDiff
 
-            /**
-             * @type {Rect}
-             */
-            const newRect = {
-                left,
-                top,
-                width,
-                height,
-            }
-
             if (width >= MIN_WIDTH && height >= MIN_HEIGHT) {
-                this.dispatchEvent(FrameEvents.RESIZE, newRect)
+                this.dispatchEvent(FrameEvents.RESIZE, {left, top, width, height})
             }
         })
 
@@ -56,18 +46,8 @@ class Frame extends DispatcherComponent {
             const width = currentRect.width
             const height = currentRect.height + heightDiff
 
-            /**
-             * @type {Rect}
-             */
-            const newRect = {
-                left,
-                top,
-                width,
-                height,
-            }
-
             if (height >= MIN_HEIGHT) {
-                this.dispatchEvent(FrameEvents.RESIZE, newRect)
+                this.dispatchEvent(FrameEvents.RESIZE, {left, top, width, height})
             }
         })
 
@@ -82,18 +62,8 @@ class Frame extends DispatcherComponent {
             const width = currentRect.width + widthDiff
             const height = currentRect.height + heightDiff
 
-            /**
-             * @type {Rect}
-             */
-            const newRect = {
-                left,
-                top,
-                width,
-                height,
-            }
-
             if (width >= MIN_WIDTH && height >= MIN_HEIGHT) {
-                this.dispatchEvent(FrameEvents.RESIZE, newRect)
+                this.dispatchEvent(FrameEvents.RESIZE, {left, top, width, height})
             }
         })
 
@@ -107,18 +77,8 @@ class Frame extends DispatcherComponent {
             const width = currentRect.width + widthDiff
             const height = currentRect.height
 
-            /**
-             * @type {Rect}
-             */
-            const newRect = {
-                left,
-                top,
-                width,
-                height,
-            }
-
             if (width >= MIN_WIDTH) {
-                this.dispatchEvent(FrameEvents.RESIZE, newRect)
+                this.dispatchEvent(FrameEvents.RESIZE, {left, top, width, height})
             }
         })
 
@@ -132,18 +92,8 @@ class Frame extends DispatcherComponent {
             const width = currentRect.width + widthDiff
             const height = currentRect.height
 
-            /**
-             * @type {Rect}
-             */
-            const newRect = {
-                left,
-                top,
-                width,
-                height,
-            }
-
             if (width >= MIN_WIDTH) {
-                this.dispatchEvent(FrameEvents.RESIZE, newRect)
+                this.dispatchEvent(FrameEvents.RESIZE, {left, top, width, height})
             }
         })
 
@@ -158,18 +108,8 @@ class Frame extends DispatcherComponent {
             const width = currentRect.width + widthDiff
             const height = currentRect.height + heightDiff
 
-            /**
-             * @type {Rect}
-             */
-            const newRect = {
-                left,
-                top,
-                width,
-                height,
-            }
-
             if (width >= MIN_WIDTH && height >= MIN_HEIGHT) {
-                this.dispatchEvent(FrameEvents.RESIZE, newRect)
+                this.dispatchEvent(FrameEvents.RESIZE, {left, top, width, height})
             }
         })
 
@@ -183,18 +123,8 @@ class Frame extends DispatcherComponent {
             const width = currentRect.width
             const height = currentRect.height + heightDiff
 
-            /**
-             * @type {Rect}
-             */
-            const newRect = {
-                left,
-                top,
-                width,
-                height,
-            }
-
             if (height >= MIN_HEIGHT) {
-                this.dispatchEvent(FrameEvents.RESIZE, newRect)
+                this.dispatchEvent(FrameEvents.RESIZE, {left, top, width, height})
             }
         })
 
@@ -209,18 +139,8 @@ class Frame extends DispatcherComponent {
             const width = currentRect.width + widthDiff
             const height = currentRect.height + heightDiff
 
-            /**
-             * @type {Rect}
-             */
-            const newRect = {
-                left,
-                top,
-                width,
-                height,
-            }
-
             if (width >= MIN_WIDTH && height >= MIN_HEIGHT) {
-                this.dispatchEvent(FrameEvents.RESIZE, newRect)
+                this.dispatchEvent(FrameEvents.RESIZE, {left, top, width, height})
             }
         })
 
