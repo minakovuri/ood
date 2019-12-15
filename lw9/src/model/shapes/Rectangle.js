@@ -34,7 +34,7 @@ class Rectangle extends Shape {
      * @override
      * @private
      */
-    _getFrameImpl() {
+    _getRectImpl() {
         const left = this._leftTop.x
         const top = this._leftTop.y
 
@@ -53,7 +53,7 @@ class Rectangle extends Shape {
      * @override
      * @private
      */
-    _setFrameImpl(rect) {
+    _setRectImpl(rect) {
         this._leftTop = { x: rect.left, y: rect.top}
         this._rightBottom = { x: rect.left + rect.width, y: rect.top + rect.height }
     }

@@ -3,6 +3,7 @@ import {hyper} from "hyperhtml"
 import {DocumentView} from "./document/DocumentView.js"
 import {DocumentEvents} from "./document/Events.js"
 import {ViewRect} from "./types/ViewRect.js"
+import {ViewShapeType} from "./document/shapes/ShapeType.js"
 
 class AppView extends hyper.Component {
     constructor() {
@@ -51,7 +52,7 @@ class AppView extends hyper.Component {
     /**
      * @param {string} shapeId
      * @param {ViewRect} rect
-     * @param {string} shapeType
+     * @param {ViewShapeType} shapeType
      */
     insertShape(shapeId, rect, shapeType) {
         this._documentView.addShape(shapeId, rect, shapeType)

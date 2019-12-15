@@ -32,21 +32,21 @@ class Shape extends Dispatcher {
     /**
      * @return {Rect}
      */
-    getFrame() {
-        return this._getFrameImpl()
+    getRect() {
+        return this._getRectImpl()
     }
 
     /**
      * @param {Rect} rect
      */
-    setFrame(rect) {
-        this._setFrameImpl(rect)
+    setRect(rect) {
+        this._setRectImpl(rect)
         this.dispatch(ShapeEvents.UPDATE_RECT)
     }
 
     /**
      * @abstract
-     * @return {string}
+     * @return {ShapeType}
      * @protected
      */
     _getTypeImpl() {}
@@ -56,14 +56,14 @@ class Shape extends Dispatcher {
      * @param {Rect} rect
      * @protected
      */
-    _setFrameImpl(rect) {}
+    _setRectImpl(rect) {}
 
     /**
      * @abstract
      * @return {Rect}
      * @protected
      */
-    _getFrameImpl() {}
+    _getRectImpl() {}
 }
 
 export {

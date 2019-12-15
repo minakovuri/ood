@@ -40,7 +40,7 @@ class Ellipse extends Shape {
      * @override
      * @private
      */
-    _getFrameImpl() {
+    _getRectImpl() {
         const left = this._center.x - this._horizontalRadius
         const top = this._center.y - this._verticalRadius
 
@@ -59,7 +59,7 @@ class Ellipse extends Shape {
      * @override
      * @private
      */
-    _setFrameImpl(rect) {
+    _setRectImpl(rect) {
         this._center = { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 }
         this._horizontalRadius = rect.width / 2
         this._verticalRadius = rect.height / 2

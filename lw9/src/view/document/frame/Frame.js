@@ -3,8 +3,8 @@ import {DispatcherComponent} from "../../common/DispatcherComponent.js"
 import {ResizeHandler} from "./ResizeHandler.js"
 import {FrameEvents} from "./Events.js"
 
-const MIN_WIDTH = 5
-const MIN_HEIGHT = 5
+const MIN_WIDTH = 1
+const MIN_HEIGHT = 1
 
 class Frame extends DispatcherComponent {
     /**

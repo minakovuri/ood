@@ -1,6 +1,8 @@
 import {AppModel} from "../model/AppModel.js"
 import {Rect} from "../model/types/Rect.js"
 import {AppView} from "../view/AppView.js"
+import {ViewRect} from "../view/types/ViewRect.js"
+import {ViewShapeType} from "../view/document/shapes/ShapeType.js"
 
 /**
  * @type {Rect}
@@ -38,17 +40,33 @@ class Presenter {
         function insertShapeHandler({ shapeId }) {
             const shape = this._model.getShape(shapeId)
 
-            const shapeType = shape.getType()
-            const shapeFrame = shape.getFrame()
+            const modelShapeType = shape.getType()
+            const modelShapeRect = shape.getRect()
 
-            this._view.insertShape(shapeId, shapeFrame, shapeType)
+            /**
+             * @type {ViewShapeType}
+             */
+            const viewShapeType =  /** @type {ViewShapeType} */ (modelShapeType)
+
+            /**
+             * @type {ViewRect}
+             */
+            const viewShapeRect = /** @type {ViewRect} */ (modelShapeRect)
+
+            this._view.insertShape(shapeId, viewShapeRect, viewShapeType)
         }
 
         function changeShapeRectHandler({ shapeId }) {
             const shape = this._model.getShape(shapeId)
-            const rect  = shape.getFrame()
 
-            this._view.updateShape(shapeId, rect)
+            const modelShapeRect = shape.getRect()
+
+            /**
+             * @type {ViewRect}
+             */
+            const viewShapeRect = /** @type {ViewRect} */ (modelShapeRect)
+
+            this._view.updateShape(shapeId, viewShapeRect)
         }
 
         function removeShapeHandler({ shapeId }) {

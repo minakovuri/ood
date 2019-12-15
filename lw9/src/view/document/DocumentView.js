@@ -3,10 +3,11 @@ import {Frame} from "./frame/Frame.js"
 import {ViewRect} from "../types/ViewRect.js"
 import {ShapeEvents} from "./shapes/Events.js"
 import {DocumentEvents} from "./Events.js"
-import {ShapesFactory, ShapeType} from "./shapes/ShapesFactory.js"
+import {ShapesFactory} from "./shapes/ShapesFactory.js"
 import {DispatcherComponent} from "../common/DispatcherComponent.js"
 import {FrameEvents} from "./frame/Events.js"
 import {KeyCodes} from "../common/KeyCodes.js"
+import {ViewShapeType} from "./shapes/ShapeType.js"
 
 const DocumentOptions = {
     WIDTH: 1500,
@@ -41,7 +42,7 @@ class DocumentView extends DispatcherComponent {
     /**
      * @param {string} id
      * @param {ViewRect} rect
-     * @param {ShapeType} type
+     * @param {ViewShapeType} type
      */
     addShape(id, rect, type) {
         const frame = new Frame(id, rect)

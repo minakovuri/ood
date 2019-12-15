@@ -56,7 +56,7 @@ class Document {
      */
     changeShapeRect(shapeId, rect) {
         const shape = this.getShape(shapeId)
-        shape.setFrame(rect)
+        shape.setRect(rect)
     }
 
     /**

@@ -1,8 +1,8 @@
-import {Triangle} from "../src/model/shapes/Triangle"
+import {Rectangle} from "../src/model/shapes/Rectangle.js"
 import {expect} from "chai"
 
-describe('triangle test', () => {
-    it('create triangle and get frame', () => {
+describe('rectangle test', () => {
+    it('create rectangle and get frame', () => {
         const frame = {
             left: 20,
             top: 20,
@@ -10,12 +10,12 @@ describe('triangle test', () => {
             height: 30,
         }
 
-        const triangle = new Triangle(frame)
+        const rectangle = new Rectangle(frame)
 
-        expect(triangle.getRect()).to.eql(frame)
+        expect(rectangle.getRect()).to.eql(frame)
     })
 
-    it('create triangle and set frame', () => {
+    it('create rectangle and set frame', () => {
         const frame = {
             left: 20,
             top: 20,
@@ -23,7 +23,7 @@ describe('triangle test', () => {
             height: 30,
         }
 
-        const triangle = new Triangle(frame)
+        const triangle = new Rectangle(frame)
 
         const newFrame = {
             left: 15,
