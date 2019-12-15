@@ -1,9 +1,9 @@
-import {ShapeView, ShapeType} from "./shapes/ShapeView.js"
+import {ShapeView} from "./shapes/ShapeView.js"
 import {Frame} from "./frame/Frame.js"
-import {Rect} from "../../common/Types.js"
-import {Events} from "./shapes/Events.js"
+import {ViewRect} from "../types/ViewRect.js"
+import {ShapeEvents} from "./shapes/Events.js"
 import {DocumentEvents} from "./Events.js"
-import {ShapesFactory} from "./ShapesFactory.js"
+import {ShapesFactory, ShapeType} from "./shapes/ShapesFactory.js"
 import {DispatcherComponent} from "../common/DispatcherComponent.js"
 import {FrameEvents} from "./frame/Events.js"
 import {KeyCodes} from "../common/KeyCodes.js"
@@ -33,28 +33,14 @@ class DocumentView extends DispatcherComponent {
          */
         this._selectedShapeId = null
 
-        document.onkeydown = (e) => {
-            if (e.keyCode == KeyCodes.BACK_SPACE && this._selectedShapeId) {
-                this.dispatchEvent(DocumentEvents.DELETE_SHAPE)
-            }
-        }
+        this._listenDeleteShapeEvent()
 
-        document.onmousedown = (e) => {
-            if (e.defaultPrevented) {
-                return
-            }
-
-            this._selectedShapeId = null
-
-            for (const frame of this.state.frames) {
-                frame.getEnabled() && frame.setEnabled(false)
-            }
-        }
+        this._listenUnselectShapes()
     }
 
     /**
      * @param {string} id
-     * @param {Rect} rect
+     * @param {ViewRect} rect
      * @param {ShapeType} type
      */
     addShape(id, rect, type) {
@@ -90,13 +76,13 @@ class DocumentView extends DispatcherComponent {
                 height,
             }
 
-            this.dispatchEvent(DocumentEvents.CHANGE_RECT, {
+            this.dispatchEvent(DocumentEvents.UPDATE_SHAPE_RECT, {
                 shapeId,
                 newRect,
             })
         })
 
-        shape.addListener(Events.ONCLICK, () => {
+        shape.addListener(ShapeEvents.ONCLICK, () => {
             this._selectedShapeId = shapeId
 
             for (const currFrame of this.state.frames) {
@@ -105,9 +91,6 @@ class DocumentView extends DispatcherComponent {
 
             !frame.getEnabled() && frame.setEnabled(true)
 
-            /**
-             * @type {Array<ShapeView>}
-             */
             let shapes = this.state.shapes
             shapes = shapes.filter(currShape => currShape !== shape)
             shapes.push(shape)
@@ -118,7 +101,7 @@ class DocumentView extends DispatcherComponent {
             })
         })
 
-        shape.addListener(Events.DRAGGED, ({ top, left }) => {
+        shape.addListener(ShapeEvents.DRAGGED, ({ top, left }) => {
             const currentRect = shape.getRect()
 
             const bottom = top + currentRect.height
@@ -136,9 +119,6 @@ class DocumentView extends DispatcherComponent {
                 left = DocumentOptions.WIDTH - currentRect.width - 1
             }
 
-            /**
-             * @type {Rect}
-             */
             const newRect = {
                 top,
                 left,
@@ -146,7 +126,7 @@ class DocumentView extends DispatcherComponent {
                 height: currentRect.height,
             }
 
-            this.dispatchEvent(DocumentEvents.CHANGE_RECT, {
+            this.dispatchEvent(DocumentEvents.UPDATE_SHAPE_RECT, {
                 shapeId,
                 newRect,
             })
@@ -160,7 +140,7 @@ class DocumentView extends DispatcherComponent {
 
     /**
      * @param {string} shapeId
-     * @param {Rect} rect
+     * @param {ViewRect} rect
      */
     updateShape(shapeId, rect) {
         const frames = this.state.frames
@@ -188,6 +168,10 @@ class DocumentView extends DispatcherComponent {
      * @param {string} shapeId
      */
     removeShape(shapeId) {
+        if (this._selectedShapeId == shapeId) {
+            this._selectedShapeId = null
+        }
+
         const frames = this.state.frames
         const shapes = this.state.shapes
 
@@ -226,6 +210,38 @@ class DocumentView extends DispatcherComponent {
         ${this.state.shapes.map(shape => shape.render())}
     </svg>
 </div>`
+    }
+
+    /**
+     * @private
+     */
+    _listenDeleteShapeEvent() {
+        document.onkeydown = (e) => {
+            if (e.defaultPrevented) {
+                return
+            }
+
+            if (e.keyCode == KeyCodes.BACK_SPACE && this._selectedShapeId) {
+                this.dispatchEvent(DocumentEvents.DELETE_SHAPE)
+            }
+        }
+    }
+
+    /**
+     * @private
+     */
+    _listenUnselectShapes() {
+        document.onmousedown = (e) => {
+            if (e.defaultPrevented) {
+                return
+            }
+
+            this._selectedShapeId = null
+
+            for (const frame of this.state.frames) {
+                frame.getEnabled() && frame.setEnabled(false)
+            }
+        }
     }
 }
 

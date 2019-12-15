@@ -1,6 +1,6 @@
 import {Shape} from "./Shape"
-import {Rect} from "../../common/Types.js"
-import {Point} from "../../common/Types.js"
+import {Rect} from "../types/Rect.js"
+import {Point} from "../types/Point.js"
 
 class Ellipse extends Shape {
     /**

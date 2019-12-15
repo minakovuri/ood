@@ -1,6 +1,6 @@
 import {Document} from "./document/Document.js"
 import {Shape, ShapeType} from "./shapes/Shape.js"
-import {Rect} from "../common/Types.js"
+import {Rect} from "./types/Rect.js"
 
 class AppModel {
     constructor() {

@@ -1,16 +1,15 @@
-import {hyper} from "hyperhtml"
-import {Rect} from "../../../common/Types.js"
+import {ViewRect} from "../../types/ViewRect.js"
 import {DispatcherComponent} from "../../common/DispatcherComponent.js"
 import {ResizeHandler} from "./ResizeHandler.js"
 import {FrameEvents} from "./Events.js"
 
-const MIN_WIDTH = 1
-const MIN_HEIGHT = 1
+const MIN_WIDTH = 5
+const MIN_HEIGHT = 5
 
 class Frame extends DispatcherComponent {
     /**
      * @param {string} shapeId
-     * @param {Rect} rect
+     * @param {ViewRect} rect
      */
     constructor(shapeId, rect) {
         super();
@@ -156,7 +155,7 @@ class Frame extends DispatcherComponent {
     }
 
     /**
-     * @param {Rect} rect
+     * @param {ViewRect} rect
      */
     setRect(rect) {
         const newState = {
@@ -165,13 +164,6 @@ class Frame extends DispatcherComponent {
             enable: this.state.enable,
         }
         this.setState(newState)
-    }
-
-    /**
-     * @return {Rect}
-     */
-    getRect() {
-        return this.state.rect
     }
 
     /**

@@ -1,5 +1,5 @@
 import {AppModel} from "../model/AppModel.js"
-import {Rect} from "../common/Types.js"
+import {Rect} from "../model/types/Rect.js"
 import {AppView} from "../view/AppView.js"
 
 /**
@@ -20,13 +20,11 @@ class Presenter {
     }
 
     _initView() {
-        const menuView = this._view.getMenu()
+        this._view.onAddTriangle(() => this._model.insertShape(defaultShapeRect, 'triangle'))
+        this._view.onAddRectangle(() => this._model.insertShape(defaultShapeRect, 'rectangle'))
+        this._view.onAddEllipse(() => this._model.insertShape(defaultShapeRect, 'ellipse'))
 
-        menuView.doOnAddTriangle(() => this._model.insertShape(defaultShapeRect, 'triangle'))
-        menuView.doOnAddRectangle(() => this._model.insertShape(defaultShapeRect, 'rectangle'))
-        menuView.doOnAddEllipse(() => this._model.insertShape(defaultShapeRect, 'ellipse'))
-
-        this._view.onChangeShapeRect(({ shapeId, newRect }) => {
+        this._view.onUpdateShapeRect(({ shapeId, newRect }) => {
             this._model.changeShapeRect(shapeId, newRect)
         })
 

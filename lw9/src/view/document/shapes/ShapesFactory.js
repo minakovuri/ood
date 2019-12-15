@@ -1,13 +1,15 @@
-import {ShapeType} from "./shapes/ShapeView.js"
-import {Rect} from "../../common/Types.js"
-import {TriangleView} from "./shapes/TriangleView.js"
-import {ShapeView} from "./shapes/ShapeView.js"
-import {RectangleView} from "./shapes/RectangleView.js"
-import {EllipseView} from "./shapes/EllipseView.js"
+import {ViewRect} from "../../types/ViewRect.js"
+import {TriangleView} from "./TriangleView.js"
+import {ShapeView} from "./ShapeView.js"
+import {RectangleView} from "./RectangleView.js"
+import {EllipseView} from "./EllipseView.js"
+
+/** @typedef {'triangle'|'rectangle'|'ellipse'}*/
+let ShapeType
 
 class ShapesFactory {
     /**
-     * @param {Rect} rect
+     * @param {ViewRect} rect
      * @param {string} id
      * @param {ShapeType} type
      * @return {ShapeView}
@@ -33,4 +35,5 @@ class ShapesFactory {
 
 export {
     ShapesFactory,
+    ShapeType,
 }

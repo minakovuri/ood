@@ -1,40 +1,44 @@
-import {InsertView} from "./InsertView.js"
+import {ShapeManagementView} from "./shapeManagement/ShapeManagementView.js"
 import {hyper} from "hyperhtml"
 
 class MenuView extends hyper.Component {
     constructor() {
         super()
-        this._insertView = new InsertView()
+        this._shapeManagementView = new ShapeManagementView()
     }
 
     /**
      * @param {function():void} handler
      */
     doOnAddTriangle(handler) {
-        this._insertView.doOnAddTriangle(handler)
+        this._shapeManagementView.doOnAddTriangle(handler)
     }
 
     /**
      * @param {function():void} handler
      */
     doOnAddRectangle(handler) {
-        this._insertView.doOnAddRectangle(handler)
+        this._shapeManagementView.doOnAddRectangle(handler)
     }
 
     /**
      * @param {function():void} handler
      */
     doOnAddEllipse(handler) {
-        this._insertView.doOnAddEllipse(handler)
+        this._shapeManagementView.doOnAddEllipse(handler)
+    }
+
+    /**
+     * @param {function():void} handler
+     */
+    doOnDeleteShape(handler) {
+        this._shapeManagementView.doOnDeleteShape(handler)
     }
 
     render() {
         return this.html`
 <div class="menu">
-    <div class="tabs"></div>
-    <div class="content">
-        ${this._insertView}
-    </div>
+    ${this._shapeManagementView}
 </div>`
     }
 }

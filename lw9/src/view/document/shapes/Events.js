@@ -1,11 +1,11 @@
 /**
  * @enum {string}
  */
-const Events = {
+const ShapeEvents = {
     ONCLICK: 'onClick',
     DRAGGED: 'dragged',
 }
 
 export {
-    Events,
+    ShapeEvents,
 }

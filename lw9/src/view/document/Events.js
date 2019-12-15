@@ -2,7 +2,7 @@
  * @enum {string}
  */
 const DocumentEvents = {
-    CHANGE_RECT: 'changeRect',
+    UPDATE_SHAPE_RECT: 'updateShapeRect',
     DELETE_SHAPE: 'deleteShape',
 }
 

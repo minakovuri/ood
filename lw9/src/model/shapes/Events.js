@@ -2,7 +2,7 @@
  * @enum {string}
  */
 const ShapeEvents = {
-    CHANGE_RECT: 'changeRect'
+    UPDATE_RECT: 'updateRect'
 }
 
 export {

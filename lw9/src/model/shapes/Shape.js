@@ -1,5 +1,5 @@
 import {Dispatcher} from "../../common/Dispatcher"
-import {Rect} from "../../common/Types"
+import {Rect} from "../types/Rect.js"
 import {ShapeEvents} from "./Events"
 import {generateUUID} from "../../common/generateUUID.js"
 
@@ -41,7 +41,7 @@ class Shape extends Dispatcher {
      */
     setFrame(rect) {
         this._setFrameImpl(rect)
-        this.dispatch(ShapeEvents.CHANGE_RECT)
+        this.dispatch(ShapeEvents.UPDATE_RECT)
     }
 
     /**

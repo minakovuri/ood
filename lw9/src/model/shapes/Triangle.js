@@ -1,6 +1,6 @@
 import {Shape} from "./Shape"
-import {Point} from "../../common/Types"
-import {Rect} from "../../common/Types"
+import {Point} from "../types/Point.js"
+import {Rect} from "../types/Rect.js"
 
 class Triangle extends Shape {
     /**

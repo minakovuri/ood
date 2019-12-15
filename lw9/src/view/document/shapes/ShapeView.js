@@ -1,13 +1,10 @@
 import {DispatcherComponent} from "../../common/DispatcherComponent.js"
-import {Rect} from "../../../common/Types.js"
-import {Events} from "./Events.js"
-
-/** @typedef {'triangle'|'rectangle'|'ellipse'}*/
-let ShapeType
+import {ViewRect} from "../../types/ViewRect.js"
+import {ShapeEvents} from "./Events.js"
 
 class ShapeView extends DispatcherComponent {
     /**
-     * @param {Rect} rect
+     * @param {ViewRect} rect
      * @param {string} id
      */
     constructor(rect, id) {
@@ -20,7 +17,7 @@ class ShapeView extends DispatcherComponent {
         this._id = id
 
         /**
-         * @type {Rect}
+         * @type {ViewRect}
          */
         this.state.rect = rect
     }
@@ -33,7 +30,7 @@ class ShapeView extends DispatcherComponent {
     }
 
     /**
-     * @param {Rect} rect
+     * @param {ViewRect} rect
      */
     setRect(rect) {
         this.setState({
@@ -42,7 +39,7 @@ class ShapeView extends DispatcherComponent {
     }
 
     /**
-     * @return {Rect}
+     * @return {ViewRect}
      */
     getRect() {
         return this.state.rect
@@ -59,7 +56,7 @@ class ShapeView extends DispatcherComponent {
      */
     onmousedown(e) {
         e.preventDefault()
-        this.dispatchEvent(Events.ONCLICK)
+        this.dispatchEvent(ShapeEvents.ONCLICK)
 
         const shape = e.target
 
@@ -76,7 +73,7 @@ class ShapeView extends DispatcherComponent {
             const newLeft = e.pageX - innerOffsetX
             const newTop = e.pageY - innerOffsetY
 
-            this.dispatchEvent(Events.DRAGGED, {
+            this.dispatchEvent(ShapeEvents.DRAGGED, {
                 top: newTop,
                 left: newLeft,
             })
@@ -90,6 +87,5 @@ class ShapeView extends DispatcherComponent {
 }
 
 export {
-    ShapeType,
     ShapeView,
 }

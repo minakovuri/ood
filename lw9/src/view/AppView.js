@@ -2,7 +2,7 @@ import {MenuView} from "./menu/MenuView.js"
 import {hyper} from "hyperhtml"
 import {DocumentView} from "./document/DocumentView.js"
 import {DocumentEvents} from "./document/Events.js"
-import {Rect} from "../common/Types.js"
+import {ViewRect} from "./types/ViewRect.js"
 
 class AppView extends hyper.Component {
     constructor() {
@@ -12,15 +12,32 @@ class AppView extends hyper.Component {
         this._documentView = new DocumentView()
     }
 
-    getMenu() {
-        return this._menuView
+    /**
+     * @param {function():void} handler
+     */
+    onAddTriangle(handler) {
+        this._menuView.doOnAddTriangle(handler)
     }
 
     /**
      * @param {function():void} handler
      */
-    onChangeShapeRect(handler) {
-        this._documentView.addListener(DocumentEvents.CHANGE_RECT, handler)
+    onAddRectangle(handler) {
+        this._menuView.doOnAddRectangle(handler)
+    }
+
+    /**
+     * @param {function():void} handler
+     */
+    onAddEllipse(handler) {
+        this._menuView.doOnAddEllipse(handler)
+    }
+
+    /**
+     * @param {function():void} handler
+     */
+    onUpdateShapeRect(handler) {
+        this._documentView.addListener(DocumentEvents.UPDATE_SHAPE_RECT, handler)
     }
 
     /**
@@ -28,11 +45,12 @@ class AppView extends hyper.Component {
      */
     onDeleteShape(handler) {
         this._documentView.addListener(DocumentEvents.DELETE_SHAPE, handler)
+        this._menuView.doOnDeleteShape(handler)
     }
 
     /**
      * @param {string} shapeId
-     * @param {Rect} rect
+     * @param {ViewRect} rect
      * @param {string} shapeType
      */
     insertShape(shapeId, rect, shapeType) {
@@ -41,7 +59,7 @@ class AppView extends hyper.Component {
 
     /**
      * @param {string} shapeId
-     * @param {Rect} rect
+     * @param {ViewRect} rect
      */
     updateShape(shapeId, rect) {
         this._documentView.updateShape(shapeId, rect)

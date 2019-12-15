@@ -1,7 +1,7 @@
 import {DocumentEvents} from "./Events.js"
 import {Dispatcher} from "../../common/Dispatcher.js"
 import {Shape, ShapeType} from "../shapes/Shape.js"
-import {Rect} from "../../common/Types.js"
+import {Rect} from "../types/Rect.js"
 import {ShapeFactory} from "../ShapeFactory.js"
 import {ShapeEvents} from "../shapes/Events.js"
 
@@ -37,8 +37,8 @@ class Document {
 
         const shapeId = shape.getId()
 
-        shape.addListener(ShapeEvents.CHANGE_RECT, () => {
-            this._dispatcher.dispatch(DocumentEvents.CHANGE_SHAPE_RECT, {
+        shape.addListener(ShapeEvents.UPDATE_RECT, () => {
+            this._dispatcher.dispatch(DocumentEvents.UPDATE_SHAPE_RECT, {
                 shapeId,
             })
         })
@@ -81,7 +81,7 @@ class Document {
      * @param {function():void} handler
      */
     onChangeShapeRect(handler) {
-        this._dispatcher.addListener(DocumentEvents.CHANGE_SHAPE_RECT, handler)
+        this._dispatcher.addListener(DocumentEvents.UPDATE_SHAPE_RECT, handler)
     }
 
     /**
