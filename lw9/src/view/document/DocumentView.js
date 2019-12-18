@@ -10,8 +10,8 @@ import {KeyCodes} from "../common/KeyCodes.js"
 import {ViewShapeType} from "./shapes/ShapeType.js"
 
 const DocumentOptions = {
-    WIDTH: 1500,
-    HEIGHT: 800,
+    WIDTH: 1200,
+    HEIGHT: 600,
 }
 
 class DocumentView extends DispatcherComponent {
@@ -92,12 +92,8 @@ class DocumentView extends DispatcherComponent {
 
             !frame.getEnabled() && frame.setEnabled(true)
 
-            let shapes = this.state.shapes
-            shapes = shapes.filter(currShape => currShape !== shape)
-            shapes.push(shape)
-
             this.setState({
-                shapes,
+                shapes: this.state.shapes,
                 frames: this.state.frames,
             })
         })

@@ -7,7 +7,7 @@ import {ViewShapeType} from "../view/document/shapes/ShapeType.js"
 /**
  * @type {Rect}
  */
-const defaultShapeRect = { left: 450, top: 250, width: 400, height: 300 }
+const defaultShapeRect = { left: 500, top: 200, width: 200, height: 200 }
 
 class Presenter {
     /**

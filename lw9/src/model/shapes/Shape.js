@@ -9,10 +9,16 @@ import {generateUUID} from "../../common/generateUUID.js"
 let ShapeType
 
 class Shape extends Dispatcher {
-    constructor() {
+    /**
+     * @param {Rect} rect
+     * @param {ShapeType} type
+     */
+    constructor(rect, type) {
         super();
 
         this._id = generateUUID()
+        this._rect = rect
+        this._type = type
     }
 
     /**
@@ -26,44 +32,23 @@ class Shape extends Dispatcher {
      * @return {ShapeType}
      */
     getType() {
-        return this._getTypeImpl()
+        return this._type
     }
 
     /**
      * @return {Rect}
      */
     getRect() {
-        return this._getRectImpl()
+        return this._rect
     }
 
     /**
      * @param {Rect} rect
      */
     setRect(rect) {
-        this._setRectImpl(rect)
+        this._rect = rect
         this.dispatch(ShapeEvents.UPDATE_RECT)
     }
-
-    /**
-     * @abstract
-     * @return {ShapeType}
-     * @protected
-     */
-    _getTypeImpl() {}
-
-    /**
-     * @abstract
-     * @param {Rect} rect
-     * @protected
-     */
-    _setRectImpl(rect) {}
-
-    /**
-     * @abstract
-     * @return {Rect}
-     * @protected
-     */
-    _getRectImpl() {}
 }
 
 export {

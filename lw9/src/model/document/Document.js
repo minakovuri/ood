@@ -2,7 +2,6 @@ import {DocumentEvents} from "./Events.js"
 import {Dispatcher} from "../../common/Dispatcher.js"
 import {Shape, ShapeType} from "../shapes/Shape.js"
 import {Rect} from "../types/Rect.js"
-import {ShapeFactory} from "../ShapeFactory.js"
 import {ShapeEvents} from "../shapes/Events.js"
 
 class Document {
@@ -33,7 +32,7 @@ class Document {
      * @param {ShapeType} type
      */
     insertShape(rect, type) {
-        const shape = ShapeFactory.createShape(rect, type)
+        const shape = new Shape(rect, type)
 
         const shapeId = shape.getId()
 
